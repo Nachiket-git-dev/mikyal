@@ -1,0 +1,14 @@
+.invisible{
+    height: 0px;
+    width: 0px;
+    opacity: 0
+}
+.mat-select-arrow-wrapper{
+    display: none !important
+}
+.mat-select-panel{
+    background:#1B1B1D !important
+}
+.mat-select-arrow{
+    display: none !important
+}

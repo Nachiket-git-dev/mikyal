@@ -60,7 +60,7 @@
                         Name
                     </div>
                     <div class="client_table_header_col5 client_table_list_item client_table_list_item_col5">
-                        Phone
+                        Total
                     </div>
                     <div class="client_table_header_col6 client_table_list_item client_table_list_item_col6">
                         Status
@@ -106,12 +106,9 @@
                         <div class="client_table_list_item ">
                             (207) 555-0119
                         </div>
-                        <div class="client_table_list_item ">
-                            <p class="deactivated">Unpaid</p>
-                        </div>
-                        <div class="client_table_list_item ">
-                            <div class="icons-box-mark">
-                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <div class="client_table_list_item d-flex align-items-center ">
+                            <div class="icons-box-mark export_btn relative mr-15">
+                                <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z"
                                         fill="#001431"></path>
@@ -119,15 +116,37 @@
                                         d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z"
                                         fill="#001431"></path>
                                 </svg>
+                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task">
+                                    <li><p class="deactivated">Unpaid</p></li>
+                                    <li><p class="active"> Paid</p></li>
+                                    <li><p class="blocked">Сanceled</p></li>
+                                </ul>
+                            </div>
+                            <p class="deactivated">Unpaid</p>
+                        </div>
+                        <div class="client_table_list_item ">
+                            <div class="icons-box-mark export_btn relative">
+                                <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z"
+                                        fill="#001431"></path>
+                                    <path
+                                        d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z"
+                                        fill="#001431"></path>
+                                </svg>
+                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task w-95p">
+                                    <li><a href="">Edit</a></li>
+                                    <li><a href="">Share</a></li>
+                                </ul>
                             </div>
                         </div>
                     </li>
-                    <li class="client_table_list">
+                    <li *ngFor="let invoice of invoices" class="client_table_list">
                         <div class="client_table_list_item">
                             <input type="checkbox" class="item-check__checkbox">
                         </div>
                         <div class="client_table_list_item">
-                            5967
+                            {{invoice.invoice_id}}
                         </div>
                         <div class="client_table_list_item">
                             <svg class="icons-box__blue__circle" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -153,17 +172,14 @@
                             <div class="photo">
                                 <img src="/img/invoice/foto_2.png" alt="">
                             </div>
-                            <p>Theresa Jones</p>
+                            <p>{{invoice.invoice_name}}</p>
                         </div>
                         <div class="client_table_list_item">
-                            (229) 555-0109
+                            {{invoice.total}}
                         </div>
                         <div class="client_table_list_item">
-                            <p class="deactivated">Unpaid</p>
-                        </div>
-                        <div class="client_table_list_item">
-                            <div class="icons-box-mark">
-                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <div class="icons-box-mark export_btn relative mr-15" (click)="labelSelect.open()">
+                                <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z"
                                         fill="#001431"></path>
@@ -171,10 +187,53 @@
                                         d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z"
                                         fill="#001431"></path>
                                 </svg>
+                                <!-- <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task">
+                                    <li>
+                                        <p class="deactivated">Unpaid</p>
+                                    </li>
+                                    <li>
+                                        <p class="active"> Paid</p>
+                                    </li>
+                                    <li>
+                                        <p class="blocked">Сanceled</p>
+                                    </li>
+                                </ul> -->
+                            </div>
+                          
+                            <mat-select #labelSelect="matSelect"
+                                (selectionChange)="onLabelChange($event,invoice)"
+                                [value]="invoice.status"
+                                class="invisible w-0 h-0 text-sm"
+                               
+                                >
+                      <mat-option [style.background-color]="label.backgroundColor"  [style.color]="label.color" *ngFor="let label of invoiceslistLabels" class="" [value]="label">
+                        
+                        <span >{{ label.text }}</span>
+                      </mat-option>
+                    </mat-select>
+                            <p [style.background-color]="invoiceslistLabels[invoice.status].backgroundColor"
+                            [style.color]="invoiceslistLabels[invoice.status].color"
+                            class="deactivated"
+                            fxFlex="none"> {{ invoiceslistLabels[invoice.status].text }}</p>
+                        </div>
+                        <div class="client_table_list_item">
+                            <div class="icons-box-mark export_btn relative">
+                                <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z"
+                                        fill="#001431"></path>
+                                    <path
+                                        d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z"
+                                        fill="#001431"></path>
+                                </svg>
+                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task w-95p">
+                                    <li><a href="">EDIT</a></li>
+                                    <li><a href="">SHARE</a></li>
+                                </ul>
                             </div>
                         </div>
                     </li>
-                    <li class="client_table_list">
+                    <!-- <li class="client_table_list">
                         <div class="client_table_list_item">
                             <input type="checkbox" class="item-check__checkbox">
                         </div>
@@ -211,11 +270,8 @@
                             (406) 555-0120
                         </div>
                         <div class="client_table_list_item">
-                            <p class="active"> Paid</p>
-                        </div>
-                        <div class="client_table_list_item">
-                            <div class="icons-box-mark">
-                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <div class="icons-box-mark export_btn relative mr-15">
+                                <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z"
                                         fill="#001431"></path>
@@ -223,6 +279,34 @@
                                         d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z"
                                         fill="#001431"></path>
                                 </svg>
+                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task">
+                                    <li>
+                                        <p class="deactivated">Unpaid</p>
+                                    </li>
+                                    <li>
+                                        <p class="active"> Paid</p>
+                                    </li>
+                                    <li>
+                                        <p class="blocked">Сanceled</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p class="active"> Paid</p>
+                        </div>
+                        <div class="client_table_list_item">
+                            <div class="icons-box-mark export_btn relative">
+                                <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z"
+                                        fill="#001431"></path>
+                                    <path
+                                        d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z"
+                                        fill="#001431"></path>
+                                </svg>
+                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task w-95p">
+                                    <li><a href="">Edit</a></li>
+                                    <li><a href="">Share</a></li>
+                                </ul>
                             </div>
                         </div>
                     </li>
@@ -263,11 +347,8 @@
                             (319) 555-0115
                         </div>
                         <div class="client_table_list_item">
-                            <p class="deactivated">Unpaid</p>
-                        </div>
-                        <div class="client_table_list_item">
-                            <div class="icons-box-mark">
-                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <div class="icons-box-mark export_btn relative mr-15">
+                                <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z"
                                         fill="#001431"></path>
@@ -275,6 +356,34 @@
                                         d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z"
                                         fill="#001431"></path>
                                 </svg>
+                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task">
+                                    <li>
+                                        <p class="deactivated">Unpaid</p>
+                                    </li>
+                                    <li>
+                                        <p class="active"> Paid</p>
+                                    </li>
+                                    <li>
+                                        <p class="blocked">Сanceled</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p class="deactivated">Unpaid</p>
+                        </div>
+                        <div class="client_table_list_item">
+                            <div class="icons-box-mark export_btn relative">
+                                <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z"
+                                        fill="#001431"></path>
+                                    <path
+                                        d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z"
+                                        fill="#001431"></path>
+                                </svg>
+                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task w-95p">
+                                    <li><a href="">Edit</a></li>
+                                    <li><a href="">Share</a></li>
+                                </ul>
                             </div>
                         </div>
                     </li>
@@ -315,11 +424,8 @@
                             (907) 555-0101
                         </div>
                         <div class="client_table_list_item">
-                            <p class="blocked">Сanceled</p>
-                        </div>
-                        <div class="client_table_list_item">
-                            <div class="icons-box-mark">
-                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <div class="icons-box-mark export_btn relative mr-15">
+                                <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z"
                                         fill="#001431"></path>
@@ -327,6 +433,34 @@
                                         d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z"
                                         fill="#001431"></path>
                                 </svg>
+                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task">
+                                    <li>
+                                        <p class="deactivated">Unpaid</p>
+                                    </li>
+                                    <li>
+                                        <p class="active"> Paid</p>
+                                    </li>
+                                    <li>
+                                        <p class="blocked">Сanceled</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p class="blocked">Сanceled</p>
+                        </div>
+                        <div class="client_table_list_item">
+                            <div class="icons-box-mark export_btn relative">
+                                <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z"
+                                        fill="#001431"></path>
+                                    <path
+                                        d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z"
+                                        fill="#001431"></path>
+                                </svg>
+                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task w-95p">
+                                    <li><a href="">Edit</a></li>
+                                    <li><a href="">Share</a></li>
+                                </ul>
                             </div>
                         </div>
                     </li>
@@ -367,11 +501,8 @@
                             (702) 555-0122
                         </div>
                         <div class="client_table_list_item">
-                            <p class="deactivated">Unpaid</p>
-                        </div>
-                        <div class="client_table_list_item">
-                            <div class="icons-box-mark">
-                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <div class="icons-box-mark export_btn relative mr-15">
+                                <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z"
                                         fill="#001431"></path>
@@ -379,6 +510,34 @@
                                         d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z"
                                         fill="#001431"></path>
                                 </svg>
+                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task">
+                                    <li>
+                                        <p class="deactivated">Unpaid</p>
+                                    </li>
+                                    <li>
+                                        <p class="active"> Paid</p>
+                                    </li>
+                                    <li>
+                                        <p class="blocked">Сanceled</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p class="deactivated">Unpaid</p>
+                        </div>
+                        <div class="client_table_list_item">
+                            <div class="icons-box-mark export_btn relative">
+                                <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z"
+                                        fill="#001431"></path>
+                                    <path
+                                        d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z"
+                                        fill="#001431"></path>
+                                </svg>
+                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task w-95p">
+                                    <li><a href="">Edit</a></li>
+                                    <li><a href="">Share</a></li>
+                                </ul>
                             </div>
                         </div>
                     </li>
@@ -419,11 +578,8 @@
                             (843) 555-0130
                         </div>
                         <div class="client_table_list_item">
-                            <p class="deactivated">Unpaid</p>
-                        </div>
-                        <div class="client_table_list_item">
-                            <div class="icons-box-mark">
-                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <div class="icons-box-mark export_btn relative mr-15">
+                                <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z"
                                         fill="#001431"></path>
@@ -431,6 +587,34 @@
                                         d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z"
                                         fill="#001431"></path>
                                 </svg>
+                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task">
+                                    <li>
+                                        <p class="deactivated">Unpaid</p>
+                                    </li>
+                                    <li>
+                                        <p class="active"> Paid</p>
+                                    </li>
+                                    <li>
+                                        <p class="blocked">Сanceled</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p class="deactivated">Unpaid</p>
+                        </div>
+                        <div class="client_table_list_item">
+                            <div class="icons-box-mark export_btn relative">
+                                <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z"
+                                        fill="#001431"></path>
+                                    <path
+                                        d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z"
+                                        fill="#001431"></path>
+                                </svg>
+                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task w-95p">
+                                    <li><a href="">Edit</a></li>
+                                    <li><a href="">Share</a></li>
+                                </ul>
                             </div>
                         </div>
                     </li>
@@ -471,11 +655,8 @@
                             (208) 555-0112
                         </div>
                         <div class="client_table_list_item">
-                            <p class="deactivated">Unpaid</p>
-                        </div>
-                        <div class="client_table_list_item">
-                            <div class="icons-box-mark">
-                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <div class="icons-box-mark export_btn relative mr-15">
+                                <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z"
                                         fill="#001431"></path>
@@ -483,9 +664,37 @@
                                         d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z"
                                         fill="#001431"></path>
                                 </svg>
+                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task">
+                                    <li>
+                                        <p class="deactivated">Unpaid</p>
+                                    </li>
+                                    <li>
+                                        <p class="active"> Paid</p>
+                                    </li>
+                                    <li>
+                                        <p class="blocked">Сanceled</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p class="deactivated">Unpaid</p>
+                        </div>
+                        <div class="client_table_list_item">
+                            <div class="icons-box-mark export_btn relative">
+                                <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z"
+                                        fill="#001431"></path>
+                                    <path
+                                        d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z"
+                                        fill="#001431"></path>
+                                </svg>
+                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task w-95p">
+                                    <li><a href="">Edit</a></li>
+                                    <li><a href="">Share</a></li>
+                                </ul>
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
                 <div class="table__pagination">
                     <div class="pagination">
@@ -522,3 +731,7 @@
         </div>
     </div>
 </section>
+
+
+
+
