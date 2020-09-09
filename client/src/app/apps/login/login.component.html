@@ -1,0 +1,47 @@
+<section class="sign-up-area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-5 col-xl-4 col-md-6">
+                <div class="row">
+                    <div class="sign-up-form">
+                        <div class="sign-up-logo">
+                            <img src="assets/img/logo.png" alt="">
+                        </div>
+                        <div class="sign-up-content">
+                            <div class="sign-up-heading">
+                                <h2>Sign In</h2>
+                                <p>Welcome to Clients Portals Sign In Page</p>
+                            </div>
+                            <form [formGroup]="form" class="sign-up-contact-form">
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <div class="input-wrapper">
+                                        <input type="text" formControlName="email" class="form-control custom-control" placeholder="User Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <div class="input-wrapper">
+                                        <input type="password" formControlName="password" class="form-control custom-control" placeholder="......">
+                                        <i class="icofont-eye-alt"></i>
+                                    </div>
+                                </div>
+                                <div class="forget-option">
+                                    <a href="">Forgot password?</a>
+                                </div>
+                            </form>
+                            <button type="submit" (click)="login()" class="mikyal-btn btn_primary">Sign Up</button>
+                        </div>
+                        <div class="sign-up-footer">
+                            <p>@Copyright 2020 | Clients Portal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-7 col-md-6" style="background: #F5F5FB">
+                <div class="sign-up-img">
+                    <img src="assets/img/sign-in.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>

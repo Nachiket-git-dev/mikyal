@@ -1,0 +1,102 @@
+
+<!-- <div id="ModalWindow" class="Modal Modal__active"> -->
+
+    <div class="Modal_Body" >
+        <div class="flex-between__center Modal_Body_content">
+            <p>Add new client</p>
+            <div class="ModalWindowClose icons-box-mark">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.05071 7.05022C6.66018 7.44074 6.66018 8.07391 7.05071 8.46443L10.5862 12L7.05072 15.5355C6.66019 15.926 6.66019 16.5592 7.05072 16.9497C7.44124 17.3402 8.07441 17.3402 8.46493 16.9497L12.0005 13.4142L15.536 16.9497C15.9265 17.3402 16.5597 17.3402 16.9502 16.9497C17.3407 16.5592 17.3407 15.926 16.9502 15.5355L13.4147 12L16.9502 8.46443C17.3407 8.07391 17.3407 7.44074 16.9502 7.05022C16.5597 6.6597 15.9265 6.6597 15.536 7.05022L12.0005 10.5858L8.46492 7.05022C8.07439 6.65969 7.44123 6.65969 7.05071 7.05022Z" fill="black"/>
+                </svg>
+            </div>
+        </div>
+       <form *ngIf="clientform"  [formGroup]="clientform"> 
+        <div class="flex-between Modal_Body_content Modal_Body_content-col2">
+            <div class="input-box-with-label">
+                <label for="create-project-title-input1" class="input-box-with-label__label input-box-with-label__label__necessarily">
+                    First name
+                </label>
+                <input type="text" id="create-project-title-input1" formControlName="first_name" class="input-box-with-label__input" placeholder="First name">
+            </div>
+            <div class="input-box-with-label">
+                <label for="create-project-title-input2" class="input-box-with-label__label input-box-with-label__label__necessarily">
+                    Last name
+                </label>
+                <input type="text" id="create-project-title-input2" formControlName="last_name" class="input-box-with-label__input" placeholder="Name">
+            </div>
+        </div>
+        <div class="Modal_Body_content">
+            <div class="input-box-with-label">
+                <label for="create-project-title-input3"  class="input-box-with-label__label input-box-with-label__label__necessarily">
+                    Email
+                </label>
+                <input type="text" id="create-project-title-input3" formControlName="email" class="input-box-with-label__input" placeholder="Email">
+                <div *ngIf=" f.email.errors" class="invalid-feedback">
+                    <!-- <div *ngIf="f.email.errors.required">Email is required</div> -->
+                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                  </div>
+            </div>
+        </div>
+        <div class="Modal_Body_content">
+            <div class="input-box-with-label">
+                <label for="create-project-title-input4" class="input-box-with-label__label">
+                    Сompany
+                </label>
+                <input type="text" id="create-project-title-input4" formControlName="company" class="input-box-with-label__input" placeholder="Google inc">
+            </div>
+        </div>
+        <div class="flex-between Modal_Body_content Modal_Body_content-col2">
+            <div class="input-box-with-label ">
+                <label for="create-project-title-input5" class="input-box-with-label__label">
+                    Zipcode
+                </label>
+                <input type="text" id="create-project-title-input5" formControlName="zip" class="input-box-with-label__input" placeholder="Name">
+            </div>
+            <div class="input-box-with-label">
+                <label for="create-project-title-input6" class="input-box-with-label__label">
+                    City
+                </label>
+                <input type="text" id="create-project-title-input6" formControlName="city" class="input-box-with-label__input" placeholder="Name">
+            </div>
+        </div>
+        <div class="Modal_Body_content ">
+            <div class="input-box-with-label">
+                <label for="create-project-title-input7"  class="input-box-with-label__label ">
+                    Phone number
+                </label>
+                 <input type="text" id="create-project-title-input7" formControlName="phone" class="input-box-with-label__input" placeholder="Name">
+                 <div *ngIf=" f.phone.errors" class="invalid-feedback">
+                    <!-- <div *ngIf="f.email.errors.required">Email is required</div> -->
+                    <div *ngIf="f.phone.errors.pattern">Phone Number must be a valid Number</div>
+                 </div>
+            </div>
+        </div>
+        <div class="Modal_Body_content">
+            <div class="input-box-with-label">
+                <label for="create-project-title-input8" class="input-box-with-label__label ">
+                    Note
+                </label>
+                <input type="text" id="create-project-title-input8" formControlName="notes" class="input-box-with-label__input" placeholder="Name">
+            </div>
+        </div>
+        <div class="flex-center Modal_Body_content__buttons ">
+            <button class="gray-btn create-project-buttons_btn">
+                <svg class="icon-path__hover" width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 0C10.5523 0 11 0.447715 11 1L13 1C13.5523 1 14 1.44772 14 2C14 2.55229 13.5523 3 13 3L1 3C0.447716 3 0 2.55228 0 2C0 1.44772 0.447715 0.999999 1 0.999999L3 1C3 0.447715 3.44772 0 4 0H10Z" fill="#CCD0E3"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4H13V16C13 17.1046 12.1046 18 11 18H3C1.89543 18 1 17.1046 1 16V4ZM4.5 6C4.22386 6 4 6.22386 4 6.5V15.5C4 15.7761 4.22386 16 4.5 16C4.77614 16 5 15.7761 5 15.5V6.5C5 6.22386 4.77614 6 4.5 6ZM9.5 6C9.22386 6 9 6.22386 9 6.5V15.5C9 15.7761 9.22386 16 9.5 16C9.77614 16 10 15.7761 10 15.5V6.5C10 6.22386 9.77614 6 9.5 6Z" fill="#CCD0E3"></path>
+                </svg>
+                <p>
+                    Discard
+                </p>
+            </button>
+            <div class="blue-btn" (click)="save()">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM9 6C9 5.44772 9.44771 5 10 5C10.5523 5 11 5.44772 11 6V9H14C14.5523 9 15 9.44771 15 10C15 10.5523 14.5523 11 14 11H11V14C11 14.5523 10.5523 15 10 15C9.44771 15 9 14.5523 9 14V11H6C5.44772 11 5 10.5523 5 10C5 9.44771 5.44772 9 6 9H9V6Z" fill="white"></path>
+                </svg>
+                <p>Add client</p>
+            </div>
+        </div>
+      </form>  
+    </div> 
+    <a [routerLink]="['/client']" class="Modal_Full"></a>
+<!-- </div> -->

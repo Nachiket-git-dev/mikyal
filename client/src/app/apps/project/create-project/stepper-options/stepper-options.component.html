@@ -1,0 +1,22 @@
+
+    <!-- The navbar for the wizard -->
+   
+    <div class="flex-between__center Modal_Body_content scroll_style__gray">
+        <ng-container *ngFor="let step of steps; let i = index;">
+           
+          <div [ngClass]="(selectedIndex === i) ? activeClass : ''">
+            <a (click)="selectedIndex = i">
+              <ng-container *ngIf="step.stepLabel; else showLabelText" [ngTemplateOutlet]="step.stepLabel.template">
+              </ng-container>
+              <ng-template #showLabelText>
+                {{ step.label }}
+              </ng-template>
+            </a>
+        </div>
+        </ng-container>
+      
+    </div>
+  
+    <div class="body">
+      <ng-container [ngTemplateOutlet]="selected.content"></ng-container>
+    </div>

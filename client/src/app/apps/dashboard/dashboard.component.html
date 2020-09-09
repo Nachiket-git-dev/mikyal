@@ -1,0 +1,800 @@
+<section class="main-content-dashboard">
+   
+    <div class="content-wrapper content-wrapper__content pr-lg-0">
+       <section class="greeting">
+          <img src="../../../assets/img/dashboard/triangle.svg" class="greeting-img-triangle" alt="">
+          <div class="greeting-title-box">
+             <h1 class="greeting-title">Good morning, <b>Bill</b></h1>
+             <p class="greeting-subtitle">You have completed all of your tasks for today!</p>
+             <img src="img/dashboard/circle-main-screen.svg" class="greeting-title-box-img_position greeting-title-box-img-circle" alt=""> <img src="img/dashboard/rectangle.svg" class="greeting-title-box-img_position greeting-title-box-img-rect" alt="">
+          </div>
+          <img src="../../../assets/img/dashboard/main-screen.svg" alt="" class="greeting-image">
+       </section>
+       <ul class="information">
+          <li class="information_list information_list-charts">
+             <div class="information_list-item chart-box dashboard-line-chart__padding">
+                <div class="chart-header">
+                   <div class="chart-header-box profit">
+                      <h2 class="chart-header__title">Total profit</h2>
+                      <p class="chart-header__sum">$14.692</p>
+                   </div>
+                   <div class="chart-header-box green">
+                      <p class="chart-header__percent">+35%</p>
+                      <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M4.29333 0.841799L0.38167 5.44608C-0.170155 6.09561 0.291477 7.09354 1.14377 7.09354H8.96709C9.81938 7.09353 10.281 6.09561 9.72919 5.44608L5.81753 0.8418C5.41818 0.371745 4.69267 0.371743 4.29333 0.841799Z" fill="#48C2A5"/>
+                      </svg>
+                   </div>
+                </div>
+                <div id="dashboard-chart-total"></div>
+             </div>
+             <div class="information_list-item chart-box">
+                <div class="chart-header">
+                   <div class="chart-header-box sales">
+                      <h2 class="chart-header__title">Total sales</h2>
+                      <p class="chart-header__sum">162.350</p>
+                   </div>
+                   <div class="chart-header-box red">
+                      <p class="chart-header__percent">-4%</p>
+                      <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M4.29333 0.841799L0.38167 5.44608C-0.170155 6.09561 0.291477 7.09354 1.14377 7.09354H8.96709C9.81938 7.09353 10.281 6.09561 9.72919 5.44608L5.81753 0.8418C5.41818 0.371745 4.69267 0.371743 4.29333 0.841799Z" fill="#48C2A5"/>
+                      </svg>
+                   </div>
+                </div>
+                <div id="dashboard-chart-sales"></div>
+             </div>
+          </li>
+          <li class="information_list">
+             <div class="information_list-item task-block">
+                <div class="information_list-item-header">
+                   <h2 class="information_list-item_title">Tasks</h2>
+                   <div class="all-task-wrapper comon-wrapper">
+                      <div class="all-task-dropdown pointer export_btn">
+                         <svg class="check-box_circle" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.6666 8.00016C14.6666 11.6821 11.6819 14.6668 7.99998 14.6668C4.31808 14.6668 1.33331 11.6821 1.33331 8.00016C1.33331 4.31826 4.31808 1.3335 7.99998 1.3335C11.6819 1.3335 14.6666 4.31826 14.6666 8.00016ZM13.3333 8.00016C13.3333 10.9457 10.9455 13.3335 7.99998 13.3335C5.05446 13.3335 2.66665 10.9457 2.66665 8.00016C2.66665 5.05464 5.05446 2.66683 7.99998 2.66683C10.9455 2.66683 13.3333 5.05464 13.3333 8.00016Z" fill="#001431"/>
+                            <path d="M10.3679 6.11435C10.6282 5.854 11.0503 5.854 11.3107 6.11435C11.571 6.3747 11.571 6.79681 11.3107 7.05716L8.01087 10.357C7.75052 10.6173 7.32841 10.6173 7.06806 10.357L5.18244 8.47137C4.92209 8.21102 4.92209 7.78891 5.18244 7.52856C5.44279 7.26821 5.8649 7.26821 6.12525 7.52856L7.53946 8.94277L10.3679 6.11435Z" fill="#001431"/>
+                         </svg>
+                         <p class="all-task-dropdown_text">All tasks</p>
+                         <svg class="arrow_down" width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.646447 0.146447C0.841709 -0.0488154 1.15829 -0.0488154 1.35355 0.146447L5.65674 4.44964L9.95994 0.146447C10.1552 -0.0488156 10.4718 -0.0488156 10.667 0.146447C10.8623 0.341709 10.8623 0.658291 10.667 0.853553L6.0103 5.5103C5.81504 5.70556 5.49845 5.70556 5.30319 5.5103L0.646447 0.853553C0.451184 0.658291 0.451184 0.341709 0.646447 0.146447Z" fill="#001431"/>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">All Tasks</a></li>
+                            <li><a href="">Important</a></li>
+                            <li><a href="">Completed</a></li>
+                            <li><a href="">Project #1</a></li>
+                            <li><a href="">Project #2</a></li>
+                         </ul>
+                      </div>
+                   </div>
+                </div>
+                <ul class="information_list-item-content scroll_style__gray">
+                   <li class="information_list-item-content__item">
+                      <div class="flex-between">
+                         <label class="item-check-circle_checkbox"><input type="checkbox" checked="checked" class="item-check-circle_checkbox__input"> <span class="item-check-circle_checkbox__checkmark"></span></label>
+                         <div class="information_list-item-content__item-information">
+                            <p class="information_list-item-content__item-information_text">Do something right now or just do not. One two three</p>
+                            <div class="information_list-item-content__item-information_detail">
+                               <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow">Frontend</p>
+                               <p class="information_list-item-content__item-information_detail_executor">Morris W.</p>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Edit</a></li>
+                            <li><a href="">Duplicate</a></li>
+                            <li><a href="">Delete</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                   <li class="information_list-item-content__item checked">
+                      <div class="flex-between">
+                         <label class="item-check-circle_checkbox"><input type="checkbox" class="item-check-circle_checkbox__input"> <span class="item-check-circle_checkbox__checkmark"></span></label>
+                         <div class="information_list-item-content__item-information">
+                            <p class="information_list-item-content__item-information_text">This task must be done any time.</p>
+                            <div class="information_list-item-content__item-information_detail">
+                               <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow">Backend</p>
+                               <p class="information_list-item-content__item-information_detail_executor">Jennie J.</p>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Edit</a></li>
+                            <li><a href="">Duplicate</a></li>
+                            <li><a href="">Delete</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                   <li class="information_list-item-content__item">
+                      <div class="flex-between">
+                         <label class="item-check-circle_checkbox"><input type="checkbox" class="item-check-circle_checkbox__input"> <span class="item-check-circle_checkbox__checkmark"></span></label>
+                         <div class="information_list-item-content__item-information">
+                            <p class="information_list-item-content__item-information_text">This task must be done any time.</p>
+                            <div class="information_list-item-content__item-information_detail">
+                               <p class="flex-center information_list-item-content__item-information_detail_work detail_work__purple">Backend</p>
+                               <p class="information_list-item-content__item-information_detail_executor">Dustin B.</p>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Edit</a></li>
+                            <li><a href="">Duplicate</a></li>
+                            <li><a href="">Delete</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                   <li class="information_list-item-content__item">
+                      <div class="flex-between">
+                         <label class="item-check-circle_checkbox"><input type="checkbox" class="item-check-circle_checkbox__input"> <span class="item-check-circle_checkbox__checkmark"></span></label>
+                         <div class="information_list-item-content__item-information">
+                            <p class="information_list-item-content__item-information_text">Do something right now or just do not. One two three</p>
+                            <div class="information_list-item-content__item-information_detail">
+                               <p class="flex-center information_list-item-content__item-information_detail_work detail_work__green">Frontend</p>
+                               <p class="information_list-item-content__item-information_detail_executor">Morris W.</p>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Edit</a></li>
+                            <li><a href="">Duplicate</a></li>
+                            <li><a href="">Delete</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                   <li class="information_list-item-content__item">
+                      <div class="flex-between">
+                         <label class="item-check-circle_checkbox"><input type="checkbox" class="item-check-circle_checkbox__input"> <span class="item-check-circle_checkbox__checkmark"></span></label>
+                         <div class="information_list-item-content__item-information">
+                            <p class="information_list-item-content__item-information_text">Do something right now or just do not. One two three</p>
+                            <div class="information_list-item-content__item-information_detail">
+                               <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow">Frontend</p>
+                               <p class="information_list-item-content__item-information_detail_executor">Morris W.</p>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Edit</a></li>
+                            <li><a href="">Duplicate</a></li>
+                            <li><a href="">Delete</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                   <li class="information_list-item-content__item">
+                      <div class="flex-between">
+                         <label class="item-check-circle_checkbox"><input type="checkbox" class="item-check-circle_checkbox__input"> <span class="item-check-circle_checkbox__checkmark"></span></label>
+                         <div class="information_list-item-content__item-information">
+                            <p class="information_list-item-content__item-information_text">Do something right now or just do not. One two three</p>
+                            <div class="information_list-item-content__item-information_detail">
+                               <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow">Frontend</p>
+                               <p class="information_list-item-content__item-information_detail_executor">Morris W.</p>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Edit</a></li>
+                            <li><a href="">Duplicate</a></li>
+                            <li><a href="">Delete</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                </ul>
+             </div>
+             <div class="information_list-item projects-block">
+                <div class="information_list-item-header">
+                   <h2 class="information_list-item_title">Projects</h2>
+                   <div class="all-task-wrapper comon-wrapper">
+                      <div class="all-task-dropdown pointer export_btn">
+                         <svg class="check-box_circle" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.6666 8.00016C14.6666 11.6821 11.6819 14.6668 7.99998 14.6668C4.31808 14.6668 1.33331 11.6821 1.33331 8.00016C1.33331 4.31826 4.31808 1.3335 7.99998 1.3335C11.6819 1.3335 14.6666 4.31826 14.6666 8.00016ZM13.3333 8.00016C13.3333 10.9457 10.9455 13.3335 7.99998 13.3335C5.05446 13.3335 2.66665 10.9457 2.66665 8.00016C2.66665 5.05464 5.05446 2.66683 7.99998 2.66683C10.9455 2.66683 13.3333 5.05464 13.3333 8.00016Z" fill="#001431"/>
+                            <path d="M10.3679 6.11435C10.6282 5.854 11.0503 5.854 11.3107 6.11435C11.571 6.3747 11.571 6.79681 11.3107 7.05716L8.01087 10.357C7.75052 10.6173 7.32841 10.6173 7.06806 10.357L5.18244 8.47137C4.92209 8.21102 4.92209 7.78891 5.18244 7.52856C5.44279 7.26821 5.8649 7.26821 6.12525 7.52856L7.53946 8.94277L10.3679 6.11435Z" fill="#001431"/>
+                         </svg>
+                         <p class="all-task-dropdown_text">All Projects</p>
+                         <svg class="arrow_down" width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.646447 0.146447C0.841709 -0.0488154 1.15829 -0.0488154 1.35355 0.146447L5.65674 4.44964L9.95994 0.146447C10.1552 -0.0488156 10.4718 -0.0488156 10.667 0.146447C10.8623 0.341709 10.8623 0.658291 10.667 0.853553L6.0103 5.5103C5.81504 5.70556 5.49845 5.70556 5.30319 5.5103L0.646447 0.853553C0.451184 0.658291 0.451184 0.341709 0.646447 0.146447Z" fill="#001431"/>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">All Projects</a></li>
+                            <li><a href="">In Progress</a></li>
+                            <li><a href="">Completed</a></li>
+                         </ul>
+                      </div>
+                   </div>
+                </div>
+                <ul class="information_list-item-content scroll_style__gray">
+                   <li class="information_list-item-content__item done">
+                      <div class="information_list-item-content__item-information">
+                         <p class="information_list-item-content__item-information_text">Pretty important task(Please, attend!)</p>
+                         <div class="information_list-item-content__item-information_detail">
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow">Frontend</p>
+                            <p class="information_list-item-content__item-information_detail_executor">Morris W.</p>
+                         </div>
+                         <div class="project-progress">
+                            <div class="project-progress_line">
+                               <div class="project-progress_line-bg"></div>
+                            </div>
+                            <div class="project-progress_text">Done</div>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Export as PDF</a></li>
+                            <li><a href="">Project Settings</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                   <li class="information_list-item-content__item">
+                      <div class="information_list-item-content__item-information">
+                         <p class="information_list-item-content__item-information_text">Dribble, Behance, UpLabs &amp; Pinterest Post</p>
+                         <div class="information_list-item-content__item-information_detail">
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__green">Design</p>
+                            <p class="information_list-item-content__item-information_detail_executor"></p>
+                         </div>
+                         <div class="project-progress">
+                            <div class="project-progress_line">
+                               <div class="project-progress_line-bg"></div>
+                            </div>
+                            <div class="project-progress_text">7 <span>of</span> 30</div>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Export as PDF</a></li>
+                            <li><a href="">Project Settings</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                   <li class="information_list-item-content__item">
+                      <div class="information_list-item-content__item-information">
+                         <p class="information_list-item-content__item-information_text">Add Angular Starter-kit</p>
+                         <div class="information_list-item-content__item-information_detail">
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow">Frontend</p>
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__purple">Backend</p>
+                            <p class="information_list-item-content__item-information_detail_executor"></p>
+                         </div>
+                         <div class="project-progress">
+                            <div class="project-progress_line">
+                               <div class="project-progress_line-bg"></div>
+                            </div>
+                            <div class="project-progress_text">7 <span>of</span> 30</div>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Export as PDF</a></li>
+                            <li><a href="">Project Settings</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                   <li class="information_list-item-content__item">
+                      <div class="information_list-item-content__item-information">
+                         <p class="information_list-item-content__item-information_text">Fresh Design Web &amp; Responsive Miracle</p>
+                         <div class="information_list-item-content__item-information_detail">
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow">Frontend</p>
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__green">Design</p>
+                            <p class="information_list-item-content__item-information_detail_executor"></p>
+                         </div>
+                         <div class="project-progress">
+                            <div class="project-progress_line">
+                               <div class="project-progress_line-bg"></div>
+                            </div>
+                            <div class="project-progress_text">7 <span>of</span> 30</div>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Export as PDF</a></li>
+                            <li><a href="">Project Settings</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                   <li class="information_list-item-content__item">
+                      <div class="information_list-item-content__item-information">
+                         <p class="information_list-item-content__item-information_text">Pretty important task(Please, attend!)</p>
+                         <div class="information_list-item-content__item-information_detail">
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow">Frontend</p>
+                            <p class="information_list-item-content__item-information_detail_executor">Morris W.</p>
+                         </div>
+                         <div class="project-progress">
+                            <div class="project-progress_line">
+                               <div class="project-progress_line-bg"></div>
+                            </div>
+                            <div class="project-progress_text">Done</div>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Export as PDF</a></li>
+                            <li><a href="">Project Settings</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                </ul>
+             </div>
+          </li>
+          <li class="information_list information_list-charts">
+             <div class="information_list-item projects-block">
+                <div class="information_list-item-header">
+                   <h2 class="information_list-item_title">Client Notes</h2>
+                   <div class="all-task-wrapper comon-wrapper">
+                      <div class="all-task-dropdown pointer export_btn">
+                         <svg class="check-box_circle" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.6666 8.00016C14.6666 11.6821 11.6819 14.6668 7.99998 14.6668C4.31808 14.6668 1.33331 11.6821 1.33331 8.00016C1.33331 4.31826 4.31808 1.3335 7.99998 1.3335C11.6819 1.3335 14.6666 4.31826 14.6666 8.00016ZM13.3333 8.00016C13.3333 10.9457 10.9455 13.3335 7.99998 13.3335C5.05446 13.3335 2.66665 10.9457 2.66665 8.00016C2.66665 5.05464 5.05446 2.66683 7.99998 2.66683C10.9455 2.66683 13.3333 5.05464 13.3333 8.00016Z" fill="#001431"/>
+                            <path d="M10.3679 6.11435C10.6282 5.854 11.0503 5.854 11.3107 6.11435C11.571 6.3747 11.571 6.79681 11.3107 7.05716L8.01087 10.357C7.75052 10.6173 7.32841 10.6173 7.06806 10.357L5.18244 8.47137C4.92209 8.21102 4.92209 7.78891 5.18244 7.52856C5.44279 7.26821 5.8649 7.26821 6.12525 7.52856L7.53946 8.94277L10.3679 6.11435Z" fill="#001431"/>
+                         </svg>
+                         <p class="all-task-dropdown_text">Clients Name</p>
+                         <svg class="arrow_down" width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.646447 0.146447C0.841709 -0.0488154 1.15829 -0.0488154 1.35355 0.146447L5.65674 4.44964L9.95994 0.146447C10.1552 -0.0488156 10.4718 -0.0488156 10.667 0.146447C10.8623 0.341709 10.8623 0.658291 10.667 0.853553L6.0103 5.5103C5.81504 5.70556 5.49845 5.70556 5.30319 5.5103L0.646447 0.853553C0.451184 0.658291 0.451184 0.341709 0.646447 0.146447Z" fill="#001431"/>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">View</a></li>
+                            <li><a href="">Edit</a></li>
+                         </ul>
+                      </div>
+                   </div>
+                </div>
+                <ul class="information_list-item-content scroll_style__gray">
+                   <li class="information_list-item-content__item done">
+                      <div class="information_list-item-content__item-information">
+                         <p class="information_list-item-content__item-information_text">Pretty important task(Please, attend!)</p>
+                         <div class="information_list-item-content__item-information_detail">
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow">Frontend</p>
+                            <p class="information_list-item-content__item-information_detail_executor">Morris W.</p>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Export as PDF</a></li>
+                            <li><a href="">Project Settings</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                   <li class="information_list-item-content__item">
+                      <div class="information_list-item-content__item-information">
+                         <p class="information_list-item-content__item-information_text">Add Angular Starter-kit</p>
+                         <div class="information_list-item-content__item-information_detail">
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow">Frontend</p>
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__purple">Backend</p>
+                            <p class="information_list-item-content__item-information_detail_executor"></p>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Export as PDF</a></li>
+                            <li><a href="">Project Settings</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                   <li class="information_list-item-content__item">
+                      <div class="information_list-item-content__item-information">
+                         <p class="information_list-item-content__item-information_text">Fresh Design Web &amp; Responsive Miracle</p>
+                         <div class="information_list-item-content__item-information_detail">
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow">Frontend</p>
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__green">Design</p>
+                            <p class="information_list-item-content__item-information_detail_executor"></p>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Export as PDF</a></li>
+                            <li><a href="">Project Settings</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                   <li class="information_list-item-content__item">
+                      <div class="information_list-item-content__item-information">
+                         <p class="information_list-item-content__item-information_text">Pretty important task(Please, attend!)</p>
+                         <div class="information_list-item-content__item-information_detail">
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow">Frontend</p>
+                            <p class="information_list-item-content__item-information_detail_executor">Morris W.</p>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Export as PDF</a></li>
+                            <li><a href="">Project Settings</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                </ul>
+             </div>
+             <div class="information_list-item work-timeline">
+                <div class="information_list-item-header">
+                   <h2 class="information_list-item_title">Client</h2>
+                </div>
+                <ul class="information_list-item-content scroll_style__gray">
+                   <li class="information_list-item-content__item">
+                      <div class="work-timeline-comment-box">
+                         <div class="work-timeline-information">
+                            <p class="information_list-item-content__item-information_text">Jennie J. Commented</p>
+                            <p class="work-timeline-information__detail">on <span>Fresh desig...</span></p>
+                         </div>
+                         <div class="work-timeline-detail">
+                            <p class="work-timeline-detail_text">Story behind vedio game and lame is very creative</p>
+                            <p class="work-timeline-detail_time">Mon 8:17pm</p>
+                         </div>
+                      </div>
+                   </li>
+                   <li class="information_list-item-content__item">
+                      <div class="work-timeline-comment-box">
+                         <div class="work-timeline-information">
+                            <p class="information_list-item-content__item-information_text">Zack H. attached file</p>
+                            <p class="work-timeline-information__detail">on <span>Add angular...</span></p>
+                         </div>
+                      </div>
+                   </li>
+                   <li class="information_list-item-content__item">
+                      <div class="work-timeline-comment-box">
+                         <div class="work-timeline-information">
+                            <p class="information_list-item-content__item-information_text">Jennie J. Commented</p>
+                            <p class="work-timeline-information__detail">on <span>Fresh desig...</span></p>
+                         </div>
+                      </div>
+                   </li>
+                   <li class="information_list-item-content__item">
+                      <div class="work-timeline-comment-box">
+                         <div class="work-timeline-information">
+                            <p class="information_list-item-content__item-information_text">Jennie J. Commented</p>
+                            <p class="work-timeline-information__detail">on <span>Fresh desig...</span></p>
+                         </div>
+                      </div>
+                   </li>
+                </ul>
+             </div>
+          </li>
+          <li class="information_list">
+             <div class="information_list-item projects-block">
+                <div class="information_list-item-header">
+                   <h2 class="information_list-item_title">Portals</h2>
+                   <div class="all-task-wrapper comon-wrapper">
+                      <div class="all-task-dropdown pointer export_btn">
+                         <svg class="check-box_circle" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.6666 8.00016C14.6666 11.6821 11.6819 14.6668 7.99998 14.6668C4.31808 14.6668 1.33331 11.6821 1.33331 8.00016C1.33331 4.31826 4.31808 1.3335 7.99998 1.3335C11.6819 1.3335 14.6666 4.31826 14.6666 8.00016ZM13.3333 8.00016C13.3333 10.9457 10.9455 13.3335 7.99998 13.3335C5.05446 13.3335 2.66665 10.9457 2.66665 8.00016C2.66665 5.05464 5.05446 2.66683 7.99998 2.66683C10.9455 2.66683 13.3333 5.05464 13.3333 8.00016Z" fill="#001431"/>
+                            <path d="M10.3679 6.11435C10.6282 5.854 11.0503 5.854 11.3107 6.11435C11.571 6.3747 11.571 6.79681 11.3107 7.05716L8.01087 10.357C7.75052 10.6173 7.32841 10.6173 7.06806 10.357L5.18244 8.47137C4.92209 8.21102 4.92209 7.78891 5.18244 7.52856C5.44279 7.26821 5.8649 7.26821 6.12525 7.52856L7.53946 8.94277L10.3679 6.11435Z" fill="#001431"/>
+                         </svg>
+                         <p class="all-task-dropdown_text">Clients Name</p>
+                         <svg class="arrow_down" width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.646447 0.146447C0.841709 -0.0488154 1.15829 -0.0488154 1.35355 0.146447L5.65674 4.44964L9.95994 0.146447C10.1552 -0.0488156 10.4718 -0.0488156 10.667 0.146447C10.8623 0.341709 10.8623 0.658291 10.667 0.853553L6.0103 5.5103C5.81504 5.70556 5.49845 5.70556 5.30319 5.5103L0.646447 0.853553C0.451184 0.658291 0.451184 0.341709 0.646447 0.146447Z" fill="#001431"/>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">View</a></li>
+                            <li><a href="">Copy</a></li>
+                            <li><a href="">Edit</a></li>
+                         </ul>
+                      </div>
+                   </div>
+                </div>
+                <ul class="information_list-item-content scroll_style__gray">
+                   <li class="information_list-item-content__item done">
+                      <div class="information_list-item-content__item-information">
+                         <p class="information_list-item-content__item-information_text">Pretty important task(Please, attend!)</p>
+                         <div class="information_list-item-content__item-information_detail">
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow">Project #1</p>
+                            <p class="information_list-item-content__item-information_detail_executor">Morris W.</p>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Export as PDF</a></li>
+                            <li><a href="">Project Settings</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                   <li class="information_list-item-content__item">
+                      <div class="information_list-item-content__item-information">
+                         <p class="information_list-item-content__item-information_text">Add Angular Starter-kit</p>
+                         <div class="information_list-item-content__item-information_detail">
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow">Project #1</p>
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__purple">Morris W</p>
+                            <p class="information_list-item-content__item-information_detail_executor"></p>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Export as PDF</a></li>
+                            <li><a href="">Project Settings</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                   <li class="information_list-item-content__item">
+                      <div class="information_list-item-content__item-information">
+                         <p class="information_list-item-content__item-information_text">Fresh Design Web &amp; Responsive Miracle</p>
+                         <div class="information_list-item-content__item-information_detail">
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow">Project #1</p>
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__green">Morris W</p>
+                            <p class="information_list-item-content__item-information_detail_executor"></p>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Export as PDF</a></li>
+                            <li><a href="">Project Settings</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                   <li class="information_list-item-content__item">
+                      <div class="information_list-item-content__item-information">
+                         <p class="information_list-item-content__item-information_text">Pretty important task(Please, attend!)</p>
+                         <div class="information_list-item-content__item-information_detail">
+                            <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow">Project #1</p>
+                            <p class="information_list-item-content__item-information_detail_executor">Morris W.</p>
+                         </div>
+                      </div>
+                      <div class="icons-box-mark export_btn relative">
+                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                            <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                         </svg>
+                         <ul class="all-task-dropdawn custom-all-task comon-dropdawn tooltip">
+                            <li><a href="">Mark as Complete</a></li>
+                            <li><a href="">Export as PDF</a></li>
+                            <li><a href="">Project Settings</a></li>
+                         </ul>
+                      </div>
+                   </li>
+                </ul>
+             </div>
+          </li>
+       </ul>
+    </div>
+
+    <!-- <app-dashboard-rightbar></app-dashboard-rightbar> -->
+     <div class="right-sidebar">
+       <div class="header-menu-account right-sidebar-menu-account">
+          <div class="header-menu-account-icon-box">
+             <div class="icons-box-icon-menu close-right-sidebar">
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
+                   <g>
+                      <g>
+                         <path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
+                            L34.143,5.859c-7.811-7.811-20.475-7.811-28.285,0c-7.81,7.811-7.811,20.475,0,28.285l221.857,221.857L5.858,477.859
+                            c-7.811,7.811-7.811,20.475,0,28.285c3.905,3.905,9.024,5.857,14.143,5.857c5.119,0,10.237-1.952,14.143-5.857L256,284.287
+                            l221.857,221.857c3.905,3.905,9.024,5.857,14.143,5.857s10.237-1.952,14.143-5.857c7.811-7.811,7.811-20.475,0-28.285
+                            L284.286,256.002z"/>
+                      </g>
+                   </g>
+                   <g></g>
+                   <g></g>
+                   <g></g>
+                   <g></g>
+                   <g></g>
+                   <g></g>
+                   <g></g>
+                   <g></g>
+                   <g></g>
+                   <g></g>
+                   <g></g>
+                   <g></g>
+                   <g></g>
+                   <g></g>
+                   <g></g>
+                </svg>
+             </div>
+          </div>
+          <div class="header-menu-account-name">
+             <p class="account-name">Debra Simmmons</p>
+             <div class="account-logo"><img class="account-img" src="/src/assets/img/account-avatar.jpg" alt=""></div>
+          </div>
+       </div>
+       <div class="projects">
+          <p class="projects-title projects-title_active pointer">Сurrent projects</p>
+          <p class="projects-title pointer">All projects</p>
+       </div>
+       <div class="swiper-container slider-project">
+          <div class="swiper-wrapper">
+             <div class="swiper-slide slide">
+                <div class="slide-progress_bg"></div>
+                <div class="slide-box_title">
+                   <p class="slide_title">Design</p>
+                </div>
+                <div class="slide-detail">
+                   <p class="slide-detail_title">Dribble, Behance, UpLabs & Pinter...</p>
+                   <p class="slide-detail-counter">7 <span>of </span>30</p>
+                </div>
+             </div>
+             <div class="swiper-slide slide slide-ocean_bg">
+                <div class="slide-progress_bg"></div>
+                <div class="slide-box_title">
+                   <p class="slide_title">Frontend</p>
+                   <p class="slide_title">Backend</p>
+                </div>
+                <div class="slide-detail">
+                   <p class="slide-detail_title">Add Angular Starter-kit</p>
+                   <p class="slide-detail-counter">14 <span>of </span>18</p>
+                </div>
+             </div>
+             <div class="swiper-slide slide" style="background: #F5F5FB;">
+                <div class="slide-progress_bg" style="background: #E5E5EE;"></div>
+                <div class="slide-box_title">
+                   <p class="slide_title" style="color: #001431;">Design</p>
+                </div>
+                <div class="slide-detail">
+                   <p class="slide-detail_title" style="color: #001431;">Dribble, Behance, UpLabs & Pinter...</p>
+                   <p class="slide-detail-counter" style="color: #001431;">7 <span style="color: #001431; opacity: 0.38">of </span>30</p>
+                </div>
+             </div>
+             <div class="swiper-slide slide">
+                <div class="slide-progress_bg"></div>
+                <div class="slide-box_title">
+                   <p class="slide_title">Design</p>
+                </div>
+                <div class="slide-detail">
+                   <p class="slide-detail_title">Dribble, Behance, UpLabs & Pinter...</p>
+                   <p class="slide-detail-counter">7 <span>of </span>30</p>
+                </div>
+             </div>
+             <div class="swiper-slide slide slide-ocean_bg">
+                <div class="slide-progress_bg"></div>
+                <div class="slide-box_title">
+                   <p class="slide_title">Frontend</p>
+                   <p class="slide_title">Backend</p>
+                </div>
+                <div class="slide-detail">
+                   <p class="slide-detail_title">Add Angular Starter-kit</p>
+                   <p class="slide-detail-counter">14 <span>of </span>18</p>
+                </div>
+             </div>
+             <div class="swiper-slide slide" style="background: #F5F5FB;">
+                <div class="slide-progress_bg" style="background: #E5E5EE;"></div>
+                <div class="slide-box_title">
+                   <p class="slide_title" style="color: #001431;">Design</p>
+                </div>
+                <div class="slide-detail">
+                   <p class="slide-detail_title" style="color: #001431;">Dribble, Behance, UpLabs & Pinter...</p>
+                   <p class="slide-detail-counter" style="color: #001431;">7 <span style="color: #001431; opacity: 0.38">of </span>30</p>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div class=""></div>
+       <div class="last-clients">
+          <h2 class="last-clients_title">Download files</h2>
+          <ul class="last-clients-content">
+             <li class="last-clients-content__item">
+                <div class="last-clients-content__item__box">
+                   <img src="img/dashboard/right-sidebar-client-1.jpg" class="last-clients-content__item__box_img" alt="">
+                   <div class="last-clients-content__item__detail">
+                      <p class="last-clients-content__item__box_name">Tyrone Lane</p>
+                      <p class="last-clients-content__item__box_cash">+600$</p>
+                   </div>
+                </div>
+                <p class="last-clients-content__item__date">May 14</p>
+             </li>
+             <li class="last-clients-content__item">
+                <div class="last-clients-content__item__box">
+                   <img src="img/dashboard/right-sidebar-client-2.jpg" class="last-clients-content__item__box_img" alt="">
+                   <div class="last-clients-content__item__detail">
+                      <p class="last-clients-content__item__box_name">Eleanor Nguyen</p>
+                      <p class="last-clients-content__item__box_cash">+1200$</p>
+                   </div>
+                </div>
+                <p class="last-clients-content__item__date">May 03</p>
+             </li>
+             <li class="last-clients-content__item">
+                <div class="last-clients-content__item__box">
+                   <img src="img/dashboard/right-sidebar-client-3.jpg" class="last-clients-content__item__box_img" alt="">
+                   <div class="last-clients-content__item__detail">
+                      <p class="last-clients-content__item__box_name">Julie Henry</p>
+                      <p class="last-clients-content__item__box_cash">+255$</p>
+                   </div>
+                </div>
+                <p class="last-clients-content__item__date">April 26</p>
+             </li>
+             <li class="last-clients-content__item">
+                <div class="last-clients-content__item__box">
+                   <img src="img/dashboard/right-sidebar-client-4.jpg" class="last-clients-content__item__box_img" alt="">
+                   <div class="last-clients-content__item__detail">
+                      <p class="last-clients-content__item__box_name">Darrell Wilson</p>
+                      <p class="last-clients-content__item__box_cash">+3$</p>
+                   </div>
+                </div>
+                <p class="last-clients-content__item__date">January 30</p>
+             </li>
+             <li class="last-clients-content__item">
+                <div class="last-clients-content__item__box">
+                   <img src="img/dashboard/right-sidebar-client-5.jpg" class="last-clients-content__item__box_img" alt="">
+                   <div class="last-clients-content__item__detail">
+                      <p class="last-clients-content__item__box_name">Esther Williamson</p>
+                      <p class="last-clients-content__item__box_cash">+300.000$</p>
+                   </div>
+                </div>
+                <p class="last-clients-content__item__date">January 18</p>
+             </li>
+          </ul>
+       </div>
+    </div> 
+ </section>

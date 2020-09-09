@@ -1,0 +1,607 @@
+<!-- <div class="">
+    <form class="flex-between create-project">
+        <div class="create-project__head">
+            <h2 class="create-project__head__title">
+                Create new project
+            </h2>
+            <div class="icons-box-mark btn-popup-close">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.05071 1.05022C0.660181 1.44074 0.660181 2.07391 1.05071 2.46443L4.58625 5.99997L1.05072 9.5355C0.660192 9.92602 0.660192 10.5592 1.05072 10.9497C1.44124 11.3402 2.07441 11.3402 2.46493 10.9497L6.00046 7.41419L9.53599 10.9497C9.92651 11.3402 10.5597 11.3402 10.9502 10.9497C11.3407 10.5592 11.3407 9.92602 10.9502 9.5355L7.41467 5.99997L10.9502 2.46443C11.3407 2.07391 11.3407 1.44074 10.9502 1.05022C10.5597 0.659696 9.92652 0.659696 9.536 1.05022L6.00046 4.58576L2.46492 1.05022C2.07439 0.659693 1.44123 0.659693 1.05071 1.05022Z" fill="black"></path>
+                </svg>
+            </div>
+        </div>
+        <div class="flex-between create-new-area scroll_style__gray">
+            <div class="create-project_col2 create-project__content">
+                <div class="create-project-title input-box-with-label">
+                    <label for="create-project-title-input" class="input-box-with-label__label">
+                        Title
+                    </label>
+                    <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="Enter the title">
+                </div>
+                <textarea placeholder="Description" class="input-box-with-label__input create-project-title__textarea "></textarea>
+                <div class="create-project-date flex-between">
+                    <div class="input-box-with-label create-project_col2 start-date-option">
+                        <h4 class="input-box-with-label__label">
+                            Start Date
+                        </h4>
+                        <div class="input-box-with-label__input create-project-date__pick">
+                            <p>02.16.2020</p>
+                            <svg class="icon-calendar icons-box__blue" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 8H18V16C18 17.1046 17.1046 18 16 18H2C0.89543 18 0 17.1046 0 16V8Z" fill="#CCD0E3"></path>
+                                <path d="M0 6H18V4C18 2.89543 17.1046 2 16 2H2C0.89543 2 0 2.89543 0 4V6Z" fill="#CCD0E3"></path>
+                                <path d="M4 4H6V1C6 0.447715 5.55228 0 5 0C4.44772 0 4 0.447715 4 1V4Z" fill="#CCD0E3"></path>
+                                <path d="M12 4H14V1C14 0.447715 13.5523 0 13 0C12.4477 0 12 0.447715 12 1V4Z" fill="#CCD0E3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="input-box-with-label create-project_col2">
+                        <h4 class="input-box-with-label__label">
+                            End Date
+                        </h4>
+                        <div class="input-box-with-label__input create-project-date__pick">
+                            <p>02.16.2020</p>
+                            <svg class="icon-calendar icons-box__blue" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 8H18V16C18 17.1046 17.1046 18 16 18H2C0.89543 18 0 17.1046 0 16V8Z" fill="#CCD0E3"></path>
+                                <path d="M0 6H18V4C18 2.89543 17.1046 2 16 2H2C0.89543 2 0 2.89543 0 4V6Z" fill="#CCD0E3"></path>
+                                <path d="M4 4H6V1C6 0.447715 5.55228 0 5 0C4.44772 0 4 0.447715 4 1V4Z" fill="#CCD0E3"></path>
+                                <path d="M12 4H14V1C14 0.447715 13.5523 0 13 0C12.4477 0 12 0.447715 12 1V4Z" fill="#CCD0E3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="create-project-tags">
+                    <h4 class="input-box-with-label__label">
+                        Add tags
+                    </h4>
+                    <div class="create-project-tags__box input-box-with-label__input">
+                        <div class="create-project-tags__item">
+                            <p class="create-project-tags__item-text">
+                                Design
+                            </p>
+                            <div class="icons-box__gray">
+                                <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683418 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L8.70711 7.29289C9.09763 7.68342 9.09763 8.31658 8.70711 8.70711C8.31658 9.09763 7.68342 9.09763 7.29289 8.70711L0.292893 1.70711C-0.0976309 1.31658 -0.0976309 0.683417 0.292893 0.292893Z" fill="#9A9AB5"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.70711 0.292893C9.09763 0.683418 9.09763 1.31658 8.70711 1.70711L1.70711 8.70711C1.31658 9.09763 0.683418 9.09763 0.292893 8.70711C-0.0976311 8.31658 -0.0976311 7.68342 0.292893 7.29289L7.29289 0.292893C7.68342 -0.097631 8.31658 -0.097631 8.70711 0.292893Z" fill="#9A9AB5"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="create-project-tags__item">
+                            <p class="create-project-tags__item-text">
+                                Frontend
+                            </p>
+                            <div class="icons-box__gray">
+                                <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683418 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L8.70711 7.29289C9.09763 7.68342 9.09763 8.31658 8.70711 8.70711C8.31658 9.09763 7.68342 9.09763 7.29289 8.70711L0.292893 1.70711C-0.0976309 1.31658 -0.0976309 0.683417 0.292893 0.292893Z" fill="#9A9AB5"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.70711 0.292893C9.09763 0.683418 9.09763 1.31658 8.70711 1.70711L1.70711 8.70711C1.31658 9.09763 0.683418 9.09763 0.292893 8.70711C-0.0976311 8.31658 -0.0976311 7.68342 0.292893 7.29289L7.29289 0.292893C7.68342 -0.097631 8.31658 -0.097631 8.70711 0.292893Z" fill="#9A9AB5"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <input type="text" class="create-project-tags-input" placeholder="Bac">
+                    </div>
+                </div>
+            </div>
+            <div class="create-project__line"> </div>
+            <div class="create-project_col2 create-project__content">
+                <div class="create-project-choice__hours">
+                    <h4 class="create-project__title input-box-with-label__label">
+                        Number of hours
+                    </h4>
+                    <div class="flex-between__center">
+                        <div class="create-project-range">
+                            <div class="create-project-range__progress"></div>
+                        </div>
+                        <div class="create-project-range__value flex-center">
+                            2033
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-between__columns create-project-milestones">
+                    <h4 class="input-box-with-label__label">
+                        Milestones
+                    </h4>
+                    <ul class="flex-between__columns">
+                        <li class="create-project-milestones__item flex-between__center ">
+                            <p>
+                                Milestone No 1
+                            </p>
+                            <div class="icons-box__gray">
+                                <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 0C10.5523 0 11 0.447715 11 1L13 1C13.5523 1 14 1.44772 14 2C14 2.55229 13.5523 3 13 3L1 3C0.447716 3 0 2.55228 0 2C0 1.44772 0.447715 0.999999 1 0.999999L3 1C3 0.447715 3.44772 0 4 0H10Z" fill="#CCD0E3"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4H13V16C13 17.1046 12.1046 18 11 18H3C1.89543 18 1 17.1046 1 16V4ZM4.5 6C4.22386 6 4 6.22386 4 6.5V15.5C4 15.7761 4.22386 16 4.5 16C4.77614 16 5 15.7761 5 15.5V6.5C5 6.22386 4.77614 6 4.5 6ZM9.5 6C9.22386 6 9 6.22386 9 6.5V15.5C9 15.7761 9.22386 16 9.5 16C9.77614 16 10 15.7761 10 15.5V6.5C10 6.22386 9.77614 6 9.5 6Z" fill="#CCD0E3"></path>
+                                </svg>
+
+                            </div>
+                        </li>
+                        <li class="create-project-milestones__item flex-between__center ">
+                            <p>
+                                Milestone No 2
+                            </p>
+                            <div class="icons-box__gray">
+                                <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 0C10.5523 0 11 0.447715 11 1L13 1C13.5523 1 14 1.44772 14 2C14 2.55229 13.5523 3 13 3L1 3C0.447716 3 0 2.55228 0 2C0 1.44772 0.447715 0.999999 1 0.999999L3 1C3 0.447715 3.44772 0 4 0H10Z" fill="#CCD0E3"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4H13V16C13 17.1046 12.1046 18 11 18H3C1.89543 18 1 17.1046 1 16V4ZM4.5 6C4.22386 6 4 6.22386 4 6.5V15.5C4 15.7761 4.22386 16 4.5 16C4.77614 16 5 15.7761 5 15.5V6.5C5 6.22386 4.77614 6 4.5 6ZM9.5 6C9.22386 6 9 6.22386 9 6.5V15.5C9 15.7761 9.22386 16 9.5 16C9.77614 16 10 15.7761 10 15.5V6.5C10 6.22386 9.77614 6 9.5 6Z" fill="#CCD0E3"></path>
+                                </svg>
+
+                            </div>
+                        </li>
+                        <li class="create-project-milestones__item flex-between__center ">
+                            <p>
+                                Milestone No 3
+                            </p>
+                            <div class="icons-box__gray">
+                                <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 0C10.5523 0 11 0.447715 11 1L13 1C13.5523 1 14 1.44772 14 2C14 2.55229 13.5523 3 13 3L1 3C0.447716 3 0 2.55228 0 2C0 1.44772 0.447715 0.999999 1 0.999999L3 1C3 0.447715 3.44772 0 4 0H10Z" fill="#CCD0E3"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4H13V16C13 17.1046 12.1046 18 11 18H3C1.89543 18 1 17.1046 1 16V4ZM4.5 6C4.22386 6 4 6.22386 4 6.5V15.5C4 15.7761 4.22386 16 4.5 16C4.77614 16 5 15.7761 5 15.5V6.5C5 6.22386 4.77614 6 4.5 6ZM9.5 6C9.22386 6 9 6.22386 9 6.5V15.5C9 15.7761 9.22386 16 9.5 16C9.77614 16 10 15.7761 10 15.5V6.5C10 6.22386 9.77614 6 9.5 6Z" fill="#CCD0E3"></path>
+                                </svg>
+
+                            </div>
+                        </li>
+                        <li class="create-project-milestones__item flex-between__center ">
+                            <p>
+                                Milestone No 4
+                            </p>
+                            <div class="icons-box__gray">
+                                <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 0C10.5523 0 11 0.447715 11 1L13 1C13.5523 1 14 1.44772 14 2C14 2.55229 13.5523 3 13 3L1 3C0.447716 3 0 2.55228 0 2C0 1.44772 0.447715 0.999999 1 0.999999L3 1C3 0.447715 3.44772 0 4 0H10Z" fill="#CCD0E3"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4H13V16C13 17.1046 12.1046 18 11 18H3C1.89543 18 1 17.1046 1 16V4ZM4.5 6C4.22386 6 4 6.22386 4 6.5V15.5C4 15.7761 4.22386 16 4.5 16C4.77614 16 5 15.7761 5 15.5V6.5C5 6.22386 4.77614 6 4.5 6ZM9.5 6C9.22386 6 9 6.22386 9 6.5V15.5C9 15.7761 9.22386 16 9.5 16C9.77614 16 10 15.7761 10 15.5V6.5C10 6.22386 9.77614 6 9.5 6Z" fill="#CCD0E3"></path>
+                                </svg>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                    <div class="flex-between__center ">
+                        <input type="text" class="input-box-with-label__input create-project-milestones__input" placeholder="New checklist item">
+                        <div class="icons-box_square-gray__small">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM9 6C9 5.44772 9.44771 5 10 5C10.5523 5 11 5.44772 11 6V9H14C14.5523 9 15 9.44771 15 10C15 10.5523 14.5523 11 14 11H11V14C11 14.5523 10.5523 15 10 15C9.44771 15 9 14.5523 9 14V11H6C5.44772 11 5 10.5523 5 10C5 9.44771 5.44772 9 6 9H9V6Z" fill="#CCD0E3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="create-project-link flex-between__column">
+                    <h4 class="input-box-with-label__label">
+                        Link (optional)
+                    </h4>
+                    <div class="flex-between__center">
+                        <p class="mb-lg-15">mikyal.com/user/projects/</p>
+                        <input type="text" class="input-box-with-label__input create-project-link__input" placeholder="example">
+                    </div>
+                </div>
+                <div class="create-project-price input-box-with-label">
+                    <h4 class="input-box-with-label__label">
+                        Price
+                    </h4>
+                    <div class="flex-between__center input-box-with-label__input ">
+                        <div class="icons-box__gray">
+                            <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.07194 12.3407C7.07194 11.8233 6.91658 11.4132 6.60588 11.1104C6.30192 10.8013 5.78183 10.5174 5.04559 10.2587C4.30935 10 3.67443 9.74448 3.14083 9.49211C2.60723 9.23344 2.14792 8.94006 1.76292 8.61199C1.38467 8.2776 1.08747 7.88644 0.871327 7.43849C0.661938 6.99054 0.557244 6.45741 0.557244 5.83912C0.557244 4.77287 0.921986 3.89905 1.65147 3.21767C2.38095 2.53628 3.35022 2.1388 4.55927 2.02524V0.810537C4.55927 0.362889 4.92216 0 5.36981 0C5.81745 0 6.18034 0.36289 6.18034 0.810537V2.05363C7.37589 2.21136 8.31138 2.67823 8.98683 3.45426C9.46985 4.00469 9.78016 4.67288 9.91777 5.45884C10.013 6.00284 9.55228 6.45426 9 6.45426H8.07194C7.51965 6.45426 7.10371 5.99496 6.9461 5.46564C6.86167 5.1821 6.73475 4.94697 6.56535 4.76025C6.23438 4.3817 5.78858 4.19243 5.22796 4.19243C4.6741 4.19243 4.24519 4.34069 3.94124 4.63722C3.63728 4.92744 3.48531 5.33123 3.48531 5.84858C3.48531 6.32808 3.63391 6.71293 3.9311 7.00315C4.2283 7.29338 4.77879 7.58991 5.58257 7.89274C6.39311 8.19558 7.05843 8.48265 7.57852 8.75394C8.09861 9.01893 8.53766 9.32177 8.89564 9.66246C9.25363 9.99685 9.52719 10.3817 9.71631 10.817C9.90544 11.2461 10 11.7476 10 12.3218C10 13.3943 9.64201 14.265 8.92604 14.9338C8.21006 15.6025 7.22391 15.9968 5.96758 16.1167V17.1945C5.96758 17.6394 5.60696 18 5.16211 18C4.71726 18 4.35664 17.6394 4.35664 17.1945V16.1262C2.97197 15.9874 1.89801 15.53 1.13475 14.7539C0.583295 14.1837 0.232832 13.4776 0.0833638 12.6357C-0.0131838 12.092 0.447715 11.6404 1 11.6404H1.92806C2.48035 11.6404 2.89706 12.1011 3.06674 12.6267C3.16129 12.9196 3.30419 13.1681 3.49544 13.3722C3.88045 13.7697 4.43094 13.9685 5.14691 13.9685C5.7413 13.9685 6.21074 13.8233 6.55522 13.5331C6.8997 13.2366 7.07194 12.8391 7.07194 12.3407Z" fill="#CCD0E3"/>
+                            </svg>
+                        </div>
+                        <input type="text" class="input-icon create-project-link__input" placeholder="example">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="create-project-buttons flex-center">
+            <button class="gray-btn create-project-buttons__discard flex-between create-project-buttons_btn">
+                <svg class="icon-path__hover" width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 0C10.5523 0 11 0.447715 11 1L13 1C13.5523 1 14 1.44772 14 2C14 2.55229 13.5523 3 13 3L1 3C0.447716 3 0 2.55228 0 2C0 1.44772 0.447715 0.999999 1 0.999999L3 1C3 0.447715 3.44772 0 4 0H10Z" fill="#CCD0E3"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4H13V16C13 17.1046 12.1046 18 11 18H3C1.89543 18 1 17.1046 1 16V4ZM4.5 6C4.22386 6 4 6.22386 4 6.5V15.5C4 15.7761 4.22386 16 4.5 16C4.77614 16 5 15.7761 5 15.5V6.5C5 6.22386 4.77614 6 4.5 6ZM9.5 6C9.22386 6 9 6.22386 9 6.5V15.5C9 15.7761 9.22386 16 9.5 16C9.77614 16 10 15.7761 10 15.5V6.5C10 6.22386 9.77614 6 9.5 6Z" fill="#CCD0E3"/>
+                </svg>
+                <p >
+                    Discard
+                </p>
+            </button>
+            <button class="blue-btn create-project-buttons__add flex-between create-project-buttons_btn">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM13.5355 6.46447C13.9261 6.07394 14.5592 6.07394 14.9498 6.46447C15.3403 6.85499 15.3403 7.48816 14.9498 7.87868L9.29662 13.5318L9.29292 13.5355C9.19191 13.6365 9.07467 13.7114 8.9496 13.7602C8.77243 13.8292 8.57955 13.8459 8.3948 13.8101C8.2057 13.7735 8.02513 13.682 7.87868 13.5355L7.87489 13.5317L5.05028 10.7071C4.65975 10.3166 4.65975 9.68342 5.05028 9.29289C5.4408 8.90237 6.07397 8.90237 6.46449 9.29289L8.5858 11.4142L13.5355 6.46447Z" fill="white"/>
+                </svg>
+                <p>
+                    Add event
+                </p>
+            </button>
+        </div>
+    </form>
+</div> -->
+<section class="main-content-projects">
+    <div class="content-wrapper content-wrapper__content">
+<!--            class="Modal"-->
+     <div class="addprojectstep1">
+         <div id="ModalWindow" class=" Modal Modal__active">
+             <div class="Modal_Body scroll_style__gray">
+                <div class="flex-between__center Modal_Body_content">
+                    <p>Add project</p>
+                    <a class="ModalWindowClosestep1 pointer">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.05071 7.05022C6.66018 7.44074 6.66018 8.07391 7.05071 8.46443L10.5862 12L7.05072 15.5355C6.66019 15.926 6.66019 16.5592 7.05072 16.9497C7.44124 17.3402 8.07441 17.3402 8.46493 16.9497L12.0005 13.4142L15.536 16.9497C15.9265 17.3402 16.5597 17.3402 16.9502 16.9497C17.3407 16.5592 17.3407 15.926 16.9502 15.5355L13.4147 12L16.9502 8.46443C17.3407 8.07391 17.3407 7.44074 16.9502 7.05022C16.5597 6.6597 15.9265 6.6597 15.536 7.05022L12.0005 10.5858L8.46492 7.05022C8.07439 6.65969 7.44123 6.65969 7.05071 7.05022Z" fill="black"/>
+                        </svg>
+                    </a>
+                </div>
+            <app-stepper-options #cdkStepper [linear]="isLinear"> 
+                <cdk-step [editable]="isEditable" >  
+                <ng-template cdkStepLabel>
+                    <div class="Modal_Body_content_cart Modal_Body_content_cart_active">
+                        <svg width="46" height="40" viewBox="0 0 46 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.80187 0.799805C2.22313 0.799805 0.921875 2.10105 0.921875 3.6798V6.5598H45.0819V3.6798C45.0819 2.10105 43.7806 0.799805 42.2019 0.799805H3.80187ZM5.72187 3.6798C6.25062 3.6798 6.68187 4.11105 6.68187 4.6398C6.68187 5.16855 6.25062 5.5998 5.72187 5.5998C5.19313 5.5998 4.76187 5.16855 4.76187 4.6398C4.76187 4.11105 5.19313 3.6798 5.72187 3.6798ZM8.60187 3.6798C9.13062 3.6798 9.56187 4.11105 9.56187 4.6398C9.56187 5.16855 9.13062 5.5998 8.60187 5.5998C8.07312 5.5998 7.64187 5.16855 7.64187 4.6398C7.64187 4.11105 8.07312 3.6798 8.60187 3.6798ZM0.921875 8.4798V21.9198H45.0819V8.4798H0.921875ZM0.921875 23.8398V36.3198C0.921875 37.8986 2.22313 39.1998 3.80187 39.1998H22.0419V23.8398H0.921875ZM23.9619 23.8398V39.1998H42.2019C43.7806 39.1998 45.0819 37.8986 45.0819 36.3198V23.8398H23.9619ZM4.76187 25.7598H19.1619V27.6798H4.76187V25.7598ZM4.76187 29.5998H19.1619V31.5198H4.76187V29.5998ZM4.76187 33.4398H13.4019V35.3598H4.76187V33.4398Z" fill="url(#paint0_linear)"/>
+                            <defs>
+                                <linearGradient id="paint0_linear" x1="45.0819" y1="20.1014" x2="0.921875" y2="20.1014" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#60D0FE"/>
+                                    <stop offset="0.5" stop-color="#5A9DF1"/>
+                                    <stop offset="1" stop-color="#546AE4"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <p>Project details</p>
+                     </div>
+                  </ng-template>
+                <div class="Modal_Body_content">
+                    <p>Project details</p>
+                </div>
+                <div class="flex-between Modal_Body_content flex-md-coloum">
+                    <div class="input-box-with-label Modal_Body_content__col2 mb-md-25 w-md-100p">
+                        <label for="create-project-title-input" class="input-box-with-label__label">
+                            Project name
+                        </label>
+                        <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="Loop CRM">
+                    </div>
+                    <div class="input-box-with-label Modal_Body_content__col2 w-md-100p">
+                        <label for="create-project-title-input" class="input-box-with-label__label">
+                            Project owner
+                        </label>
+                        <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="Krox">
+                    </div>
+                </div>
+                <div class="flex-between Modal_Body_content flex-md-coloum ">
+                        <div class="input-box-with-label Modal_Body_content__col2 mb-md-25 w-md-100p">
+                            <label for="create-project-title-input" class="input-box-with-label__label">
+                                Customer name
+                            </label>
+                            <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="Loop Inc">
+                        </div>
+                        <div class="input-box-with-label Modal_Body_content__col2 w-md-100p">
+                            <label for="create-project-title-input" class="input-box-with-label__label">
+                                Contact phone
+                            </label>
+                            <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="(219) 555-0114">
+                        </div>
+                </div>
+                <div class="flex-between Modal_Body_content flex-md-coloum ">
+                    <div class="input-box-with-label Modal_Body_content__col2 mb-md-25 w-md-100p">
+                        <label for="create-project-title-input" class="input-box-with-label__label">
+                            Email address
+                        </label>
+                        <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="benjamin.ray@example.com">
+                    </div>
+                    <div class="input-box-with-label Modal_Body_content__col2 w-md-100p">
+                        <label for="create-project-title-input" class="input-box-with-label__label">
+                            Company site
+                        </label>
+                        <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="loop">
+                    </div>
+                </div>
+                <div class="Modal_Body_content">
+                    <!-- <div class="blue-btn" cdkStepperNext>
+                        <a>Next step</a>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" fill="white"/>
+                            <path d="M10 8L14 12L10 16" stroke="#546AE4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div> -->
+                    <button class="blue-btn" cdkStepperNext>Next</button>
+                </div>
+            </cdk-step>
+            <cdk-step>
+                <ng-template cdkStepLabel>
+                    <div class="Modal_Body_content_cart Modal_Body_content_cart_active">
+                        <svg width="44" height="42" viewBox="0 0 44 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.99609 0C1.79609 0 0.015625 1.8 0.015625 4L0 27.9961C0 30.2061 1.79 32 4 32H7.99609V40L15.9961 32H19.9961C19.9961 31.3209 20.0492 30.6531 20.1445 30H20.1562C20.1824 29.8178 20.2248 29.6408 20.2578 29.4609C20.3268 29.0913 20.407 28.7261 20.5039 28.3672C22.104 22.4005 27.5232 18 33.9961 18C34.6752 18 35.343 18.0531 35.9961 18.1484V18.1602C37.4101 18.3622 38.7521 18.7752 39.9961 19.3672V4C39.9961 1.8 38.1961 0 35.9961 0H3.99609ZM32.125 22C31.867 22 31.6511 22.1932 31.6211 22.4492L31.3867 24.4727C30.4187 24.8087 29.5452 25.3186 28.7852 25.9766L26.9102 25.1641C26.6742 25.0621 26.4014 25.1549 26.2734 25.3789L24.3984 28.6211C24.2704 28.8451 24.3292 29.1292 24.5352 29.2812L26.1484 30.4766C26.0544 30.9726 25.9961 31.48 25.9961 32C25.9961 32.52 26.0524 33.0255 26.1484 33.5195L24.5391 34.7188C24.3331 34.8727 24.2723 35.1569 24.4023 35.3789L26.2734 38.6211C26.4014 38.8451 26.6781 38.934 26.9141 38.832L28.7852 38.0234C29.5432 38.6794 30.4187 39.1913 31.3867 39.5273L31.6211 41.5508C31.6491 41.8088 31.867 42 32.125 42H35.8672C36.1252 42 36.3411 41.8068 36.3711 41.5508L36.6055 39.5273C37.5735 39.1913 38.447 38.6814 39.207 38.0234L41.082 38.8359C41.318 38.9379 41.5908 38.8431 41.7188 38.6211L43.5938 35.3789C43.7217 35.1549 43.663 34.8708 43.457 34.7188L41.8438 33.5195C41.9398 33.0255 41.9961 32.52 41.9961 32C41.9961 31.48 41.9398 30.9745 41.8438 30.4805L43.4531 29.2812C43.6591 29.1273 43.7198 28.8431 43.5898 28.6211L41.7188 25.3789C41.5908 25.1549 41.3141 25.066 41.0781 25.168L39.207 25.9766C38.449 25.3206 37.5735 24.8087 36.6055 24.4727L36.3711 22.4492C36.3431 22.1912 36.1252 22 35.8672 22H32.125ZM33.9961 28.5C35.9281 28.5 37.4961 30.066 37.4961 32C37.4961 33.932 35.9281 35.5 33.9961 35.5C32.0641 35.5 30.4961 33.932 30.4961 32C30.4961 30.066 32.0641 28.5 33.9961 28.5Z" fill="url(#paint0_linear)"/>
+                            <defs>
+                                <linearGradient id="paint0_linear" x1="43.6612" y1="21.1111" x2="-4.30534e-07" y2="21.1111" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#60D0FE"/>
+                                    <stop offset="0.5" stop-color="#5A9DF1"/>
+                                    <stop offset="1" stop-color="#546AE4"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+
+                        <p>Settings</p>
+                    </div>
+                  </ng-template>
+                  <div class="Modal_Body_line"></div>
+                        <div class="flex-between__center Modal_Body_content">
+                            <p>Project details</p>
+                        </div>
+                        <div class="flex-between__center Modal_Body_content">
+                            <div class="input-box-with-label Modal_Body_content__col2 mb-md-25 w-md-100p">
+                                <label for="create-project-title-input" class="input-box-with-label__label">
+                                    Language
+                                </label>
+                                <div class="input-box-with-label_drop-menu">
+                                    <p>
+                                      English
+                                    </p>
+                                    <svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0.646447 0.146447C0.841709 -0.0488154 1.15829 -0.0488154 1.35355 0.146447L5.65674 4.44964L9.95994 0.146447C10.1552 -0.0488156 10.4718 -0.0488156 10.667 0.146447C10.8623 0.341709 10.8623 0.658291 10.667 0.853553L6.0103 5.5103C5.81504 5.70556 5.49845 5.70556 5.30319 5.5103L0.646447 0.853553C0.451184 0.658291 0.451184 0.341709 0.646447 0.146447Z" fill="#001431"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="flex__column Modal_Body_content__col2">
+                                <p class="input-box-with-label__label">Communication</p>
+                                <ul class="flex-items__center">
+                                    <li class="Modal_Body_content__checkboxes">
+                                        <input id="c1" type="checkbox" class="item-check__checkbox">
+                                        <label for="c1">Email</label>
+                                    </li>
+                                    <li class="Modal_Body_content__checkboxes">
+                                        <input id="c2" type="checkbox" class="item-check__checkbox" checked>
+                                        <label for="c2">SMS</label>
+                                    </li>
+                                    <li class="Modal_Body_content__checkboxes">
+                                        <input id="c3" type="checkbox" class="item-check__checkbox">
+                                        <label for="c3">Phone</label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flex-between__center Modal_Body_content">
+                            <div class="input-box-with-label">
+                                <label for="create-project-title-input" class="input-box-with-label__label">
+                                    Time zone
+                                </label>
+                                <div class="input-box-with-label_drop-menu ">
+                                    <p>
+                                        (GMT-11:00) International Date Line West
+                                    </p>
+                                    <svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0.646447 0.146447C0.841709 -0.0488154 1.15829 -0.0488154 1.35355 0.146447L5.65674 4.44964L9.95994 0.146447C10.1552 -0.0488156 10.4718 -0.0488156 10.667 0.146447C10.8623 0.341709 10.8623 0.658291 10.667 0.853553L6.0103 5.5103C5.81504 5.70556 5.49845 5.70556 5.30319 5.5103L0.646447 0.853553C0.451184 0.658291 0.451184 0.341709 0.646447 0.146447Z" fill="#001431"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-between__center Modal_Body_content modal-body-btn">
+                            <button class="gray-btn mb-sm-15" cdkStepperPrevious>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" fill="#CCD0E3"/>
+                                    <path d="M13 8L9 12L13 16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <p>
+                                    Previous
+                                </p>
+                            </button>
+                            <!-- <div class="blue-btn">
+                                <a >Next step</a>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" fill="white"/>
+                                    <path d="M10 8L14 12L10 16" stroke="#546AE4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div> -->
+                            <button class="blue-btn" cdkStepperNext>
+
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" fill="white"/>
+                                    <path d="M10 8L14 12L10 16" stroke="#546AE4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg> 
+                                Next
+                            </button>
+                        </div>
+            </cdk-step>
+            <cdk-step>
+                <ng-template cdkStepLabel>
+                    <div class="Modal_Body_content_cart Modal_Body_content_cart_active">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23.9984 3.2002C14.2784 3.2002 6.39844 11.0802 6.39844 20.8002C6.39844 32.3746 17.8416 37.9154 19.2752 39.205C20.7392 40.5218 21.9488 43.4738 22.4368 45.1474C22.6736 45.9602 23.3392 46.3714 23.9984 46.389C24.6592 46.3698 25.3232 45.9586 25.56 45.1474C26.048 43.4738 27.2576 40.5234 28.7216 39.205C30.1552 37.9154 41.5984 32.3746 41.5984 20.8002C41.5984 11.0802 33.7184 3.2002 23.9984 3.2002ZM17.2096 27.589C17.8352 28.2146 17.8352 29.2274 17.2096 29.8514C16.8976 30.1634 16.488 30.3202 16.0784 30.3202C15.6688 30.3202 15.2592 30.1634 14.9472 29.8514C12.5296 27.4338 11.1984 24.2194 11.1984 20.8002C11.1984 17.381 12.5296 14.1666 14.9472 11.749C15.5728 11.1234 16.584 11.1234 17.2096 11.749C17.8352 12.373 17.8352 13.3858 17.2096 14.0114C15.3968 15.8258 14.3984 18.2354 14.3984 20.8002C14.3984 23.365 15.3968 25.7746 17.2096 27.589ZM23.9984 24.0002C22.2304 24.0002 20.7984 22.5682 20.7984 20.8002C20.7984 19.0322 22.2304 17.6002 23.9984 17.6002C25.7664 17.6002 27.1984 19.0322 27.1984 20.8002C27.1984 22.5682 25.7664 24.0002 23.9984 24.0002ZM33.0496 29.8514C32.7376 30.1634 32.328 30.3202 31.9184 30.3202C31.5088 30.3202 31.0992 30.1634 30.7872 29.8514C30.1616 29.2274 30.1616 28.2146 30.7872 27.589C32.6 25.7746 33.5984 23.365 33.5984 20.8002C33.5984 18.2354 32.6 15.8258 30.7872 14.0114C30.1616 13.3858 30.1616 12.373 30.7872 11.749C31.4128 11.1234 32.424 11.1234 33.0496 11.749C35.4672 14.1666 36.7984 17.381 36.7984 20.8002C36.7984 24.2194 35.4672 27.4338 33.0496 29.8514Z" fill="url(#paint0_linear)"/>
+                            <defs>
+                                <linearGradient id="paint0_linear" x1="41.5984" y1="24.9089" x2="6.39844" y2="24.9089" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#60D0FE"/>
+                                    <stop offset="0.5" stop-color="#5A9DF1"/>
+                                    <stop offset="1" stop-color="#546AE4"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+
+                        <p>Delivery details</p>
+                    </div>
+                  </ng-template>
+                  <div class="Modal_Body_line"></div>
+                  <div class="Modal_Body_content">
+                      <p>Setup your current location</p>
+                  </div>
+                  <div class="flex-between Modal_Body_content">
+                      <div class="input-box-with-label">
+                          <label for="create-project-title-input" class="input-box-with-label__label">
+                              Address line 1
+                          </label>
+                          <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="Address line 1">
+                      </div>
+                  </div>
+                  <div class="flex-between Modal_Body_content">
+                      <div class="input-box-with-label">
+                          <label for="create-project-title-input" class="input-box-with-label__label">
+                              Address line 2
+                          </label>
+                          <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="Address line 2">
+                      </div>
+                  </div>
+                  <div class="flex-between Modal_Body_content modal-input-area">
+                      <div class="input-box-with-label Modal_Body_content__col2 mb-md-25">
+                          <label for="create-project-title-input" class="input-box-with-label__label">
+                              Postcode
+                          </label>
+                          <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="English">
+                      </div>
+                      <div class="input-box-with-label Modal_Body_content__col2">
+                          <label for="create-project-title-input" class="input-box-with-label__label">
+                              City
+                          </label>
+                          <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="Krox">
+                      </div>
+                  </div>
+                  <div class="flex-between Modal_Body_content modal-input-area">
+                      <div class="input-box-with-label Modal_Body_content__col2 mb-md-25">
+                          <label for="create-project-title-input" class="input-box-with-label__label">
+                              State
+                          </label>
+                          <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="VIC">
+                      </div>
+                      <div class="input-box-with-label Modal_Body_content__col2">
+                          <label for="create-project-title-input" class="input-box-with-label__label">
+                              Country
+                          </label>
+                          <div class="input-box-with-label_drop-menu">
+                              <p>
+                                  Australia
+                              </p>
+                              <svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M0.646447 0.146447C0.841709 -0.0488154 1.15829 -0.0488154 1.35355 0.146447L5.65674 4.44964L9.95994 0.146447C10.1552 -0.0488156 10.4718 -0.0488156 10.667 0.146447C10.8623 0.341709 10.8623 0.658291 10.667 0.853553L6.0103 5.5103C5.81504 5.70556 5.49845 5.70556 5.30319 5.5103L0.646447 0.853553C0.451184 0.658291 0.451184 0.341709 0.646447 0.146447Z" fill="#001431"></path>
+                              </svg>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="flex-between__center Modal_Body_content modal-body-btn">
+                      <button class="gray-btn mb-sm-15" cdkStepperPrevious>
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="12" cy="12" r="10" fill="#CCD0E3"/>
+                              <path d="M13 8L9 12L13 16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                          <p>
+                              Previous
+                          </p>
+                      </button>
+                      <!-- <div class="blue-btn">
+                          <a href="AddProjectStep4.html">Next step</a>
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="12" cy="12" r="10" fill="white"/>
+                              <path d="M10 8L14 12L10 16" stroke="#546AE4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                      </div> -->
+                      <button class="blue-btn" cdkStepperNext>
+
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" fill="white"/>
+                            <path d="M10 8L14 12L10 16" stroke="#546AE4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg> 
+                        Next
+                    </button>
+                  </div>
+
+  
+            </cdk-step>
+            <cdk-step>
+               <ng-template cdkStepLabel>
+                <div class="Modal_Body_content_cart  Modal_Body_content_cart_active">
+                    <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.7143 0C14.9012 0 10.9524 3.94878 10.9524 8.7619C10.9524 13.575 14.9012 17.5238 19.7143 17.5238C24.5274 17.5238 28.4762 13.575 28.4762 8.7619C28.4762 3.94878 24.5274 0 19.7143 0ZM8.75763 13.1471C8.75763 13.1471 4.61085 12.9215 2.19475 15.3376C-0.221341 17.7537 0.00855655 21.8962 0.00855655 21.8962C0.00855677 21.8962 4.15105 22.1261 6.56715 19.71C8.98325 17.2939 8.75763 13.1471 8.75763 13.1471ZM32.8571 19.7143C28.8863 19.7143 25.3203 21.5012 22.9059 24.3049C21.8125 24.1804 20.7341 24.0952 19.7143 24.0952C15.892 24.0952 11.3624 24.9929 7.55543 26.4953C5.65197 27.2466 3.93124 28.139 2.55413 29.2848C1.17702 30.4306 0 31.9796 0 33.9524V39.4286H21.4983C23.779 43.3474 28.0169 46 32.8571 46C40.0898 46 46 40.0898 46 32.8571C46 25.6245 40.0898 19.7143 32.8571 19.7143ZM32.8571 24.0952C35.0561 24.0952 37.0314 24.9211 38.5644 26.2429L32.8571 31.9501L30.0249 29.1179L26.9275 32.2154L32.8571 38.1451L41.0843 29.918C41.4107 30.8395 41.619 31.819 41.619 32.8571C41.619 37.7222 37.7222 41.619 32.8571 41.619C27.9921 41.619 24.0952 37.7222 24.0952 32.8571C24.0952 27.9921 27.9921 24.0952 32.8571 24.0952Z" fill="url(#paint0_linear)"/>
+                        <defs>
+                            <linearGradient id="paint0_linear" x1="46" y1="23.1217" x2="-4.53596e-07" y2="23.1217" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#60D0FE"/>
+                                <stop offset="0.5" stop-color="#5A9DF1"/>
+                                <stop offset="1" stop-color="#546AE4"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+
+                    <p>Review & submit</p>
+                </div>
+               </ng-template>
+               <div class="Modal_Body_line"></div>
+               <div class="Modal_Body_content">
+                   <p class="black18">Review your details and submit</p>
+               </div>
+               <div class="Modal_Body_content">
+                  <p class="black18">Project details</p>
+               </div>
+               <div class="Modal_Body_content">
+                   <div class="Modal_Body_content_info">
+                      <p>Name:</p>
+                       <p>Loop Inc CRM App</p>
+                   </div>
+                   <div class="Modal_Body_content_info">
+                       <p>Phone::</p>
+                       <p>(225) 555-0118</p>
+                   </div>
+                   <div class="Modal_Body_content_info">
+                       <p>Email::</p>
+                       <p>donald.phillips@example.com</p>
+                   </div>
+                   <div class="Modal_Body_line"></div>
+               </div>
+
+               <div class="Modal_Body_content">
+                   <p class="black18">Delivery info</p>
+               </div>
+               <div class="Modal_Body_content">
+                   <div class="Modal_Body_content_info">
+                       <p>Address line 1:</p>
+                       <p>Fox Avenue 5-6B</p>
+                   </div>
+                   <div class="Modal_Body_content_info">
+                       <p>Address line 2:</p>
+                       <p>Melbourne VIC</p>
+                   </div>
+                   <div class="Modal_Body_content_info">
+                       <p>Post:</p>
+                       <p>3000</p>
+                   </div>
+                   <div class="Modal_Body_content_info">
+                       <p>Country:</p>
+                       <p>Australia</p>
+                   </div>
+                   <div class="Modal_Body_line"></div>
+               </div>
+               <div class="Modal_Body_content">
+                   <p class="black18">Payment details</p>
+               </div>
+               <div class="Modal_Body_content">
+                   <div class="Modal_Body_content_info">
+                       <p>Card number:</p>
+                       <p>xxxx xxxx xxxx 1234</p>
+                   </div>
+                   <div class="Modal_Body_content_info">
+                       <p>Card name:</p>
+                       <p>Stella Alexander</p>
+                   </div>
+                   <div class="Modal_Body_content_info">
+                       <p>Card expiry:</p>
+                       <p>03/23</p>
+                   </div>
+                   <div class="Modal_Body_line"></div>
+               </div>
+               <div class="flex-between__center Modal_Body_content modal-body-btn">
+                   <button class="gray-btn mb-sm-15" cdkStepperPrevious>
+                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <circle cx="12" cy="12" r="10" fill="#CCD0E3"/>
+                           <path d="M13 8L9 12L13 16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                       </svg>
+                       <p>
+                           Previous
+                       </p>
+                   </button>
+                   <!-- <div class="blue-btn">
+                       <a href="AddProjectStep4.html">Next step</a>
+                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <circle cx="12" cy="12" r="10" fill="white"/>
+                           <path d="M10 8L14 12L10 16" stroke="#546AE4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                       </svg>
+                   </div> -->
+                   <button class="blue-btn" cdkStepperNext>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" fill="white"/>
+                        <path d="M10 8L14 12L10 16" stroke="#546AE4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg> 
+                    Next
+                </button>
+               </div>
+            </cdk-step>
+            
+            
+           </app-stepper-options>    
+               
+           
+                
+                     </div>
+                   </div>
+                </div>
+             </div>
+            </section>                 

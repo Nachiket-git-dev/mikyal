@@ -1,0 +1,704 @@
+<section class="main-content-dashboard">
+    <div class="content-wrapper content-wrapper__content">
+        <div class="todo">
+            <div class="todo-head flex-between__center">
+                <input type="text" class="input-icon" [formControl]="searchCtrl" placeholder="Search here">
+                <svg width="19" height="19" class="todo-head-icon-search" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1922 12.6064C10.0236 13.4816 8.57234 14 7 14C3.13401 14 0 10.866 0 7C0 3.13401 3.13401 0 7 0C10.866 0 14 3.13401 14 7C14 8.57234 13.4816 10.0236 12.6064 11.1922L17.7782 16.364C18.1687 16.7545 18.1687 17.3877 17.7782 17.7782C17.3876 18.1687 16.7545 18.1687 16.364 17.7782L11.1922 12.6064ZM12 7C12 9.76142 9.76142 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2C9.76142 2 12 4.23858 12 7Z" fill="#CCD0E3"/>
+                </svg>
+            </div>
+            <ul  class="todo-list scroll_style__gray  flex__column">
+                <!-- <li class="todo-list__item flex-between__center">
+                    <div class="check-box-round item-check-circle_checkbox">
+                        <input class="item-check-circle_checkbox__input" id="one" type="checkbox" >
+                        <span class="item-check-circle_checkbox__checkmark"></span>
+                        <label for="one" class="todo-list__text flex__column ">
+                            Meet Lisa to discuss project details
+                            <span class="todo-list__text_extra">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pulvinar...</span>
+                        </label>
+
+                    </div>
+                    <div class="flex todo-list__item_time-box">
+                        <div class="todo-list__time todo-list__priority-js">
+                            Dec, 07 <br>
+                            2020
+                        </div>
+                        <div class="todo-list__change todo-list__priority-js">
+                            <div class="icons-box-mark todo-list-dots">
+                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                                    <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                                </svg>
+                            </div>
+                            
+                        </div>
+                        <div class="todo-list__priority_overflow todo-list__priority-js">
+                            <div class="todo-list__priority todo-list__priority-js todo-list__priority__low"></div>
+                        </div>
+                    </div>
+                    <div class="tooltip tooltip_priority-js">
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__high">High</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__medium">Medium</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__low">Low</div>
+                    </div>
+                </li> -->
+                <li *ngFor="let task of tasks" class="todo-list__item flex-between__center" (loaded)="openlist(this)">
+                    <div class="check-box-round item-check-circle_checkbox">
+                        <input class="item-check-circle_checkbox__input" id="one" type="checkbox">
+                        <span class="item-check-circle_checkbox__checkmark"></span>
+                        <label for="one" class="todo-list__text flex__column ">
+                            {{task.task_header}}
+                            <span class="todo-list__text_extra">{{task.description}}</span>
+                        </label>
+
+                    </div>
+                    <div class="flex todo-list__item_time-box">
+                        <div class="todo-list__time todo-list__priority-js">
+                            {{task.created_date | date :'mediumDate'}}
+                        </div>
+                        <div class="todo-list__change todo-list__priority-js">
+                            <div class="icons-box-mark todo-list-dots" [matMenuTriggerFor]="menu">
+                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                                    <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                                </svg>
+                            </div>
+                            
+                        </div>
+                        <div class="todo-list__priority_overflow todo-list__priority-js" (click)="openlist($event)" [matMenuTriggerFor]="menu">
+                            <div class="todo-list__priority todo-list__priority-js todo-list__priority__hight"></div>
+                        </div>
+                    </div>
+                    <!-- <div class="tooltip tooltip_priority-js">
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__high">High</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__medium">Medium</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__low">Low</div>
+                    </div> -->
+                </li>
+                <!-- <li  class="todo-list__item flex-between__center">
+                    <div class="check-box-round item-check-circle_checkbox">
+                        <input class="item-check-circle_checkbox__input" id="one" type="checkbox" >
+                        <span class="item-check-circle_checkbox__checkmark"></span>
+                        <label for="one" class="todo-list__text flex__column ">
+                           {{task.task_header}}
+                            <span class="todo-list__text_extra">{{task.description}}</span>
+                        </label>
+
+                    </div>
+                    <div class="flex todo-list__item_time-box">
+                        <div class="todo-list__time todo-list__priority-js">
+                            {{task.created_date | date :'mediumDate'}}
+                        </div>
+                        <div class="todo-list__change todo-list__priority-js">
+                            <div class="icons-box-mark todo-list-dots">
+                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                                    <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                                </svg>
+                            </div>
+                            
+                        </div>
+                        <div class="todo-list__priority_overflow todo-list__priority-js">
+                            <div class="todo-list__priority todo-list__priority-js todo-list__priority__medium"></div>
+                        </div>
+                    </div>
+                    <div class="tooltip tooltip_priority-js">
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__high">High</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__medium">Medium</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__low">Low</div>
+                    </div>
+                </li>
+                <li class="todo-list__item flex-between__center">
+                    <div class="check-box-round item-check-circle_checkbox">
+                        <input class="item-check-circle_checkbox__input" id="one" type="checkbox" >
+                        <span class="item-check-circle_checkbox__checkmark"></span>
+                        <label for="one" class="todo-list__text flex__column ">
+                            Meet Lisa to discuss project details
+                            <span class="todo-list__text_extra">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pulvinar...</span>
+                        </label>
+
+                    </div>
+                    <div class="flex todo-list__item_time-box">
+                        <div class="todo-list__time todo-list__priority-js">
+                            Dec, 07 <br>
+                            2020
+                        </div>
+                        <div class="todo-list__change todo-list__priority-js">
+                            <div class="icons-box-mark todo-list-dots">
+                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                                    <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                                </svg>
+                            </div>
+                            
+                        </div>
+                        <div class="todo-list__priority_overflow todo-list__priority-js">
+                            <div class="todo-list__priority todo-list__priority-js todo-list__priority__low"></div>
+                        </div>
+                    </div>
+                    <div class="tooltip tooltip_priority-js">
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__high">High</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__medium">Medium</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__low">Low</div>
+                    </div>
+                </li>
+                <li class="todo-list__item flex-between__center">
+                    <div class="check-box-round item-check-circle_checkbox">
+                        <input class="item-check-circle_checkbox__input" id="one" type="checkbox" >
+                        <span class="item-check-circle_checkbox__checkmark"></span>
+                        <label for="one" class="todo-list__text flex__column ">
+                            Conference call with Marketing Manager
+                            <span class="todo-list__text_extra">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pulvinar...</span>
+                        </label>
+
+                    </div>
+                    <div class="flex todo-list__item_time-box">
+                        <div class="todo-list__time todo-list__priority-js">
+                            Dec, 07 <br>
+                            2020
+                        </div>
+                        <div class="todo-list__change todo-list__priority-js">
+                            <div class="icons-box-mark todo-list-dots">
+                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                                    <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                                </svg>
+                            </div>
+                            
+                        </div>
+                        <div class="todo-list__priority_overflow todo-list__priority-js">
+                            <div class="todo-list__priority todo-list__priority-js todo-list__priority__medium"></div>
+                        </div>
+                    </div>
+                    <div class="tooltip tooltip_priority-js">
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__high">High</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__medium">Medium</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__low">Low</div>
+                    </div>
+                </li>
+                <li class="todo-list__item flex-between__center">
+                    <div class="check-box-round item-check-circle_checkbox">
+                        <input class="item-check-circle_checkbox__input" id="one" type="checkbox" >
+                        <span class="item-check-circle_checkbox__checkmark"></span>
+                        <label for="one" class="todo-list__text flex__column ">
+                            New User Registered
+                            <span class="todo-list__text_extra">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pulvinar...</span>
+                        </label>
+
+                    </div>
+                    <div class="flex todo-list__item_time-box">
+                        <div class="todo-list__time todo-list__priority-js">
+                            Dec, 07 <br>
+                            2020
+                        </div>
+                        <div class="todo-list__change todo-list__priority-js">
+                            <div class="icons-box-mark todo-list-dots">
+                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                                    <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                                </svg>
+                            </div>
+                            
+                        </div>
+                        <div class="todo-list__priority_overflow todo-list__priority-js">
+                            <div class="todo-list__priority todo-list__priority-js todo-list__priority__hight"></div>
+                        </div>
+                    </div>
+                    <div class="tooltip tooltip_priority-js">
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__high">High</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__medium">Medium</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__low">Low</div>
+                    </div>
+                </li>
+                <li class="todo-list__item flex-between__center">
+                    <div class="check-box-round item-check-circle_checkbox">
+                        <input class="item-check-circle_checkbox__input" id="one" type="checkbox" >
+                        <span class="item-check-circle_checkbox__checkmark"></span>
+                        <label for="one" class="todo-list__text flex__column ">
+                            Fix issues in new project
+                            <span class="todo-list__text_extra">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pulvinar...</span>
+                        </label>
+
+                    </div>
+                    <div class="flex todo-list__item_time-box">
+                        <div class="todo-list__time todo-list__priority-js">
+                            Dec, 07 <br>
+                            2020
+                        </div>
+                        <div class="todo-list__change todo-list__priority-js">
+                            <div class="icons-box-mark todo-list-dots">
+                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                                    <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                                </svg>
+                            </div>
+                            
+                        </div>
+                        <div class="todo-list__priority_overflow todo-list__priority-js">
+                            <div class="todo-list__priority todo-list__priority-js todo-list__priority__low"></div>
+                        </div>
+                    </div>
+                    <div class="tooltip tooltip_priority-js">
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__high">High</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__medium">Medium</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__low">Low</div>
+                    </div>
+                </li>
+                <li class="todo-list__item flex-between__center">
+                    <div class="check-box-round item-check-circle_checkbox">
+                        <input class="item-check-circle_checkbox__input" id="one" type="checkbox" checked>
+                        <span class="item-check-circle_checkbox__checkmark"></span>
+                        <label for="one" class="todo-list__text flex__column ">
+                            Check All functionality
+                            <span class="todo-list__text_extra">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pulvinar...</span>
+                        </label>
+
+                    </div>
+                    <div class="flex todo-list__item_time-box">
+                        <div class="todo-list__time todo-list__priority-js">
+                            Dec, 07 <br>
+                            2020
+                        </div>
+                        <div class="todo-list__change todo-list__priority-js">
+                            <div class="icons-box-mark todo-list-dots">
+                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                                    <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                                </svg>
+                            </div>
+                            
+                        </div>
+                        <div class="todo-list__priority_overflow todo-list__priority-js">
+                            <div class="todo-list__priority todo-list__priority-js todo-list__priority__low"></div>
+                        </div>
+                    </div>
+                    <div class="tooltip tooltip_priority-js">
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__high">High</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__medium">Medium</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__low">Low</div>
+                    </div>
+                </li>
+                <li class="todo-list__item flex-between__center">
+                    <div class="check-box-round item-check-circle_checkbox">
+                        <input class="item-check-circle_checkbox__input" id="one" type="checkbox" >
+                        <span class="item-check-circle_checkbox__checkmark"></span>
+                        <label for="one" class="todo-list__text flex__column ">
+                            Check Repository
+                            <span class="todo-list__text_extra">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pulvinar...</span>
+                        </label>
+
+                    </div>
+                    <div class="flex todo-list__item_time-box">
+                        <div class="todo-list__time todo-list__priority-js">
+                            Dec, 07 <br>
+                            2020
+                        </div>
+                        <div class="todo-list__change todo-list__priority-js">
+                            <div class="icons-box-mark todo-list-dots">
+                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                                    <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                                </svg>
+                            </div>
+                            
+                        </div>
+                        <div class="todo-list__priority_overflow todo-list__priority-js">
+                            <div class="todo-list__priority todo-list__priority-js todo-list__priority__hight"></div>
+                        </div>
+                    </div>
+                    <div class="tooltip tooltip_priority-js">
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__high">High</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__medium">Medium</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__low">Low</div>
+                    </div>
+                </li>
+                <li class="todo-list__item flex-between__center">
+                    <div class="check-box-round item-check-circle_checkbox">
+                        <input class="item-check-circle_checkbox__input" id="one" type="checkbox" checked>
+                        <span class="item-check-circle_checkbox__checkmark"></span>
+                        <label for="one" class="todo-list__text flex__column ">
+                            Meet Lisa to discuss project details
+                            <span class="todo-list__text_extra">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pulvinar...</span>
+                        </label>
+
+                    </div>
+                    <div class="flex todo-list__item_time-box">
+                        <div class="todo-list__time todo-list__priority-js">
+                            Dec, 07 <br>
+                            2020
+                        </div>
+                        <div class="todo-list__change todo-list__priority-js">
+                            <div class="icons-box-mark todo-list-dots">
+                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                                    <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                                </svg>
+                            </div>
+                            
+                        </div>
+                        <div class="todo-list__priority_overflow todo-list__priority-js">
+                            <div class="todo-list__priority todo-list__priority-js todo-list__priority__medium"></div>
+                        </div>
+                    </div>
+                    <div class="tooltip tooltip_priority-js">
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__high">High</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__medium">Medium</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__low">Low</div>
+                    </div>
+                </li>
+                <li class="todo-list__item flex-between__center">
+                    <div class="check-box-round item-check-circle_checkbox">
+                        <input class="item-check-circle_checkbox__input" id="one" type="checkbox" checked>
+                        <span class="item-check-circle_checkbox__checkmark"></span>
+                        <label for="one" class="todo-list__text flex__column ">
+                            Meeting with Shaun Park at 4:50pm
+                            <span class="todo-list__text_extra">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pulvinar...</span>
+                        </label>
+
+                    </div>
+                    <div class="flex todo-list__item_time-box">
+                        <div class="todo-list__time todo-list__priority-js">
+                            Dec, 07 <br>
+                            2020
+                        </div>
+                        <div class="todo-list__change todo-list__priority-js">
+                            <div class="icons-box-mark todo-list-dots">
+                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                                    <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                                </svg>
+                            </div>
+                            
+                        </div>
+                        <div class="todo-list__priority_overflow todo-list__priority-js">
+                            <div class="todo-list__priority todo-list__priority-js todo-list__priority__hight"></div>
+                        </div>
+                    </div>
+                    <div class="tooltip tooltip_priority-js">
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__high">High</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__medium">Medium</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__low">Low</div>
+                    </div>
+                </li>
+                <li class="todo-list__item flex-between__center">
+                    <div class="check-box-round item-check-circle_checkbox">
+                        <input class="item-check-circle_checkbox__input" id="one" type="checkbox" checked>
+                        <span class="item-check-circle_checkbox__checkmark"></span>
+                        <label for="one" class="todo-list__text flex__column ">
+                            Meeting with Shaun Park at 4:50pm
+                            <span class="todo-list__text_extra">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pulvinar...</span>
+                        </label>
+
+                    </div>
+                    <div class="flex todo-list__item_time-box">
+                        <div class="todo-list__time todo-list__priority-js">
+                            Dec, 07 <br>
+                            2020
+                        </div>
+                        <div class="todo-list__change todo-list__priority-js">
+                            <div class="icons-box-mark todo-list-dots">
+                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                                    <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                                </svg>
+                            </div>
+                            
+                        </div>
+                        <div class="todo-list__priority_overflow todo-list__priority-js">
+                            <div class="todo-list__priority todo-list__priority-js todo-list__priority__low"></div>
+                        </div>
+                    </div>
+                    <div class="tooltip tooltip_priority-js">
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__high">High</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__medium">Medium</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__low">Low</div>
+                    </div>
+                </li>
+                <li class="todo-list__item flex-between__center">
+                    <div class="check-box-round item-check-circle_checkbox">
+                        <input class="item-check-circle_checkbox__input" id="one" type="checkbox" checked>
+                        <span class="item-check-circle_checkbox__checkmark"></span>
+                        <label for="one" class="todo-list__text flex__column ">
+                            Meeting with Shaun Park at 4:50pm
+                            <span class="todo-list__text_extra">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pulvinar...</span>
+                        </label>
+
+                    </div>
+                    <div class="flex todo-list__item_time-box">
+                        <div class="todo-list__time todo-list__priority-js">
+                            Dec, 07 <br>
+                            2020
+                        </div>
+                        <div class="todo-list__change todo-list__priority-js">
+                            <div class="icons-box-mark todo-list-dots">
+                                <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
+                                    <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
+                                </svg>
+                            </div>
+                            
+                        </div>
+                        <div class="todo-list__priority_overflow todo-list__priority-js">
+                            <div class="todo-list__priority todo-list__priority-js todo-list__priority__medium"></div>
+                        </div>
+                    </div>
+                    <div class="tooltip tooltip_priority-js">
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__high">High</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__medium">Medium</div>
+                        <div class="tooltip__item tooltip__item__circle tooltip__item__circle__low">Low</div>
+                    </div>
+                </li> -->
+            </ul>
+            <div class="create-project__overlay todo-overlay edit-task-js">
+                <div class="flex-between__column create-project edit-task">
+                    <div class="flex-between__center">
+                        <p class="edit-task__time">
+                            Due date: <span>Dec, 07 2020</span>
+                        </p>
+                        <div class="icons-box-mark btn-popup-close-edit-task">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.05071 1.05022C0.660181 1.44074 0.660181 2.07391 1.05071 2.46443L4.58625 5.99997L1.05072 9.5355C0.660192 9.92602 0.660192 10.5592 1.05072 10.9497C1.44124 11.3402 2.07441 11.3402 2.46493 10.9497L6.00046 7.41419L9.53599 10.9497C9.92651 11.3402 10.5597 11.3402 10.9502 10.9497C11.3407 10.5592 11.3407 9.92602 10.9502 9.5355L7.41467 5.99997L10.9502 2.46443C11.3407 2.07391 11.3407 1.44074 10.9502 1.05022C10.5597 0.659696 9.92652 0.659696 9.536 1.05022L6.00046 4.58576L2.46492 1.05022C2.07439 0.659693 1.44123 0.659693 1.05071 1.05022Z" fill="black"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="flex__column">
+                        <h2 class="edit-task__title">
+                            Team meet at Starbucks
+                        </h2>
+                        <p class="edit-task__text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Morbi pulvinar feugiat consequat.
+                            Duis lacus nibh, sagittis id varius vel, aliquet non augue.
+                            Vivamus sem ante, ultrices at ex a, rhoncus ullamcorper tellus.
+                            Nunc iaculis eu ligula ac consequat.
+                            Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                            Vestibulum mattis urna neque, eget posuere lorem tempus non. Suspendisse ac turpis dictum, convallis est ut, posuere sem.
+                            Etiam imperdiet aliquam risus, eu commodo urna vestibulum at.
+                            Suspendisse malesuada lorem eu sodales aliquam.
+                        </p>
+                    </div>
+                    <div class="create-project-buttons flex-between__center">
+                        <button class="red-btn create-project-buttons_btn">
+                            <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 0C10.5523 0 11 0.447715 11 1L13 1C13.5523 1 14 1.44772 14 2C14 2.55229 13.5523 3 13 3L1 3C0.447716 3 0 2.55228 0 2C0 1.44772 0.447715 0.999999 1 0.999999L3 1C3 0.447715 3.44772 0 4 0H10Z" fill="#CCD0E3"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4H13V16C13 17.1046 12.1046 18 11 18H3C1.89543 18 1 17.1046 1 16V4ZM4.5 6C4.22386 6 4 6.22386 4 6.5V15.5C4 15.7761 4.22386 16 4.5 16C4.77614 16 5 15.7761 5 15.5V6.5C5 6.22386 4.77614 6 4.5 6ZM9.5 6C9.22386 6 9 6.22386 9 6.5V15.5C9 15.7761 9.22386 16 9.5 16C9.77614 16 10 15.7761 10 15.5V6.5C10 6.22386 9.77614 6 9.5 6Z" fill="#CCD0E3"></path>
+                            </svg>
+                            <p>
+                                Delete
+                            </p>
+                        </button>
+                        <button class="blue-btn create-project-buttons_btn">
+                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.8647 0.60051C13.4742 0.209986 12.841 0.209986 12.4505 0.600511L11.0363 2.01472L15.2789 6.25736L16.6931 4.84315C17.0837 4.45263 17.0837 3.81946 16.6931 3.42894L13.8647 0.60051Z" fill="white"/>
+                                <path d="M13.8647 7.67158L9.62208 3.42894L0.72258 12.3284C0.535043 12.516 0.429687 12.7703 0.429688 13.0355L0.429688 15.864C0.429686 16.4163 0.877403 16.864 1.42969 16.864H4.25811C4.52333 16.864 4.77768 16.7586 4.96522 16.5711L13.8647 7.67158Z" fill="white"/>
+                            </svg>
+                            <p>
+                                Edit
+                            </p>
+                        </button>
+                        <button class="green-btn create-project-buttons_btn">
+                            <svg width="18" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.7919 2.66065L7.47797 12.797C7.20153 13.0677 6.754 13.0677 6.47868 12.797L0.206491 6.59204C-0.0688302 6.3203 -0.0688302 5.87873 0.206491 5.60864L1.70515 4.13656C1.98158 3.86538 2.42912 3.86538 2.70444 4.13656L6.98362 8.37092L15.2923 0.202979C15.5676 -0.0676598 16.0151 -0.0676598 16.2927 0.202979L17.7914 1.67725C18.0695 1.94844 18.0695 2.39001 17.7919 2.66065Z" fill="white"/>
+                            </svg>
+                            <p>
+                                Complete
+                            </p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-sidebar right-sidebar-todo flex-between__column">
+        <div class="right-sidebar-todo-vh">
+            <div class="right-sidebar-top-wrapper">
+                <div class="header-menu-account right-sidebar-menu-account">
+                    <div class="header-menu-account-icon-box ">
+                        <div class="icons-box-icon-menu close-right-sidebar" (click)="closerightmenu()">
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.001 512.001"
+                                style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
+                                <g>
+                                    <g>
+                                        <path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
+                                                                                L34.143,5.859c-7.811-7.811-20.475-7.811-28.285,0c-7.81,7.811-7.811,20.475,0,28.285l221.857,221.857L5.858,477.859
+                                                                                c-7.811,7.811-7.811,20.475,0,28.285c3.905,3.905,9.024,5.857,14.143,5.857c5.119,0,10.237-1.952,14.143-5.857L256,284.287
+                                                                                l221.857,221.857c3.905,3.905,9.024,5.857,14.143,5.857s10.237-1.952,14.143-5.857c7.811-7.811,7.811-20.475,0-28.285
+                                                                                L284.286,256.002z" />
+                                    </g>
+                                </g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g> </g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="header-menu-account-name">
+                        <p class="account-name">
+                            Debra Simmmons
+                        </p>
+                        <div class="account-logo">
+                            <img class="account-img" src="img/account-avatar.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <ul class="flex-between__column">
+                    <li class="flex-between menu_item-right-sidebar menu_item-right-sidebar__active">
+                        <div class="menu_item-right-sidebar__text flex-between__center">
+                            <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M14.2222 1.8H10.5031C10.136 0.7533 9.15911 0 8 0C6.84089 0 5.864 0.7533 5.49689 1.8H1.77778C0.795556 1.8 0 2.6055 0 3.6V16.2C0 17.1945 0.795556 18 1.77778 18H14.2222C15.2044 18 16 17.1945 16 16.2V3.6C16 2.6055 15.2044 1.8 14.2222 1.8ZM8 1.8C8.49067 1.8 8.88889 2.2032 8.88889 2.7C8.88889 3.1968 8.49067 3.6 8 3.6C7.50933 3.6 7.11111 3.1968 7.11111 2.7C7.11111 2.2032 7.50933 1.8 8 1.8ZM11.512 11.8611L10.6053 13.41L8.88889 12.3795V14.4H7.11111V12.3795L5.39467 13.41L4.488 11.8611L6.25689 10.8L4.48889 9.7389L5.39556 8.19L7.11111 9.2205V7.2H8.88889V9.2205L10.6053 8.19L11.512 9.7389L9.74311 10.8L11.512 11.8611Z"
+                                    fill="#001431"></path>
+                            </svg>
+                            <p>Inbox</p>
+                        </div>
+                        <div class="right-sidebar-todo__count">28</div>
+                    </li>
+                    <li class="flex-between menu_item-right-sidebar">
+                        <div class="menu_item-right-sidebar__text flex-between__center">
+                            <svg width="18" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M17.7919 2.66065L7.47797 12.797C7.20153 13.0677 6.754 13.0677 6.47868 12.797L0.206491 6.59204C-0.0688302 6.3203 -0.0688302 5.87873 0.206491 5.60864L1.70515 4.13656C1.98158 3.86538 2.42912 3.86538 2.70444 4.13656L6.98362 8.37092L15.2923 0.202979C15.5676 -0.0676598 16.0151 -0.0676598 16.2927 0.202979L17.7914 1.67725C18.0695 1.94844 18.0695 2.39001 17.7919 2.66065Z"
+                                    fill="#CCD0E3" />
+                            </svg>
+                            <p>Done</p>
+                        </div>
+                        <div class="right-sidebar-todo__count">4</div>
+                    </li>
+                    <li class="flex-between menu_item-right-sidebar">
+                        <div class="menu_item-right-sidebar__text flex-between__center">
+                            <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M7.97489 14.8472C8.60639 14.4713 9.3932 14.472 10.024 14.849L13.3649 16.8458C14.1642 17.324 15.1424 16.6172 14.932 15.7233L14.0547 12.0032C13.883 11.2749 14.1321 10.5117 14.7005 10.025L17.6351 7.51216C18.3398 6.90932 17.9611 5.76599 17.0356 5.69324L13.1529 5.36753C12.416 5.30572 11.7734 4.84237 11.4819 4.16275L9.96763 0.631427C9.61003 -0.210476 8.38997 -0.210476 8.03237 0.631427L6.51853 4.15376C6.22678 4.8326 5.58452 5.29528 4.84823 5.35705L0.964434 5.68284C0.038871 5.7556 -0.339768 6.89892 0.364921 7.50177L3.29951 10.0146C3.86789 10.5013 4.11704 11.2645 3.94529 11.9928L3.06799 15.7129C2.85763 16.6068 3.83578 17.3136 4.63513 16.8355L7.97489 14.8472Z"
+                                    fill="#CCD0E3" />
+                            </svg>
+                            <p>Important</p>
+                        </div>
+                        <div class="right-sidebar-todo__count">12</div>
+                    </li>
+                    <li class="flex-between menu_item-right-sidebar">
+                        <div class="menu_item-right-sidebar__text flex-between__center">
+                            <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M10 0C10.5523 0 11 0.447715 11 1L13 1C13.5523 1 14 1.44772 14 2C14 2.55229 13.5523 3 13 3L1 3C0.447716 3 0 2.55228 0 2C0 1.44772 0.447715 0.999999 1 0.999999L3 1C3 0.447715 3.44772 0 4 0H10Z"
+                                    fill="#CCD0E3" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M1 4H13V16C13 17.1046 12.1046 18 11 18H3C1.89543 18 1 17.1046 1 16V4ZM4.5 6C4.22386 6 4 6.22386 4 6.5V15.5C4 15.7761 4.22386 16 4.5 16C4.77614 16 5 15.7761 5 15.5V6.5C5 6.22386 4.77614 6 4.5 6ZM9.5 6C9.22386 6 9 6.22386 9 6.5V15.5C9 15.7761 9.22386 16 9.5 16C9.77614 16 10 15.7761 10 15.5V6.5C10 6.22386 9.77614 6 9.5 6Z"
+                                    fill="#CCD0E3" />
+                            </svg>
+                            <p>Trash</p>
+                        </div>
+                        <div class="right-sidebar-todo__count">51</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="blue-btn btn-new-task">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM11 8C11 7.44772 11.4477 7 12 7C12.5523 7 13 7.44772 13 8V11H16C16.5523 11 17 11.4477 17 12C17 12.5523 16.5523 13 16 13H13V16C13 16.5523 12.5523 17 12 17C11.4477 17 11 16.5523 11 16V13H8C7.44772 13 7 12.5523 7 12C7 11.4477 7.44772 11 8 11H11V8Z"
+                        fill="white"></path>
+                </svg>
+                <p>New task</p>
+            </div>
+        </div>
+       <form (ngSubmit)="newtask()" [formGroup]="form">
+        <div class="create-project__overlay todo-overlay new-task-js" >
+            <div class="flex-between__column create-project edit-task new-task">
+                <div class="flex__reverse">
+                    <div class="icons-box-mark btn-popup-close-new-task">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.05071 1.05022C0.660181 1.44074 0.660181 2.07391 1.05071 2.46443L4.58625 5.99997L1.05072 9.5355C0.660192 9.92602 0.660192 10.5592 1.05072 10.9497C1.44124 11.3402 2.07441 11.3402 2.46493 10.9497L6.00046 7.41419L9.53599 10.9497C9.92651 11.3402 10.5597 11.3402 10.9502 10.9497C11.3407 10.5592 11.3407 9.92602 10.9502 9.5355L7.41467 5.99997L10.9502 2.46443C11.3407 2.07391 11.3407 1.44074 10.9502 1.05022C10.5597 0.659696 9.92652 0.659696 9.536 1.05022L6.00046 4.58576L2.46492 1.05022C2.07439 0.659693 1.44123 0.659693 1.05071 1.05022Z" fill="black"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex-between__center new-task_head">
+                    <div class="input-box-with-label create-project_col2">
+                        <label for="create-project-title-input" class="input-box-with-label__label">
+                            Title
+                        </label>
+                        <input type="text" id="create-project-title-input" formControlName="task_header" class="input-box-with-label__input" placeholder="Enter the title" required>
+                    </div>
+                    <div class="input-box-with-label create-project_col2">
+                        <h4 class="input-box-with-label__label">
+                            Start date
+                        </h4>
+                        <div class="input-box-with-label__input create-project-date__pick">
+                            <p>02.16.2020</p>
+                            <svg class="icon-calendar icons-box__blue" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 8H18V16C18 17.1046 17.1046 18 16 18H2C0.89543 18 0 17.1046 0 16V8Z" fill="#CCD0E3"></path>
+                                <path d="M0 6H18V4C18 2.89543 17.1046 2 16 2H2C0.89543 2 0 2.89543 0 4V6Z" fill="#CCD0E3"></path>
+                                <path d="M4 4H6V1C6 0.447715 5.55228 0 5 0C4.44772 0 4 0.447715 4 1V4Z" fill="#CCD0E3"></path>
+                                <path d="M12 4H14V1C14 0.447715 13.5523 0 13 0C12.4477 0 12 0.447715 12 1V4Z" fill="#CCD0E3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <textarea placeholder="Place for description" formControlName="notes" class="input-box-with-label__input create-project-title__textarea"></textarea>
+                <div class="create-project-buttons flex-center">
+                    <button class="gray-btn create-project-buttons__discard create-project-buttons_btn">
+                        <svg class="icon-path__hover" width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 0C10.5523 0 11 0.447715 11 1L13 1C13.5523 1 14 1.44772 14 2C14 2.55229 13.5523 3 13 3L1 3C0.447716 3 0 2.55228 0 2C0 1.44772 0.447715 0.999999 1 0.999999L3 1C3 0.447715 3.44772 0 4 0H10Z" fill="#CCD0E3"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4H13V16C13 17.1046 12.1046 18 11 18H3C1.89543 18 1 17.1046 1 16V4ZM4.5 6C4.22386 6 4 6.22386 4 6.5V15.5C4 15.7761 4.22386 16 4.5 16C4.77614 16 5 15.7761 5 15.5V6.5C5 6.22386 4.77614 6 4.5 6ZM9.5 6C9.22386 6 9 6.22386 9 6.5V15.5C9 15.7761 9.22386 16 9.5 16C9.77614 16 10 15.7761 10 15.5V6.5C10 6.22386 9.77614 6 9.5 6Z" fill="#CCD0E3"></path>
+                        </svg>
+                        <p>
+                            Discard
+                        </p>
+                    </button>
+                    <button [disabled]="!form.valid" type="submit"  class="blue-btn create-project-buttons__add create-project-buttons_btn">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM9 6C9 5.44772 9.44771 5 10 5C10.5523 5 11 5.44772 11 6V9H14C14.5523 9 15 9.44771 15 10C15 10.5523 14.5523 11 14 11H11V14C11 14.5523 10.5523 15 10 15C9.44771 15 9 14.5523 9 14V11H6C5.44772 11 5 10.5523 5 10C5 9.44771 5.44772 9 6 9H9V6Z" fill="white"/>
+                        </svg>
+                        <p>
+                            Add task
+                        </p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>   
+    </div>
+    <mat-menu #menu="matMenu">
+        <div class="tooltip__active">
+            <div class="tooltip__item tooltip__item__icon">
+                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.864 0.60051C13.4735 0.209986 12.8403 0.209986 12.4498 0.600511L11.0356 2.01472L15.2782 6.25736L16.6924 4.84315C17.0829 4.45263 17.0829 3.81946 16.6924 3.42894L13.864 0.60051Z" fill="#fff"></path>
+                    <path d="M13.864 7.67158L9.62134 3.42894L0.721848 12.3284C0.534311 12.516 0.428955 12.7703 0.428955 13.0355L0.428955 15.864C0.428954 16.4163 0.876671 16.864 1.42896 16.864H4.25738C4.5226 16.864 4.77695 16.7586 4.96449 16.5711L13.864 7.67158Z" fill="#fff"></path>
+                </svg>
+                Edit
+            </div>
+            <div class="tooltip__item tooltip__item__icon">
+                <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.97489 14.8472C8.60639 14.4713 9.3932 14.472 10.024 14.849L13.3649 16.8458C14.1642 17.324 15.1424 16.6172 14.932 15.7233L14.0547 12.0032C13.883 11.2749 14.1321 10.5117 14.7005 10.025L17.6351 7.51216C18.3398 6.90932 17.9611 5.76599 17.0356 5.69324L13.1529 5.36753C12.416 5.30572 11.7734 4.84237 11.4819 4.16275L9.96763 0.631427C9.61003 -0.210476 8.38997 -0.210476 8.03237 0.631427L6.51853 4.15376C6.22678 4.8326 5.58452 5.29528 4.84823 5.35705L0.964434 5.68284C0.038871 5.7556 -0.339768 6.89892 0.364921 7.50177L3.29951 10.0146C3.86789 10.5013 4.11704 11.2645 3.94529 11.9928L3.06799 15.7129C2.85763 16.6068 3.83578 17.3136 4.63513 16.8355L7.97489 14.8472Z" fill="white"/>
+                </svg>
+                Important
+            </div>
+            <div class="tooltip__item tooltip__item__icon">
+                <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 0C10.5523 0 11 0.447715 11 1L13 1C13.5523 1 14 1.44772 14 2C14 2.55229 13.5523 3 13 3L1 3C0.447716 3 0 2.55228 0 2C0 1.44772 0.447715 0.999999 1 0.999999L3 1C3 0.447715 3.44772 0 4 0H10Z" fill="white"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4H13V16C13 17.1046 12.1046 18 11 18H3C1.89543 18 1 17.1046 1 16V4ZM4.5 6C4.22386 6 4 6.22386 4 6.5V15.5C4 15.7761 4.22386 16 4.5 16C4.77614 16 5 15.7761 5 15.5V6.5C5 6.22386 4.77614 6 4.5 6ZM9.5 6C9.22386 6 9 6.22386 9 6.5V15.5C9 15.7761 9.22386 16 9.5 16C9.77614 16 10 15.7761 10 15.5V6.5C10 6.22386 9.77614 6 9.5 6Z" fill="white"/>
+                </svg>
+                Delete
+            </div>
+        </div>
+      </mat-menu>
+      <mat-menu #status="matMenu">
+        <div class="tooltip tooltip_priority-js">
+            <div class="tooltip__item tooltip__item__circle tooltip__item__circle__high">High</div>
+            <div class="tooltip__item tooltip__item__circle tooltip__item__circle__medium">Medium</div>
+            <div class="tooltip__item tooltip__item__circle tooltip__item__circle__low">Low</div>
+        </div>
+
+      </mat-menu>
+</section>
