@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { FormBuilder,FormControl,Validators,FormGroup,FormArray } from '@angular/forms';
 import {InvoiceService} from '../invoice.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {ClientService} from '../../client/client.service'
 import {
   MatAutocompleteSelectedEvent,
@@ -21,21 +22,28 @@ export class CreateInvoiceComponent implements OnInit {
   form = this.fb.group({
     invoice_id:null,
     invoice_name: ['', Validators.required],
-    billing_address:['',Validators.required],
-   
-    due_date: ['', Validators.required],
+    billing_address:null,//['',Validators.required],
+    house_no:['',Validators.required],
+    zip:['',Validators.required],
+    street:['',Validators.required],
+    city:['',Validators.required],
+    start_date:new Date(),
+    due_date:null,// ['', Validators.required],
      discount:[0,Validators.pattern("\\d+(?:\\.\\d+)?")],
      tax:[0,Validators.pattern("\\d+(?:\\.\\d+)?")],
     client_select:[],
     client_id:null,
     tax_amount:null,
     discount_amount:null,
-    total:null
+    total:[0,Validators.pattern("\\d+(?:\\.\\d+)?")]
 
   })
     clientlist:any[];
     filteredOptions;
-  constructor(private fb: FormBuilder,private invoiceservice:InvoiceService,private clientservice:ClientService) {
+    total
+  constructor(private fb: FormBuilder,private invoiceservice:InvoiceService,
+    private clientservice:ClientService,private snackbar:MatSnackBar) {
+   
     
    }
 
@@ -47,10 +55,23 @@ export class CreateInvoiceComponent implements OnInit {
       this.clientlist=clients['data'];
     })
     this.form.get('client_select').valueChanges.subscribe(val => {
-      console.log("val",val);
+      
       this.filteredOptions=this._filter(val)
      
      })
+
+     this.form.get("rows").valueChanges.subscribe(val => {
+      this.total=0;
+      console.log("val change",val);
+      val.forEach((element,index) => {
+        const control = <FormArray>this.form.controls['rows'];
+        let total=Number(element.unit_cost)*Number(element.qty)
+        control.at(index).get('price').setValue(total, {onlySelf: true, emitEvent: false});
+        this.total+=total;
+        this.form.patchValue({total:this.total})
+
+      });
+    })
   }
   onAddRow() {
     this.rows.push(this.createItemFormGroup());
@@ -75,7 +96,9 @@ export class CreateInvoiceComponent implements OnInit {
     return this.fb.group({
       item_id:null,
       service_name: ['', Validators.required],
-      description: ['', Validators.required],
+      // description: ['', Validators.required],
+      unit_cost:['', Validators.required],
+      qty:['', Validators.required],
       price: ['', [Validators.required,Validators.pattern("\\d+(?:\\.\\d+)?")]]
     });
   }
@@ -89,9 +112,9 @@ export class CreateInvoiceComponent implements OnInit {
   }
   private _filter(value: string): string[] {
     if(value){
-    const filterValue = value.toLowerCase();
+    // const filterValue = value.toLowerCase();
     console.log("fikler");
-    return this.clientlist.filter(option =>option.first_name.toLowerCase().includes(filterValue));
+    return this.clientlist.filter(option =>option.first_name.toLowerCase().includes(value));
     }
   }
   handler(event:any): void {
@@ -99,15 +122,19 @@ export class CreateInvoiceComponent implements OnInit {
    let clientrow =  this.clientlist.find(x => x.client_id == event.option.value);
    console.log("clientrow",clientrow);
    let client_name= clientrow.first_name+" "+clientrow.last_name;
+   
    this.form.patchValue({
      client_id:event.option.value,
-     client_select:client_name
+     client_select:client_name,
+     street:clientrow.street,
+     zip:clientrow.zip,
+     city:clientrow.city
    })
-
 }
 ngAfterViewInit() {
   this._subscribeToClosingActions();
 }
+
 private _subscribeToClosingActions(): void {
   if (this.subscription && !this.subscription.closed) {
     this.subscription.unsubscribe();
@@ -124,5 +151,27 @@ private _subscribeToClosingActions(): void {
     err => this._subscribeToClosingActions(),
     () => this._subscribeToClosingActions());
 }
+
+
+ saveinvoice(){
+   if(!this.form.valid){
+     console.log("invoice not valid");
+     return
+   }
+   
+   let billing_address=this.form.value.house_no+" "+this.form.value.street+" "+this.form.value.city+" "+this.form.value.zip;
+    this.form.patchValue({billing_address:billing_address});
+    console.log("this.form",this.form);
+    this.invoiceservice.createinvoice(this.form.value).subscribe(res=>{
+      console.log("res",res);
+      if(res['code']==200){
+        this.snackbar.open('Invoice Created Successfully', 'OK', {
+          duration: 3000
+        });
+        location.reload();
+      }
+    })
+
+ }
 
 }

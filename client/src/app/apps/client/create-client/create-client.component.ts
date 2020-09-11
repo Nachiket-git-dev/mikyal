@@ -11,7 +11,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class CreateClientComponent implements OnInit {
   clientform: FormGroup;
   constructor(@Inject(MAT_DIALOG_DATA) public defaults: any,
-  private fb: FormBuilder,private clientservice:ClientService,private snackbar:MatSnackBar) { }
+  private fb: FormBuilder,private clientservice:ClientService,private snackbar:MatSnackBar,
+  private dialogRef: MatDialogRef<CreateClientComponent>) { }
   
   ngOnInit() {
     console.log("inside Ng");
@@ -51,5 +52,22 @@ export class CreateClientComponent implements OnInit {
 
       console.log("err",err);
     })
+  }
+  updateCustomer() {
+    const customer = this.clientform.value;
+    customer.id=this.defaults.client_id
+    this.clientservice.updateclient(this.defaults.client_id,customer).subscribe(res=>{
+
+      console.log("res",res);
+      if(res['message']=="Success" && res['code']==200){
+      this.snackbar.open('Cilent Updated Successfully', 'Ok', {
+        duration: 3000
+      });
+    }
+    },err =>{
+      console.log("err",err);
+    })
+   console.log("this.defaults",this.defaults);
+    this.dialogRef.close(customer);
   }
 }
