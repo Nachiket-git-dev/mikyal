@@ -13,10 +13,10 @@ module.exports.createinvoice = function (database,invoice,item_rows) {
                     resolve(responseHelper.generateError("Somthing went wrong", err));
                   });
             }else{ 
-              let sql="INSERT INTO "+database+".invoice_line_item( invoice_id, service_name, description, price) VALUES ? "
+              let sql="INSERT INTO "+database+".invoice_line_item( invoice_id, service_name,qty, description,unit_price, price) VALUES ? "
               var PresetData = [item_rows.length];
                 for( let i = 0; i < item_rows.length; i++){
-                        PresetData[i] = [results.insertId, "" + item_rows[i].service_name, "" + item_rows[i].description,""+item_rows[i].price ];
+                        PresetData[i] = [results.insertId, "" + item_rows[i].service_name, ""+item_rows[i].qty,  "" + item_rows[i].description,""+item_rows[i].unit_cost, ""+item_rows[i].price ];
                     }
                     let query = mysqlLib.query(sql,[PresetData],(err, line_results) => {
                         if(err){
@@ -131,11 +131,11 @@ module.exports.updateinvoice = function (database,inv_id,invoice,item_rows) {
             if (err) {
                reject(err);
             } else{
-               let sql="INSERT INTO "+database+".invoice_line_item( item_id,invoice_id, service_name, description, price) VALUES ? ON DUPLICATE KEY UPDATE service_name=VALUES(service_name),description=VALUES(description),price=VALUES(price)"
+               let sql="INSERT INTO "+database+".invoice_line_item( item_id,invoice_id, service_name,qty, description,unit_price, price) VALUES ? ON DUPLICATE KEY UPDATE service_name=VALUES(service_name),qty=VALUES(qty),description=VALUES(description),unit_price=VALUES(unit_price),price=VALUES(price)"
               var PresetData = [item_rows.length];
               console.log("inv_id",inv_id);
                 for( let i = 0; i < item_rows.length; i++){
-                        PresetData[i] = [item_rows[i].item_id, inv_id, "" + item_rows[i].service_name, "" + item_rows[i].description,""+item_rows[i].price ];
+                        PresetData[i] = [item_rows[i].item_id, inv_id,  ""+item_rows[i].service_name, ""+ item_rows[i].qty,"" + item_rows[i].description,""+item_rows[i].unit_cost, ""+item_rows[i].price ];
                     }
                     console.log("PresetData",PresetData);
                     let query = mysqlLib.query(sql,[PresetData],(err, line_results) => {

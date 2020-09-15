@@ -3,6 +3,7 @@ import { FormBuilder,FormControl,Validators,FormGroup,FormArray } from '@angular
 import {InvoiceService} from '../invoice.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ClientService} from '../../client/client.service'
+import { Router,ActivatedRoute, Params } from '@angular/router';
 import {
   MatAutocompleteSelectedEvent,
   MatAutocompleteTrigger,
@@ -35,22 +36,24 @@ export class CreateInvoiceComponent implements OnInit {
     client_id:null,
     tax_amount:null,
     discount_amount:null,
-    total:[0,Validators.pattern("\\d+(?:\\.\\d+)?")]
+    total:[0,Validators.pattern("\\d+(?:\\.\\d+)?")],
+    client_note:''
 
   })
     clientlist:any[];
     filteredOptions;
     total
   constructor(private fb: FormBuilder,private invoiceservice:InvoiceService,
-    private clientservice:ClientService,private snackbar:MatSnackBar) {
-   
+    private clientservice:ClientService,private snackbar:MatSnackBar,private router:Router,
+    private route:ActivatedRoute) {
+      this.rows = this.fb.array([]);
+    this.form.addControl('rows', this.rows);
+    //this.rows.push(this.createItemFormGroup());
     
    }
 
   ngOnInit() {
-    this.rows = this.fb.array([]);
-    this.form.addControl('rows', this.rows);
-    this.rows.push(this.createItemFormGroup());
+  
     this.clientservice.getallclient().subscribe(clients=>{
       this.clientlist=clients['data'];
     })
@@ -72,6 +75,28 @@ export class CreateInvoiceComponent implements OnInit {
 
       });
     })
+    if(this.route.snapshot.queryParams['invoice_id'])
+    {
+       this.invoiceservice.getinvoicebyid(this.route.snapshot.queryParams['invoice_id']).subscribe(res=>{
+       console.log("res",res)
+       this.form.patchValue(res['data'][0]);
+       this.clientservice.getclientbyid(res['data'][0].client_id).subscribe(client=>{
+         console.log("client",client);
+         if(client['code']==200 && client['message']=='Success'){
+         this.form.patchValue({client_select:client['data'][0].first_name+" "+client['data'][0].last_name})
+         }
+       })
+       });
+       this.invoiceservice.getinvoiceservice(this.route.snapshot.queryParams['invoice_id']).subscribe(service=>{
+        console.log("service",service);
+        for(let i=0; i<service['data'].length;i++){
+          this.total+=service['data'][i].price;
+          this.rows.push(this.createItemFormGroupupdate(service['data'][i].item_id,service['data'][i].service_name,service['data'][i].description,service['data'][i].price,service['data'][i].unit_price,service['data'][i].qty))
+        }
+        console.log("this.rows update",this.rows);
+
+       })
+    }
   }
   onAddRow() {
     this.rows.push(this.createItemFormGroup());
@@ -96,17 +121,19 @@ export class CreateInvoiceComponent implements OnInit {
     return this.fb.group({
       item_id:null,
       service_name: ['', Validators.required],
-      // description: ['', Validators.required],
+       description: '',
       unit_cost:['', Validators.required],
       qty:['', Validators.required],
       price: ['', [Validators.required,Validators.pattern("\\d+(?:\\.\\d+)?")]]
     });
   }
-  createItemFormGroupupdate(item_id,service_name,description,price): FormGroup {
+  createItemFormGroupupdate(item_id,service_name,description,price,unit_cost,qty): FormGroup {
     return this.fb.group({
       item_id:[item_id || null],
       service_name: [service_name, Validators.required],
-      description: [description, Validators.required],
+      description:'',
+      unit_cost:[unit_cost, Validators.required],
+      qty:[qty,Validators.required],
       price: [price, [Validators.required,Validators.pattern("\\d+(?:\\.\\d+)?")]]
     });
   }
@@ -158,6 +185,21 @@ private _subscribeToClosingActions(): void {
      console.log("invoice not valid");
      return
    }
+   if(this.route.snapshot.queryParams['invoice_id']){
+    console.log("update_inv");
+     this.invoiceservice.updateinvoice(this.form.value).subscribe(res=>{
+        console.log("res",res);
+        if(res['code']==200){
+          this.snackbar.open('Invoice update Successfully', 'OK', {
+            duration: 3000,
+            panelClass: ['blue-snackbar']
+          });
+          location.reload();
+        }
+     },err=>{
+       console.log("err",err);
+     })
+   }else{
    
    let billing_address=this.form.value.house_no+" "+this.form.value.street+" "+this.form.value.city+" "+this.form.value.zip;
     this.form.patchValue({billing_address:billing_address});
@@ -166,12 +208,14 @@ private _subscribeToClosingActions(): void {
       console.log("res",res);
       if(res['code']==200){
         this.snackbar.open('Invoice Created Successfully', 'OK', {
-          duration: 3000
+          duration: 3000,
+          panelClass: ['blue-snackbar']
         });
         location.reload();
       }
     })
 
  }
+}
 
 }

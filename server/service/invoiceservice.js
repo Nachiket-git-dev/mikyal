@@ -9,8 +9,9 @@ function Service() {
 Service.prototype.createinvoice=function(dbname,invoice){
     return new Promise(async(resolve,reject)=>{
        let invoicedata={invoice_name:invoice.invoice_name,client_id:invoice.client_id,
-        billing_address:invoice.billing_address,due_date:invoice.due_date,discount:invoice.discount,
-        tax:invoice.tax,tax_amount:invoice.tax_amount,discount_amount:invoice.discount_amount,total:invoice.total};
+        house_no:invoice.house.no,street:invoice.street,city:invoice.city,zip:invoice.zip,billing_address:invoice.billing_address,
+        due_date:invoice.due_date,discount:invoice.discount,
+        tax:invoice.tax,tax_amount:invoice.tax_amount,discount_amount:invoice.discount_amount,total:invoice.total,client_note:invoice.client_note};
 
         let taskres=await invoicemodel.createinvoice(dbname,invoicedata,invoice.rows);
         console.log(taskres);
@@ -85,8 +86,9 @@ Service.prototype.updateinvoice=function(dbname,invoice){
     return new Promise(async(resolve,reject)=>{
        // console.log("invoice",invoice);
         let invoicedata={invoice_name:invoice.invoice_name,client_id:invoice.client_id,
-            billing_address:invoice.billing_address,due_date:invoice.due_date,discount:invoice.discount,
-            tax:invoice.tax,tax_amount:invoice.tax_amount,discount_amount:invoice.discount_amount,total:invoice.total};
+            house_no:invoice.house_no,street:invoice.street,city:invoice.city,zip:invoice.zip,billing_address:invoice.billing_address,
+            due_date:invoice.due_date,discount:invoice.discount,
+            tax:invoice.tax,tax_amount:invoice.tax_amount,discount_amount:invoice.discount_amount,total:invoice.total,client_note:invoice.client_note};
         let db=dbname.database;
         console.log("invoicedata",invoicedata);
         let inv_id=invoice.invoice_id;

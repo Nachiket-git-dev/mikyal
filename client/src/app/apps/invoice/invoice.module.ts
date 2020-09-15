@@ -6,7 +6,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [InvoiceComponent],
   imports: [
@@ -15,7 +16,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatSelectModule,
     ReactiveFormsModule,
     MatButtonToggleModule,
-    MatFormFieldModule
+    MatMenuModule,
+    MatFormFieldModule,
+    MatSnackBarModule
   ]
 })
 export class InvoiceModule { }
