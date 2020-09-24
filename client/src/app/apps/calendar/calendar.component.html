@@ -1,0 +1,244 @@
+<section class="main-content-projects pl-15">
+    <div class="content-wrapper content-wrapper__content project-content acme-aplication-area">
+        <div class="full-calender-heading flex-between align-items-center ">
+            <ul class="flex-between__columns">
+                <li class="create-project-milestones__item flex-between__center ">
+                    <p>
+                        {{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}
+                    </p>
+                </li>
+            
+            </ul>
+            
+            <div class="blue-btn addclient_btn_addclient calender-event-click">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM11 8C11 7.44772 11.4477 7 12 7C12.5523 7 13 7.44772 13 8V11H16C16.5523 11 17 11.4477 17 12C17 12.5523 16.5523 13 16 13H13V16C13 16.5523 12.5523 17 12 17C11.4477 17 11 16.5523 11 16V13H8C7.44772 13 7 12.5523 7 12C7 11.4477 7.44772 11 8 11H11V8Z"
+                        fill="white"></path>
+                </svg>
+                <p> Add event </p>
+            </div>
+        </div>       
+        <div id='full-calendar' [ngSwitch]="view">
+            <div class="actions flex flex-col sm:flex-row justify-end items-center">
+                <div class="chevrons">
+                  <button [(viewDate)]="viewDate" [view]="view" mat-icon-button mwlCalendarPreviousView>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="23" height="23" rx="3.5" fill="#F5F5FB" stroke="#E4E4F1"></rect>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M14.5098 7.14645C14.7051 7.34171 14.7051 7.65829 14.5098 7.85355L10.2066 12.1567L14.5098 16.4599C14.7051 16.6552 14.7051 16.9718 14.5098 17.167C14.3145 17.3623 13.998 17.3623 13.8027 17.167L9.14595 12.5103C8.95069 12.315 8.95069 11.9985 9.14595 11.8032L13.8027 7.14645C13.998 6.95118 14.3145 6.95118 14.5098 7.14645Z"
+                            fill="#001431"></path>
+                    </svg>
+                  </button>
+                  <button [(viewDate)]="viewDate" [view]="view" mat-icon-button mwlCalendarNextView>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="23" height="23" rx="3.5" fill="#F5F5FB" stroke="#E4E4F1"></rect>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M9.14645 7.14645C8.95118 7.34171 8.95118 7.65829 9.14645 7.85355L13.4496 12.1567L9.14645 16.4599C8.95118 16.6552 8.95118 16.9718 9.14645 17.167C9.34171 17.3623 9.65829 17.3623 9.85355 17.167L14.5103 12.5103C14.7056 12.315 14.7056 11.9985 14.5103 11.8032L9.85355 7.14645C9.65829 6.95118 9.34171 6.95118 9.14645 7.14645Z"
+                            fill="#001431"></path>
+                    </svg>
+                  </button>
+                </div>
+                <div class="flex">
+                  <button (click)="view = CalendarView.Month" mat-button>MONTH</button>
+                  <button (click)="view = CalendarView.Week" mat-button>WEEK</button>
+                  <button (click)="view = CalendarView.Day" mat-button>DAY</button>
+                </div>
+              </div>
+            <mwl-calendar-month-view
+            *ngSwitchCase="CalendarView.Month"
+            [viewDate]="viewDate"
+            [events]="events"
+            [refresh]="refresh"
+            [activeDayIsOpen]="activeDayIsOpen"
+            (dayClicked)="dayClicked($event.day)"
+            (eventClicked)="handleEvent('Clicked', $event.event)"
+            (eventTimesChanged)="eventTimesChanged($event)"
+          >
+          </mwl-calendar-month-view>
+          <mwl-calendar-week-view
+            *ngSwitchCase="CalendarView.Week"
+            [viewDate]="viewDate"
+            [events]="events"
+            [refresh]="refresh"
+            (eventClicked)="handleEvent('Clicked', $event.event)"
+            (eventTimesChanged)="eventTimesChanged($event)"
+          >
+          </mwl-calendar-week-view>
+          <mwl-calendar-day-view
+            *ngSwitchCase="CalendarView.Day"
+            [viewDate]="viewDate"
+            [events]="events"
+            [refresh]="refresh"
+            (eventClicked)="handleEvent('Clicked', $event.event)"
+            (eventTimesChanged)="eventTimesChanged($event)"
+          >
+          </mwl-calendar-day-view>
+
+        </div>
+    </div>
+    <div class="calender-popup-area">
+        <div class="create-project__overlay todo-overlay">
+            <div class="flex-between__column create-project add-card calender-popup-card">
+                <div class="create-project__head mb-15">
+                    <div class="icons-box-mark btn-popup-close">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M1.05071 1.05022C0.660181 1.44074 0.660181 2.07391 1.05071 2.46443L4.58625 5.99997L1.05072 9.5355C0.660192 9.92602 0.660192 10.5592 1.05072 10.9497C1.44124 11.3402 2.07441 11.3402 2.46493 10.9497L6.00046 7.41419L9.53599 10.9497C9.92651 11.3402 10.5597 11.3402 10.9502 10.9497C11.3407 10.5592 11.3407 9.92602 10.9502 9.5355L7.41467 5.99997L10.9502 2.46443C11.3407 2.07391 11.3407 1.44074 10.9502 1.05022C10.5597 0.659696 9.92652 0.659696 9.536 1.05022L6.00046 4.58576L2.46492 1.05022C2.07439 0.659693 1.44123 0.659693 1.05071 1.05022Z"
+                                fill="black"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex-between create-new-area scroll_style__gray">
+                    <div class="create-project_col2 create-project__content">
+                        <div class="create-project-title input-box-with-label">
+                            <label for="create-project-title-input" class="input-box-with-label__label">
+                                Title
+                            </label>
+                            <input type="text" id="create-project-title-input" class="input-box-with-label__input"
+                                placeholder="Enter the title">
+                        </div>
+                        <div class="calender-event-type-area">
+                            <div class="event-type-area-heading">
+                                <h4>Event type</h4>
+                            </div>
+                            <div class="event-type-area-content d-flex justify-content-betwwn align-items-center">
+                                <ul>
+                                    <li>
+                                        <div class="calender-event-check">
+                                            <label class="item-check-circle_checkbox">
+                                                <input type="checkbox" checked="checked" class="item-check-circle_checkbox__input">
+                                                <span class="item-check-circle_checkbox__checkmark"></span>
+                                            </label>
+                                            Appointment
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="calender-event-check">
+                                            <label class="item-check-circle_checkbox">
+                                                <input type="checkbox" class="item-check-circle_checkbox__input">
+                                                <span class="item-check-circle_checkbox__checkmark"></span>
+                                            </label>
+                                            Meeting
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="calender-event-check">
+                                            <label class="item-check-circle_checkbox">
+                                                <input type="checkbox" class="item-check-circle_checkbox__input">
+                                                <span class="item-check-circle_checkbox__checkmark"></span>
+                                            </label>
+                                            Other
+                                        </div>
+                                        <input type="text" class="input-box-with-label__input" placeholder="other">
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="create-project-date flex-between">
+                            <div class="input-box-with-label create-project_col2 start-date-option">
+                                <h4 class="input-box-with-label__label">
+                                    Start Date
+                                </h4>
+                                <div class="input-box-with-label__input create-project-date__pick date-picker-custom">
+                                    <input type="text" name="birthday" value="10/24/1984" />
+                                    <svg class="icon-calendar icons-box__blue" width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0 8H18V16C18 17.1046 17.1046 18 16 18H2C0.89543 18 0 17.1046 0 16V8Z" fill="#CCD0E3">
+                                        </path>
+                                        <path d="M0 6H18V4C18 2.89543 17.1046 2 16 2H2C0.89543 2 0 2.89543 0 4V6Z" fill="#CCD0E3">
+                                        </path>
+                                        <path d="M4 4H6V1C6 0.447715 5.55228 0 5 0C4.44772 0 4 0.447715 4 1V4Z" fill="#CCD0E3">
+                                        </path>
+                                        <path d="M12 4H14V1C14 0.447715 13.5523 0 13 0C12.4477 0 12 0.447715 12 1V4Z" fill="#CCD0E3">
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="input-box-with-label create-project_col2">
+                                <h4 class="input-box-with-label__label">
+                                    End Date
+                                </h4>
+                                <div class="input-box-with-label__input create-project-date__pick date-picker-custom">
+                                    <input type="text" name="birthday" value="10/24/1984" />
+                                    <svg class="icon-calendar icons-box__blue" width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0 8H18V16C18 17.1046 17.1046 18 16 18H2C0.89543 18 0 17.1046 0 16V8Z" fill="#CCD0E3">
+                                        </path>
+                                        <path d="M0 6H18V4C18 2.89543 17.1046 2 16 2H2C0.89543 2 0 2.89543 0 4V6Z" fill="#CCD0E3">
+                                        </path>
+                                        <path d="M4 4H6V1C6 0.447715 5.55228 0 5 0C4.44772 0 4 0.447715 4 1V4Z" fill="#CCD0E3">
+                                        </path>
+                                        <path d="M12 4H14V1C14 0.447715 13.5523 0 13 0C12.4477 0 12 0.447715 12 1V4Z" fill="#CCD0E3">
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="create-project-time d-flex align-items-center">
+                            <div class="input-box-with-label create-project_col2 start-date-option mr-15">
+                                <div class="input-box-with-label__input create-project-date__pick time-picker-custom">
+                                    <input type="text" id="timepicker1" placeholder="6.18pm"/>
+
+                                </div>
+                            </div>
+                            <div class="input-box-with-label create-project_col2">
+                                <div class="input-box-with-label__input create-project-date__pick time-picker-custom">
+                                    <input type="text" id="timepicker2"  placeholder="2.12am"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="members-img-area">
+                            <h3>Participate</h3>
+                            <div class="members-img d-flex align-items-center">
+                                <img src="img/scram-round-img1.png" alt="">
+                                <img src="img/scram-round-img2.png" alt="">
+                                <img src="img/scram-round-img3.png" alt="">
+                                <img src="img/scram-round-img4.png" alt="">
+                                <div class="icons-box_square-gray__small">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM9 6C9 5.44772 9.44771 5 10 5C10.5523 5 11 5.44772 11 6V9H14C14.5523 9 15 9.44771 15 10C15 10.5523 14.5523 11 14 11H11V14C11 14.5523 10.5523 15 10 15C9.44771 15 9 14.5523 9 14V11H6C5.44772 11 5 10.5523 5 10C5 9.44771 5.44772 9 6 9H9V6Z"
+                                            fill="#CCD0E3"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="description">
+                            <label for="">Description</label>
+                            <textarea placeholder="Description"
+                                class="input-box-with-label__input create-project-title__textarea min-h-150"></textarea>
+                        </div>
+                        <div class="create-project-buttons flex-center">
+                            <button class="gray-btn create-project-buttons__discard flex-between create-project-buttons_btn">
+                                <svg class="icon-path__hover" width="14" height="18" viewBox="0 0 14 18" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10 0C10.5523 0 11 0.447715 11 1L13 1C13.5523 1 14 1.44772 14 2C14 2.55229 13.5523 3 13 3L1 3C0.447716 3 0 2.55228 0 2C0 1.44772 0.447715 0.999999 1 0.999999L3 1C3 0.447715 3.44772 0 4 0H10Z"
+                                        fill="#CCD0E3"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M1 4H13V16C13 17.1046 12.1046 18 11 18H3C1.89543 18 1 17.1046 1 16V4ZM4.5 6C4.22386 6 4 6.22386 4 6.5V15.5C4 15.7761 4.22386 16 4.5 16C4.77614 16 5 15.7761 5 15.5V6.5C5 6.22386 4.77614 6 4.5 6ZM9.5 6C9.22386 6 9 6.22386 9 6.5V15.5C9 15.7761 9.22386 16 9.5 16C9.77614 16 10 15.7761 10 15.5V6.5C10 6.22386 9.77614 6 9.5 6Z"
+                                        fill="#CCD0E3"></path>
+                                </svg>
+                                <p>
+                                    Discard
+                                </p>
+                            </button>
+                            <button class="blue-btn create-project-buttons__add flex-between create-project-buttons_btn">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM13.5355 6.46447C13.9261 6.07394 14.5592 6.07394 14.9498 6.46447C15.3403 6.85499 15.3403 7.48816 14.9498 7.87868L9.29662 13.5318L9.29292 13.5355C9.19191 13.6365 9.07467 13.7114 8.9496 13.7602C8.77243 13.8292 8.57955 13.8459 8.3948 13.8101C8.2057 13.7735 8.02513 13.682 7.87868 13.5355L7.87489 13.5317L5.05028 10.7071C4.65975 10.3166 4.65975 9.68342 5.05028 9.29289C5.4408 8.90237 6.07397 8.90237 6.46449 9.29289L8.5858 11.4142L13.5355 6.46447Z"
+                                        fill="white"></path>
+                                </svg>
+                                <p>
+                                    Add event
+                                </p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

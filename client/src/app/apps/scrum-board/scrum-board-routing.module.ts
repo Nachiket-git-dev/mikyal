@@ -5,7 +5,11 @@ import { ScrumBoardComponent} from './scrum-board.component'
 
 const routes:Routes=[
   {
-    path:'',
+    path: '',
+    redirectTo: '1'
+  },
+  {
+    path: ':scrumboardId',
     component:ScrumBoardComponent
   }
 ]

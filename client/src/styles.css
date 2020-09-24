@@ -3,7 +3,7 @@
 @import "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css";
 @import "https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css";
 @import 'https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css';
-
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
 .mat-menu-panel{
     background:#2C2C2E !important
 }

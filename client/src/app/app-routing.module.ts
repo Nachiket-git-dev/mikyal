@@ -60,6 +60,11 @@ const childroute:mykylRoutes=[
     canActivate: [AuthGuard],
     path:'scrumboard',
     loadChildren:() =>import('./apps/scrum-board/scrum-board.module').then(m=>m.ScrumBoardModule)
+  },
+  {
+    canActivate: [AuthGuard],
+    path:'calendar',
+    loadChildren:() =>import('./apps/calendar/calendar.module').then(m=>m.CalendarModule)
   }
 
 ];
