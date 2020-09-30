@@ -38,6 +38,26 @@ Service.prototype.getallcards=function(dbname){
 
 }
 
+Service.prototype.changelist=function(dbname,scrum_ids){
+    return new Promise(async(resolve,reject)=>{
+        let db=dbname.database;
+        if(db){
+            let scrum_id=scrum_ids.scrum_id
+            let id=scrum_ids.id
+            let cardres=await scrummodel.changelist(db,scrum_id,id);
+            if(cardres.affectedRows>0  ){  
+                resolve(responseHelper.generateResponse("Success", cardres));      
+            }else{
+                resolve(responseHelper.generateError("error",cardres));
+            }
+    }else{
+        resolve(responseHelper.generateError("error","username not define"));
+    }
+
+    })
+
+}
+
 
 module.exports = {
     getInst: function () {

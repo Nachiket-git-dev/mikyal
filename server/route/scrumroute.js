@@ -30,4 +30,20 @@ router.get('/getallcards',(req,res) =>{
       
      responseHandler(req, res, scrumservice.getallcards(dbname));
 });
+
+router.post('/changelist',(req,res) =>{
+    console.log("request body");
+   
+    console.log("request query");
+    console.log(req.query);
+     var dbname=req.query;
+     var scrum_id=req.body; 
+     console.log("scrum_id",scrum_id);
+     //console.log("body len",req.body.length)
+     //console.log("req",req)
+     
+
+      
+ responseHandler(req, res, scrumservice.changelist(dbname,scrum_id));
+});
 module.exports = router;

@@ -50,8 +50,15 @@ export class ScrumBoardComponent implements OnInit {
 
 
 drop(event: CdkDragDrop<any[]>) {
-  console.log("event",event.container.id);
+  
   event.item.data.scrum_id=event.container.id;
+  let updatedata={
+    id:event.item.data.id,
+    scrum_id:event.container.id
+  }
+  this.scrumservice.changelist(updatedata).subscribe(res=>{
+    console.log("res update=>",res);
+  })
   if (event.previousContainer === event.container) {
     event.item.data.scrum_id=event.container.id;
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);

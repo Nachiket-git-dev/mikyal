@@ -10,12 +10,16 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class CreateClientComponent implements OnInit {
   clientform: FormGroup;
+  isupdate:boolean
   constructor(@Inject(MAT_DIALOG_DATA) public defaults: any,
   private fb: FormBuilder,private clientservice:ClientService,private snackbar:MatSnackBar,
   private dialogRef: MatDialogRef<CreateClientComponent>) { }
   
   ngOnInit() {
-    console.log("inside Ng");
+    this.isupdate=false;
+   if(this.defaults.client_id){
+    this.isupdate=true;
+   }
     this.clientform = this.fb.group({
       id: '',
       first_name: [this.defaults.first_name|| '',[Validators.required]],

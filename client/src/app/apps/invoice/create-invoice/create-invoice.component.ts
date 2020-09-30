@@ -24,7 +24,7 @@ export class CreateInvoiceComponent implements OnInit {
     invoice_id:null,
     invoice_name: ['', Validators.required],
     billing_address:null,//['',Validators.required],
-    house_no:['',Validators.required],
+    house_no:null,
     zip:['',Validators.required],
     street:['',Validators.required],
     city:['',Validators.required],
@@ -36,6 +36,7 @@ export class CreateInvoiceComponent implements OnInit {
     client_id:null,
     tax_amount:null,
     discount_amount:null,
+    subtotal:null,
     total:[0,Validators.pattern("\\d+(?:\\.\\d+)?")],
     client_note:''
 
@@ -43,6 +44,8 @@ export class CreateInvoiceComponent implements OnInit {
     clientlist:any[];
     filteredOptions;
     total
+    discount_amt;
+    subtotal=0;
   constructor(private fb: FormBuilder,private invoiceservice:InvoiceService,
     private clientservice:ClientService,private snackbar:MatSnackBar,private router:Router,
     private route:ActivatedRoute) {
@@ -65,13 +68,21 @@ export class CreateInvoiceComponent implements OnInit {
 
      this.form.get("rows").valueChanges.subscribe(val => {
       this.total=0;
+      this.subtotal=0;
+      this.discount_amt=0;
       console.log("val change",val);
       val.forEach((element,index) => {
         const control = <FormArray>this.form.controls['rows'];
         let total=Number(element.unit_cost)*Number(element.qty)
+        let discount_amt =(total/100)*Number(element.discount); 
+        this.subtotal+=total; 
+        total-=discount_amt;
         control.at(index).get('price').setValue(total, {onlySelf: true, emitEvent: false});
+        this.discount_amt+=discount_amt;           
         this.total+=total;
-        this.form.patchValue({total:this.total})
+        this.form.patchValue({total:this.total,
+          discount_amount:this.discount_amt
+        });
 
       });
     })
@@ -91,7 +102,9 @@ export class CreateInvoiceComponent implements OnInit {
         console.log("service",service);
         for(let i=0; i<service['data'].length;i++){
           this.total+=service['data'][i].price;
-          this.rows.push(this.createItemFormGroupupdate(service['data'][i].item_id,service['data'][i].service_name,service['data'][i].description,service['data'][i].price,service['data'][i].unit_price,service['data'][i].qty))
+          this.subtotal+=service['data'][i].subtotal;
+          this.discount_amt=service['data'][i].discount_amt;
+          this.rows.push(this.createItemFormGroupupdate(service['data'][i].item_id,service['data'][i].service_name,service['data'][i].description,service['data'][i].price,service['data'][i].unit_price,service['data'][i].qty,service['data'][i].discount))
         }
         console.log("this.rows update",this.rows);
 
@@ -123,24 +136,26 @@ export class CreateInvoiceComponent implements OnInit {
       service_name: ['', Validators.required],
        description: '',
       unit_cost:['', Validators.required],
+      discount:null,
       qty:['', Validators.required],
-      price: ['', [Validators.required,Validators.pattern("\\d+(?:\\.\\d+)?")]]
+      price: ['', [Validators.required]]
     });
   }
-  createItemFormGroupupdate(item_id,service_name,description,price,unit_cost,qty): FormGroup {
+  createItemFormGroupupdate(item_id,service_name,description,price,unit_cost,qty,discount): FormGroup {
     return this.fb.group({
       item_id:[item_id || null],
       service_name: [service_name, Validators.required],
       description:'',
+      discount:[discount || ''],
       unit_cost:[unit_cost, Validators.required],
       qty:[qty,Validators.required],
-      price: [price, [Validators.required,Validators.pattern("\\d+(?:\\.\\d+)?")]]
+      price: [price, [Validators.required]]
     });
   }
   private _filter(value: string): string[] {
     if(value){
-    // const filterValue = value.toLowerCase();
-    console.log("fikler");
+     const filterValue = value.toLowerCase();
+    console.log("fikler",this.clientlist);
     return this.clientlist.filter(option =>option.first_name.toLowerCase().includes(value));
     }
   }
@@ -181,6 +196,7 @@ private _subscribeToClosingActions(): void {
 
 
  saveinvoice(){
+   console.log("this.form",this.form.value)
    if(!this.form.valid){
      console.log("invoice not valid");
      return

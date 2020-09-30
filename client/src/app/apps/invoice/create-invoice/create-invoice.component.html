@@ -10,12 +10,7 @@
                             </label>
                             <input type="text" id="create-project-title-input" class="input-box-with-label__input" formControlName="invoice_name" placeholder="#000">
                         </div>
-                        <div class="input-box-with-label new-invoice-product__shrink">
-                            <label for="create-project-title-input" class="input-box-with-label__label">
-                                Invoice#
-                            </label>
-                            <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="#000">
-                        </div>
+            
                     </div>
                     <div class="flex-between new-invoice-product-header__col2">
                         <div class="input-box-with-label create-project_col2 new-invoice-product__date">
@@ -63,7 +58,7 @@
                                   {{ clients.first_name }} {{ clients.last_name }}   
                                 </mat-option>
                               </mat-autocomplete>
-                            <input type="text" class="input-box-with-label__input new-invoice-product-client__ma" formControlName="house_no" placeholder="House no.">
+                            
                             <input type="text" class="input-box-with-label__input mb-xs-15" formControlName="street" placeholder="Landmark / Street">
                         </div>
                         <div class="new-invoice-product__col2">
@@ -98,28 +93,28 @@
                         </div>
                     </div>
                     <div class="new-invoice-product-item-box flex-between" >
-                        <div class="new-invoice-product-item-box__col input-box-with-label">
+            
+                        <div class="new-invoice-product-item-box__col flex-start__column">
                             <label for="create-project-title-input" class="input-box-with-label__label">
                                 Item
                             </label>
-                            <div class="input-bg__gray input-box-with-label_drop-menu new-invoice-product-client__ma">
-                                <p class="">
-                                    Frest Admin...
-                                </p>
-                                <svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.646447 0.146447C0.841709 -0.0488154 1.15829 -0.0488154 1.35355 0.146447L5.65674 4.44964L9.95994 0.146447C10.1552 -0.0488156 10.4718 -0.0488156 10.667 0.146447C10.8623 0.341709 10.8623 0.658291 10.667 0.853553L6.0103 5.5103C5.81504 5.70556 5.49845 5.70556 5.30319 5.5103L0.646447 0.853553C0.451184 0.658291 0.451184 0.341709 0.646447 0.146447Z" fill="#001431"/>
-                                </svg>
-                            </div>
-                            <input type="text" id="create-project-title-input" [formControl]="row.get('service_name')" class="input-box-with-label__input" placeholder="The mos de...">
+                            <input type="text" id="create-project-title-input" [formControl]="row.get('service_name')"
+                                class="input-box-with-label__input  new-invoice-product-client__mb"
+                                placeholder="The mos de...">
                         </div>
                         <div class="new-invoice-product-item-box__col flex-start__column">
                             <label for="create-project-title-input" class="input-box-with-label__label">
                                 Cost
                             </label>
-                            <input type="text" id="create-project-title-input" [formControl]="row.get('unit_cost')" class="input-box-with-label__input" placeholder="#000">
-                            <p class="new-invoice-product__cost">
-                                Discount: 0% 0% 0%
-                            </p>
+                            <input type="text" [formControl]="row.get('unit_cost')"  id="create-project-title-input"
+                                class="input-box-with-label__input  new-invoice-product-client__mb"
+                                placeholder="$00">
+                                <label for="create-project-title-input" class="input-box-with-label__label">
+                                    Discount
+                                </label>
+                                <input type="text" [formControl]="row.get('discount')" id="create-project-title-input"
+                                    class="input-box-with-label__input  new-invoice-product-client__mb"
+                                    placeholder="%00">
                         </div>
                         <div class="new-invoice-product-item-box__col flex-start__column">
                             <label for="create-project-title-input" class="input-box-with-label__label">
@@ -162,7 +157,7 @@
                                     Subtotal
                                 </p>
                                 <p class="new-invoice-product-total__many">
-                                    $ {{total}}
+                                    $ {{subtotal | number : '1.2-2'}}
                                 </p>
                             </div>
                             <div class="flex-between">
@@ -170,7 +165,7 @@
                                     Discount
                                 </p>
                                 <p class="new-invoice-product-total__many">
-                                    - $ 00.00
+                                    - $ {{discount_amt | number : '1.2-2'}}
                                 </p>
                             </div>
                             <div class="flex-between">
@@ -188,7 +183,7 @@
                                     Invoice Total
                                 </p>
                                 <p class="new-invoice-product-total__many">
-                                    - $ 00.00
+                                    - $ {{total | number : '1.2-2'}}
                                 </p>
                             </div>
                             <div class="flex-between">

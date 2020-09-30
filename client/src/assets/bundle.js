@@ -1,3 +1,10 @@
+$('.tooltiprapper').click(function (e) { 
+	e.preventDefault();
+	$(this).find('.tooltip').toggleClass('tooltip__active')
+	console.log('mukto');
+});
+
+
 ! function (e) {
 	var t = {};
 
@@ -603,3 +610,7 @@
 		spaceBetween: 15
 	})
 }, function (e, t, o) {}, function (e, t, o) {}]);
+
+
+
+

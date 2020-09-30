@@ -84,7 +84,7 @@
                        {{client.phone}}
                     </div>
                     <div class="client_table_list_item">
-                        <div class="icons-box-mark">
+                        <div class="icons-box-mark" [matMenuTriggerFor]="menu" [matMenuTriggerData]="{ client: client }">
                             <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
                                 <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
@@ -122,4 +122,24 @@
             </div>
         </div>
     </div>
+    <mat-menu #menu="matMenu">
+        <div class="tooltip__active">
+            <ng-template let-client="client" matMenuContent> 
+            <div class="tooltip__item tooltip__item__icon" (click)="editclient(client)">
+                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.864 0.60051C13.4735 0.209986 12.8403 0.209986 12.4498 0.600511L11.0356 2.01472L15.2782 6.25736L16.6924 4.84315C17.0829 4.45263 17.0829 3.81946 16.6924 3.42894L13.864 0.60051Z" fill="#fff"></path>
+                    <path d="M13.864 7.67158L9.62134 3.42894L0.721848 12.3284C0.534311 12.516 0.428955 12.7703 0.428955 13.0355L0.428955 15.864C0.428954 16.4163 0.876671 16.864 1.42896 16.864H4.25738C4.5226 16.864 4.77695 16.7586 4.96449 16.5711L13.864 7.67158Z" fill="#fff"></path>
+                </svg>
+                Edit
+            </div>
+            <div class="tooltip__item tooltip__item__icon" (click)="deleteCustomer(client)">
+                <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 0C10.5523 0 11 0.447715 11 1L13 1C13.5523 1 14 1.44772 14 2C14 2.55229 13.5523 3 13 3L1 3C0.447716 3 0 2.55228 0 2C0 1.44772 0.447715 0.999999 1 0.999999L3 1C3 0.447715 3.44772 0 4 0H10Z" fill="white"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4H13V16C13 17.1046 12.1046 18 11 18H3C1.89543 18 1 17.1046 1 16V4ZM4.5 6C4.22386 6 4 6.22386 4 6.5V15.5C4 15.7761 4.22386 16 4.5 16C4.77614 16 5 15.7761 5 15.5V6.5C5 6.22386 4.77614 6 4.5 6ZM9.5 6C9.22386 6 9 6.22386 9 6.5V15.5C9 15.7761 9.22386 16 9.5 16C9.77614 16 10 15.7761 10 15.5V6.5C10 6.22386 9.77614 6 9.5 6Z" fill="white"/>
+                </svg>
+                Delete
+            </div>
+        </ng-template> 
+        </div>
+      </mat-menu>
 </section>

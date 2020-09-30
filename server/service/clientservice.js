@@ -11,7 +11,7 @@ Service.prototype.createclient=function(dbname,client){
     return new Promise(async(resolve,reject)=>{
        
        let clientdata={first_name:client.first_name,last_name:client.last_name,
-        phone:client.phone,email:client.email,street:client.street,zip:client.zip,city:client.city,note:client.notes};
+        phone:client.phone,email:client.email,street:client.street,zip:client.zip,city:client.city,note:client.notes,company:client.company};
         let clienttres=await clientmodel.createclient(dbname,clientdata);
         console.log(clienttres);
         if(clienttres.affectedRows>0  ){  
@@ -40,7 +40,7 @@ Service.prototype.updateclient=function(client_id,dbname,client){
     return new Promise(async(resolve,reject)=>{
        
        let clientdata={first_name:client.first_name,last_name:client.last_name,
-        phone:client.phone,email:client.email,street:client.street,zip:client.zip,city:client.city,note:client.notes};
+        phone:client.phone,email:client.email,street:client.street,zip:client.zip,city:client.city,note:client.notes,company:client.company};
         let clienttres=await clientmodel.updateclient(client_id,dbname,clientdata);
         console.log(clienttres);
         if(clienttres.affectedRows>0  ){  

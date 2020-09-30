@@ -39,3 +39,21 @@ module.exports.createcard = function (database,cards) {
     });
  
  }
+ module.exports.changelist=function(database,scrum_id,id){
+   return new Promise(async (resolve,reject)=>{
+    try{
+       var sql= "UPDATE "+database+".scrum_card SET scrum_id=? WHERE id=?"; 
+       let query = mysqlLib.query(sql,[scrum_id,id], (err, results) => {
+         if (err) {
+            resolve(err);
+         } else
+            resolve(results);
+      });
+    
+   }catch(err){
+      esolve(responseHelper.generateError("Somthing went wrong", err));
+
+    }
+
+   }) 
+ }
