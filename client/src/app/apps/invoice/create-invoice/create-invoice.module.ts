@@ -5,6 +5,12 @@ import {CreateInvoiceComponent} from './create-invoice.component'
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+
 @NgModule({
   declarations: [CreateInvoiceComponent],
   imports: [
@@ -13,6 +19,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatFormFieldModule,
     FormsModule
 
   ]

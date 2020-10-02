@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path:'create-invoice',
     loadChildren: () => import('./create-invoice/create-invoice.module').then(m => m.CreateInvoiceModule)
+  },
+  {
+    path:'invoice-preview',
+    loadChildren: () => import('./invoice-preview/invoice-preview.module').then(m => m.InvoicePreviewModule)
   }
   
 ]

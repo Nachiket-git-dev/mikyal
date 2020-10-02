@@ -29,7 +29,8 @@
             ],
             "scripts": [
               "src/assets/custom.js",
-              "./node_modules/jquery/dist/jquery.min.js"
+              "./node_modules/jquery/dist/jquery.min.js",
+              "https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"
               
             ]
           },
@@ -107,7 +108,8 @@
               "https://code.jquery.com/jquery-3.2.1.min.js",
               "https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js",
               "https://code.jquery.com/ui/1.12.1/jquery-ui.js",
-              "./src/assets/bundle.js"
+              "./src/assets/bundle.js",
+              "https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"
             ]
           }
         },

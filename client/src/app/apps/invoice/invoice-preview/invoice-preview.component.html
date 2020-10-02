@@ -1,0 +1,246 @@
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<section class="main-content-dashboard">
+    <div class="content-wrapper content-wrapper__content flex-between__column content-invoices">
+        <div class="flex-between__column">
+            <div class="invoices__bg invoices scroll_style__gray">
+                <div class="invoices-head invoices-list_item flex-between__center">
+                    <div class="invoices-list_col">
+                        Task description
+                    </div>
+                    <div class="invoices-list_col">
+                        Hours
+                    </div>
+                    <div class="invoices-list_col">
+                        Rate
+                    </div>
+                    <div class="invoices-list_col">
+                        Amount
+                    </div>
+                </div>
+                <ul class="invoices-list">
+                    <li class="invoices-list_item flex-between__center" *ngFor="let line of serviceline">
+                        <div class="invoices-list_col">
+                            {{line.service_name}}
+                        </div>
+                        <div class="invoices-list_col">
+                           {{line.qty}}
+                        </div>
+                        <div class="invoices-list_col">
+                         {{line.price}}
+                        </div>
+                        <div class="invoices-list_col">
+                            74.900 USD
+                        </div>
+                    </li>
+                    <!-- <li class="invoices-list_item flex-between__center">
+                        <div class="invoices-list_col">
+                            Do something right now
+                        </div>
+                        <div class="invoices-list_col">
+                            535
+                        </div>
+                        <div class="invoices-list_col">
+                            140 USD
+                        </div>
+                        <div class="invoices-list_col">
+                            74.900 USD
+                        </div>
+                    </li>
+                    <li class="invoices-list_item flex-between__center">
+                        <div class="invoices-list_col">
+                            Do something right now or just do not. One two three
+                        </div>
+                        <div class="invoices-list_col">
+                            535
+                        </div>
+                        <div class="invoices-list_col">
+                            140 USD
+                        </div>
+                        <div class="invoices-list_col">
+                            74.900 USD
+                        </div>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="flex__reverse">
+                <div class="invoices__bg invoices-total">
+                    <div class="invoices-total__item flex-between__center">
+                        <div class="invoices-total-title">Subtotal</div>
+                        <div class="invoices-total-content">{{subtotal}} USD</div>
+                    </div>
+                    <div class="invoices-total__item flex-between__center">
+                        <div class="invoices-total-title invoices-total-discount-percent">Discount</div>
+                        <div class="invoices-total-content">{{discount_amt}} USD</div>
+                    </div>
+                    <div class="invoices-total__item flex-between__center">
+                        <div class="invoices-total-title">Total</div>
+                        <div class="invoices-total-content">{{total}} USD</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex-center invoices-footer">
+            <p>Transfer the amounts to the business amount below. Please include invoice number on your check.</p>
+            <div class="flex-between invoices-footer__bank">
+                <p>
+                    <span>BANK:</span> FTSBUS33
+                </p>
+                <p>
+                    <span>IBAN:</span> G882-1111-2222-3333
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="right-sidebar flex-between__column right-sidebar-invoices">
+        <div class="header-menu-account right-sidebar-menu-account">
+            <div class="header-menu-account-icon-box ">
+                <div class="icons-box-icon-menu close-right-sidebar">
+                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
+                        xml:space="preserve">
+                        <g>
+                            <g>
+                                <path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
+                                                L34.143,5.859c-7.811-7.811-20.475-7.811-28.285,0c-7.81,7.811-7.811,20.475,0,28.285l221.857,221.857L5.858,477.859
+                                                c-7.811,7.811-7.811,20.475,0,28.285c3.905,3.905,9.024,5.857,14.143,5.857c5.119,0,10.237-1.952,14.143-5.857L256,284.287
+                                                l221.857,221.857c3.905,3.905,9.024,5.857,14.143,5.857s10.237-1.952,14.143-5.857c7.811-7.811,7.811-20.475,0-28.285
+                                                L284.286,256.002z"></path>
+                            </g>
+                        </g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g> </g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                    </svg>
+                </div>
+            </div>
+            <div class="header-menu-account-name">
+                <p class="account-name">
+                    Debra Simmmons
+                </p>
+                <div class="account-logo">
+                    <img class="account-img" src="img/account-avatar.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="flex-between__column">
+            <div class= "item_border__6px right-sidebar-invoices-box">
+                <div class="right-sidebar-invoices_head">Recepient</div>
+                <div class="right-sidebar-invoices_content">
+                    <span>{{clientname}}</span><br>
+                    {{userstreet}} <br>
+                    {{usercity}} <br>
+                    {{userzip}}
+                </div>
+                <div class="right-sidebar-invoices-email-box">
+                    <div class="flex right-sidebar-invoices-email-box__item">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM5.01172 6.88281C5.07022 6.38631 5.488 6 6 6H14C14.512 6 14.9298 6.38631 14.9883 6.88281L10 10L5.01172 6.88281ZM5 13V7.87598L9.73535 10.835C9.89735 10.936 10.1026 10.936 10.2646 10.835L15 7.87598V13C15 13.5525 14.5525 14 14 14H6C5.4475 14 5 13.5525 5 13Z" fill="#CCD0E3"/>
+                        </svg>
+                        <p>
+                            {{useremail}}
+                        </p>
+                    </div>
+                    <div class="flex right-sidebar-invoices-email-box__item">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM11.9338 11.6463C12.5733 11.1295 13.2324 11.4435 13.8801 11.9603L14.2693 12.2728C14.9186 12.7895 15.3144 13.3154 14.6766 13.8306L14.3315 14.1126C14.0894 14.3459 13.3142 14.9861 12.0336 14.9998C10.4929 15.0151 8.86389 14.1187 7.20219 12.3337C5.53886 10.5503 4.81105 8.92377 5.04166 7.50461C5.23301 6.32172 6.02134 5.69826 6.30429 5.50772L6.64938 5.22572C7.28724 4.71049 7.79098 5.1495 8.2522 5.81716L8.52861 6.22264C8.98819 6.89335 9.22862 7.54424 8.5924 8.061L8.20805 8.37349C8.17789 8.3975 8.13724 8.4228 8.09115 8.45147C7.70727 8.69033 6.94661 9.16362 8.74123 11.0853C10.5326 13.0076 11.1406 12.3765 11.4497 12.0556C11.4874 12.0165 11.5206 11.9819 11.5511 11.9572L11.9338 11.6463Z" fill="#CCD0E3"/>
+                        </svg>
+                        <p>
+                           {{phone}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class= "item_border__6px right-sidebar-invoices-box">
+                <div class="right-sidebar-invoices_head flex-between__center">
+                    Invoice
+                    <div class="flex-between__center right-sidebar-invoices_head__share">
+                        <div class="pointer flex share-select">
+                            <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M14 6C15.6569 6 17 4.65685 17 3C17 1.34315 15.6569 0 14 0C12.3431 0 11 1.34315 11 3C11 3.13708 11.0092 3.27202 11.027 3.40423L5.05661 6.81588C4.51958 6.31001 3.79599 6 3 6C1.34315 6 0 7.34315 0 9C0 10.6569 1.34315 12 3 12C3.77051 12 4.47318 11.7095 5.00447 11.2321L11.0504 15.5506C11.309 16.9445 12.5312 18 14 18C15.6569 18 17 16.6569 17 15C17 13.3431 15.6569 12 14 12C12.9353 12 12.0001 12.5547 11.4676 13.3908L5.96491 9.46031C5.98801 9.31025 6 9.15653 6 9C6 8.8629 5.9908 8.72795 5.97299 8.59574L11.9434 5.1841C12.4804 5.68998 13.204 6 14 6ZM13 15.0085C13.0001 15.0031 13.0001 14.9977 13 14.9924C13.0041 14.4436 13.4503 14 14 14C14.5523 14 15 14.4477 15 15C15 15.5523 14.5523 16 14 16C13.4505 16 13.0046 15.5569 13 15.0085ZM14 4C14.5523 4 15 3.55228 15 3C15 2.44772 14.5523 2 14 2C13.4477 2 13 2.44772 13 3C13 3.55228 13.4477 4 14 4ZM4 9C4 9.55228 3.55228 10 3 10C2.44772 10 2 9.55228 2 9C2 8.44772 2.44772 8 3 8C3.55228 8 4 8.44772 4 9Z" fill="#546AE4"/>
+                            </svg>
+                            Share
+                        </div>
+                        <div class="tooltip ">
+                            <div class="tooltip__item tooltip__item__icon">
+                                <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H14C15.1 20 16 19.1 16 18V6L10 0ZM11.923 15.698C11.682 16.266 11.201 16.509 10.64 16.347C10.159 16.185 9.597 15.779 9.036 15.131C8.475 15.212 7.913 15.374 7.352 15.536C6.71 16.671 6.069 17.644 5.427 17.887C5.266 17.968 5.106 18 4.945 18C4.624 18 4.384 17.887 4.223 17.644C4.063 17.401 3.742 16.914 4.383 16.185C4.784 15.698 5.746 15.212 6.789 14.888C7.11 14.239 7.35 13.591 7.591 12.861C7.03 11.807 6.709 10.672 6.789 10.023C6.87 9.373 7.282 9 7.832 9C8.382 9 8.714 9.373 8.875 9.941C9.035 10.59 8.875 11.644 8.474 12.86C8.715 13.347 9.035 13.833 9.356 14.319C10.318 14.238 11.12 14.238 11.602 14.562C12.003 14.806 12.083 15.211 11.923 15.698ZM9 7V1.5L14.5 7H9Z" fill="white"/>
+                                </svg>
+                                Save as PDF
+                            </div>
+                            <div class="tooltip__item tooltip__item__icon">
+                                <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 0V4H3C1.35 4 0 5.35 0 7V14H4V18H16V14H20V7C20 5.35 18.65 4 17 4H16V0H14V4H6V0H4ZM7 0L10 3L13 0H7ZM17 6C17.552 6 18 6.448 18 7C18 7.552 17.552 8 17 8C16.448 8 16 7.552 16 7C16 6.448 16.448 6 17 6ZM6 12H14V16H6V12Z" fill="white"/>
+                                </svg>
+                                Print
+                            </div>
+                            <div class="tooltip__item tooltip__item__icon">
+                                <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 0C4.73479 2.65169e-05 4.48045 0.105392 4.29292 0.292922C4.10539 0.480453 4.00003 0.734792 4 1V3.49219L0.992188 5.24609C0.380188 5.60309 0 6.26561 0 6.97461V17C0 18.103 0.897 19 2 19H18C19.103 19 20 18.103 20 17V6.97461C20 6.26561 19.6198 5.60309 19.0078 5.24609L16 3.49219V1C16 0.734792 15.8946 0.480453 15.7071 0.292922C15.5195 0.105392 15.2652 2.65169e-05 15 0H5ZM6 2H14V9.33398L10 11.8223L6 9.33203V2ZM4 5.80664V8.08789L2.10742 6.91016L4 5.80664ZM16 5.80859L17.8926 6.91211L16 8.08984V5.80859Z" fill="white"/>
+                                </svg>
+                                Send email
+                            </div>
+                            <div class="tooltip__item tooltip__item__icon">
+                                <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.89185 20L0 11.2782H4.37752C4.6383 0.319358 15.5632 0 16.8229 0C16.9278 0 16.9836 0.00157319 16.9836 0.00157319L17 0.805475C16.6949 0.829073 9.60463 1.47408 9.41438 11.2782H13.7837L6.89185 20Z" fill="white"/>
+                                </svg>
+                                Send to Project
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-between__center invoice-right-btn">
+                    <div class="flex__column right-sidebar-invoices_date">
+                        <span>No.</span>
+                        001/2019
+                    </div>
+                    <div class="flex__column right-sidebar-invoices_date">
+                        <span>Date</span>
+                        {{invoicedate | date :'mediumDate'}}
+                    </div>
+                </div>
+                <div class="right-sidebar-invoices_content">
+                    <span>{{invcompany}}</span><br>
+                    {{useraddress}}
+                </div>
+                <div class="right-sidebar-invoices-email-box">
+                    <div class="flex right-sidebar-invoices-email-box__item">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM5.01172 6.88281C5.07022 6.38631 5.488 6 6 6H14C14.512 6 14.9298 6.38631 14.9883 6.88281L10 10L5.01172 6.88281ZM5 13V7.87598L9.73535 10.835C9.89735 10.936 10.1026 10.936 10.2646 10.835L15 7.87598V13C15 13.5525 14.5525 14 14 14H6C5.4475 14 5 13.5525 5 13Z" fill="#CCD0E3"/>
+                        </svg>
+                        <p>
+                            {{invemail}}
+                        </p>
+                    </div>
+                    <div class="flex right-sidebar-invoices-email-box__item">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM11.9338 11.6463C12.5733 11.1295 13.2324 11.4435 13.8801 11.9603L14.2693 12.2728C14.9186 12.7895 15.3144 13.3154 14.6766 13.8306L14.3315 14.1126C14.0894 14.3459 13.3142 14.9861 12.0336 14.9998C10.4929 15.0151 8.86389 14.1187 7.20219 12.3337C5.53886 10.5503 4.81105 8.92377 5.04166 7.50461C5.23301 6.32172 6.02134 5.69826 6.30429 5.50772L6.64938 5.22572C7.28724 4.71049 7.79098 5.1495 8.2522 5.81716L8.52861 6.22264C8.98819 6.89335 9.22862 7.54424 8.5924 8.061L8.20805 8.37349C8.17789 8.3975 8.13724 8.4228 8.09115 8.45147C7.70727 8.69033 6.94661 9.16362 8.74123 11.0853C10.5326 13.0076 11.1406 12.3765 11.4497 12.0556C11.4874 12.0165 11.5206 11.9819 11.5511 11.9572L11.9338 11.6463Z" fill="#CCD0E3"/>
+                        </svg>
+                        <p>
+                            {{invphone}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gray-btn_color__blue">
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.8647 0.60051C13.4742 0.209986 12.841 0.209986 12.4505 0.600511L11.0363 2.01472L15.2789 6.25736L16.6931 4.84315C17.0837 4.45263 17.0837 3.81946 16.6931 3.42894L13.8647 0.60051Z" fill="#546AE4"/>
+                <path d="M13.8647 7.67158L9.62208 3.42894L0.72258 12.3284C0.535043 12.516 0.429687 12.7703 0.429688 13.0355L0.429688 15.864C0.429686 16.4163 0.877403 16.864 1.42969 16.864H4.25811C4.52333 16.864 4.77768 16.7586 4.96522 16.5711L13.8647 7.67158Z" fill="#546AE4"/>
+            </svg>
+            <p>New task</p>
+        </div>
+    </div>
+</section>

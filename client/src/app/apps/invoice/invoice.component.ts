@@ -53,6 +53,7 @@ export class InvoiceComponent implements OnInit {
     this.invoiceservice.getallinvoices().subscribe(res =>{
       if(res['code']==200){
        this.invoices=res['data'];
+       console.log("invoices",res);
       }
     })
 
@@ -97,6 +98,11 @@ export class InvoiceComponent implements OnInit {
     },err=>{
       console.log("err",err);
     })
+ }
+ openinvoice(invoice){
+   console.log("invoice",invoice);
+   this.router.navigate(['/invoice/invoice-preview'],{queryParams:{invoice_id:invoice.invoice_id} })
+
  }
   
 

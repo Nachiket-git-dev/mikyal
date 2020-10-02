@@ -1,9 +1,11 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import { FormBuilder,FormControl,Validators,FormGroup,FormArray } from '@angular/forms';
 import {InvoiceService} from '../invoice.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ClientService} from '../../client/client.service'
 import { Router,ActivatedRoute, Params } from '@angular/router';
+import * as $ from 'jquery';
+
 import {
   MatAutocompleteSelectedEvent,
   MatAutocompleteTrigger,
@@ -54,8 +56,12 @@ export class CreateInvoiceComponent implements OnInit {
     //this.rows.push(this.createItemFormGroup());
     
    }
+   dataker(){
+    $("#duedate").datepicker( {dateFormat : "yy-mm-dd"});
+   }
 
   ngOnInit() {
+    
   
     this.clientservice.getallclient().subscribe(clients=>{
       this.clientlist=clients['data'];

@@ -140,7 +140,7 @@
     <div class="right-sidebar">
         <div class="header-menu-account right-sidebar-menu-account">
             <div class="header-menu-account-icon-box ">
-                <div class="icons-box-icon-menu close-right-sidebar">
+                <div class="icons-box-icon-menu close-right-sidebar" (click)="closeright($event)">
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.001 512.001"
                         style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
@@ -184,9 +184,9 @@
             <p class="projects-title projects-title_active pointer">Сurrent projects</p>
             <p class="projects-title pointer">All projects</p>
         </div>
-        <div class="swiper-container slider-project">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide slide">
+        <div class="swiper-container slider-project" [swiper]="config" [(index)]="index">
+            <div class="swiper-wrapper" >
+                <div class="swiper-slide slide" >
                     <div class="slide-progress_bg"></div>
                     <div class="slide-box_title">
                         <p class="slide_title">Design</p>
@@ -201,7 +201,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="swiper-slide slide slide-ocean_bg">
+                <div class="swiper-slide slide slide-ocean_bg swiper-slide-active " style="margin-right:15px;"> 
                     <div class="slide-progress_bg"></div>
                     <div class="slide-box_title">
                         <p class="slide_title">Frontend</p>
@@ -232,7 +232,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="swiper-slide slide">
+                <div class="swiper-slide slide swiper-slide-active">
                     <div class="slide-progress_bg"></div>
                     <div class="slide-box_title">
                         <p class="slide_title">Design</p>

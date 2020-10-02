@@ -1,4 +1,4 @@
-import { Component, OnInit,ChangeDetectorRef, Inject, Input, OnDestroy, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef, Inject, Input, OnDestroy,ElementRef, TemplateRef, ViewChild } from '@angular/core';
 import { NavigationEnd, Router,ActivatedRoute } from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import Stepper from 'bs-stepper';
@@ -13,7 +13,7 @@ export class CustommoduleComponent implements OnInit {
   isOpened=false
   isheaderactive=false;
   private stepper: Stepper;
-  constructor(private route:ActivatedRoute,private dialog:MatDialog) { }
+  constructor(private route:ActivatedRoute,private dialog:MatDialog,private elementRef:ElementRef) { }
 
   ngOnInit() {
     console.log("custom module");
@@ -72,4 +72,11 @@ export class CustommoduleComponent implements OnInit {
    
   })
  }
+ ngAfterViewInit() {
+  this.elementRef.nativeElement.querySelector('close-right-sidebar')
+                                .addEventListener('click', this.onClick.bind(this));
+}
+onClick(event) {
+  console.log(event);
+}
 }
