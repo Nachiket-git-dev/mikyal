@@ -14,16 +14,23 @@
 <section class="main-content-projects">
     <div class="content-wrapper content-wrapper__content project-content ml-md-0">
         <div class="projects_group">
-                <div class="sbc-single-card mb-20 ui-sortable-handle">
-                    <div class="border-line border-progress export_btn relative">
-                        <span></span>
-                        <ul class="all-task-dropdawn comon-dropdawn tooltip">
-                            <li><a href=""> <span class="circle circle-pogress"></span> In Progress</a></li>
-                            <li><a href=""><span class="circle circle-grey"></span>Completed</a></li>
-                            <li><a href=""><span class="circle circle-red"></span>Cancelled</a></li>
+                <div *ngFor="let project of projects; let i = index" class="sbc-single-card mb-20 ui-sortable-handle">
+                    <div 
+                        class="border-line border-progress export_btn relative"
+                        (click)="openToolTipDropDown(i)"
+                        [ngClass]="{
+                            'border-progress':project.status === 'in_progress',
+                            'border-red':project.status === 'cancelled',
+                            'border-grey':project.status === 'completed'
+                          }">
+                        <span></span> 
+                        <ul class="all-task-dropdawn comon-dropdawn tooltip" [class.tooltip__active]="dropDownFlag[i].isTooltipDropDown">
+                            <li (click)="changeProjectStatus(project.project_id, 'in_progress')"><a> <span class="circle circle-pogress"></span> In Progress</a></li>
+                            <li (click)="changeProjectStatus(project.project_id, 'completed')"><a><span class="circle circle-grey"></span>Completed</a></li>
+                            <li (click)="changeProjectStatus(project.project_id, 'cancelled')"><a><span class="circle circle-red"></span>Cancelled</a></li>
                         </ul>
                     </div>
-                    <a href="/overview/project-overview">
+                    <a [routerLink]="['/overview/project-overview']">
                         <div class="sbc-single-card-heading flex-between align-items-center position-border">
                             <div class="sbc-sch-date d-flex align-items-center">
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,7 +41,7 @@
                                         d="M13.6667 6.99992C13.6667 10.6818 10.6819 13.6666 7.00004 13.6666C3.31814 13.6666 0.333374 10.6818 0.333374 6.99992C0.333374 3.31802 3.31814 0.333252 7.00004 0.333252C10.6819 0.333252 13.6667 3.31802 13.6667 6.99992ZM12.3334 6.99992C12.3334 9.94544 9.94556 12.3333 7.00004 12.3333C4.05452 12.3333 1.66671 9.94544 1.66671 6.99992C1.66671 4.0544 4.05452 1.66659 7.00004 1.66659C9.94556 1.66659 12.3334 4.0544 12.3334 6.99992Z"
                                         fill="#D7DAE5"></path>
                                 </svg>
-                                <p>Feb 2, 2020</p>
+                                <p>{{ project.start_date | date:'mediumDate' }}</p>
                             </div>
                             <div class="sbc-sch-time d-flex align-items-center">
                                 <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,16 +52,16 @@
                                         d="M9.82311 5.11424C10.0835 4.85389 10.5056 4.85389 10.7659 5.11424C11.0263 5.37459 11.0263 5.7967 10.7659 6.05705L7.46609 9.35688C7.20574 9.61723 6.78363 9.61723 6.52328 9.35688L4.63766 7.47126C4.37731 7.21091 4.37731 6.7888 4.63766 6.52845C4.89801 6.2681 5.32012 6.2681 5.58047 6.52845L6.99468 7.94266L9.82311 5.11424Z"
                                         fill="#001431"></path>
                                 </svg>
-                                <p>2 of 10</p>
+                                <p>{{ i + 1 }} of {{ projects.length }}</p>
                             </div>
                         </div>
                         <div class="sbc-single-card-color-text pt-0">
-                            <p>Project Title</p>
+                            <p>{{ project.project_name }}</p>
                         </div>
                     </a>
                     <div class="sbc-single-card-footer">
                         <div class="sbc-single-card-footer-left d-flex align-items-center">
-                            <div class="Portal-icon export_btn relative">
+                            <div class="Portal-icon export_btn relative" (click)="openEyeDropDown(i)">
                                 <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                         d="M0 7.5C1.85148 3.08524 6.0799 0 11 0C15.9201 0 20.1485 3.08524 22 7.5C20.1485 11.9148 15.9201 15 11 15C6.0799 15 1.85148 11.9148 0 7.5ZM15.8889 7.5C15.8889 10.2614 13.7001 12.5 11 12.5C8.29994 12.5 6.11111 10.2614 6.11111 7.5C6.11111 4.73858 8.29994 2.5 11 2.5C11.7809 2.5 12.519 2.68724 13.1738 3.02022C12.595 3.47741 12.2222 4.19418 12.2222 5C12.2222 6.38071 13.3166 7.5 14.6667 7.5C15.1076 7.5 15.5213 7.38058 15.8785 7.17164C15.8854 7.28019 15.8889 7.38968 15.8889 7.5Z"
@@ -63,13 +70,13 @@
                                         d="M13.4444 7.5C13.4444 8.88071 12.35 10 11 10C9.64997 10 8.55556 8.88071 8.55556 7.5C8.55556 6.11929 9.64997 5 11 5C12.35 5 13.4444 6.11929 13.4444 7.5Z"
                                         fill="#9A9AB5"></path>
                                 </svg>
-                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task">
+                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task" [class.tooltip__active]="dropDownFlag[i].isEyeDropDown">
                                     <li><a href="">Visit Portal</a></li>
                                     <li><a href="">Copy Portal Link</a></li>
                                     <li><a href="">Edit Portal</a></li>
                                 </ul>
                             </div>
-                            <div class="icons-box-mark export_btn relative">
+                            <div class="icons-box-mark export_btn relative" (click)="openExportDropDown(i)">
                                 <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -79,15 +86,20 @@
                                         d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z"
                                         fill="#001431"></path>
                                 </svg>
-                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task">
+                                <ul class="all-task-dropdawn comon-dropdawn tooltip custom-all-task" [class.tooltip__active]="dropDownFlag[i].isExportDropDown">
                                     <li><a href="">Export as PDF</a></li>
-                                    <li><a href="">Add to Portfolio</a></li>
+                                    <li *ngIf="project.portfolio == 0" (click)="addToPortfolio(project.project_id)">
+                                        <a>Add to Portfolio</a>
+                                    </li>
+                                    <li *ngIf="project.portfolio == 1" (click)="removeToPortFolio(project.project_id)">
+                                        <a>Remove From Portfolio</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="sbc-single-card mb-20 ui-sortable-handle">
+                <!-- <div class="sbc-single-card mb-20 ui-sortable-handle">
                     <div class="border-line border-grey export_btn relative">
                         <span></span>
                         <ul class="all-task-dropdawn comon-dropdawn tooltip">
@@ -524,7 +536,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
         </div>
     </div>
 </section>
