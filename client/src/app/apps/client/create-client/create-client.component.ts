@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef,MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup,FormControl,Validators,FormArray } from '@angular/forms';
 import {ClientService} from '../client.service'
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -13,7 +13,7 @@ export class CreateClientComponent implements OnInit {
   isupdate:boolean
   constructor(@Inject(MAT_DIALOG_DATA) public defaults: any,
   private fb: FormBuilder,private clientservice:ClientService,private snackbar:MatSnackBar,
-  private dialogRef: MatDialogRef<CreateClientComponent>) { }
+  public dialogRef: MatDialogRef<CreateClientComponent>) { }
   
   ngOnInit() {
     this.isupdate=false;
@@ -73,5 +73,8 @@ export class CreateClientComponent implements OnInit {
     })
    console.log("this.defaults",this.defaults);
     this.dialogRef.close(customer);
+  }
+  close(){
+    this.dialogRef.close(true);
   }
 }

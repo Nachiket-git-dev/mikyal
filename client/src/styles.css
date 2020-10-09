@@ -26,3 +26,22 @@
     min-height: inherit;
     max-height: inherit;
 }
+.pagination .page-link{
+    display:none;
+
+}
+.pagination .next-item{
+    display:none;
+}
+.pagination .page-item .page-link{
+    display:none;
+}
+.mat-dialog-container{
+    color:white !important;
+}
+.addprojectstep4 .Modal_Body_content_info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 8px 0 8px 0;
+}

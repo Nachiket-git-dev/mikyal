@@ -3,11 +3,13 @@
         <div class="Modal_Body scroll_style__gray">
             <div class="flex-between__center Modal_Body_content">
                 <p>Add new client</p>
-                <div class="ModalWindowClose icons-box-mark">
+               
+                <div class="ModalWindowClose icons-box-mark" (click)="dialogRef.close(true)" >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M7.05071 7.05022C6.66018 7.44074 6.66018 8.07391 7.05071 8.46443L10.5862 12L7.05072 15.5355C6.66019 15.926 6.66019 16.5592 7.05072 16.9497C7.44124 17.3402 8.07441 17.3402 8.46493 16.9497L12.0005 13.4142L15.536 16.9497C15.9265 17.3402 16.5597 17.3402 16.9502 16.9497C17.3407 16.5592 17.3407 15.926 16.9502 15.5355L13.4147 12L16.9502 8.46443C17.3407 8.07391 17.3407 7.44074 16.9502 7.05022C16.5597 6.6597 15.9265 6.6597 15.536 7.05022L12.0005 10.5858L8.46492 7.05022C8.07439 6.65969 7.44123 6.65969 7.05071 7.05022Z" fill="black"/>
                     </svg>
                 </div>
+           
             </div>
             <div class="flex-between Modal_Body_content Modal_Body_content-col2">
                 <div class="input-box-with-label">

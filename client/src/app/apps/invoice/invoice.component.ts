@@ -1,16 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output,Input,EventEmitter,SimpleChanges } from '@angular/core';
 import {InvoiceService} from './invoice.service';
 import { MatSelectChange } from '@angular/material/select';
 import { Router } from '@angular/router';
 import {ClientService} from '../client/client.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { FormBuilder, FormGroup,FormControl,Validators,FormArray } from '@angular/forms';
+declare var daterangepicker: any;
+import paginate from 'jw-paginate';
 @Component({
   selector: 'app-invoice',
   templateUrl: './invoice.component.html',
   styleUrls: ['./invoice.component.css']
 })
 export class InvoiceComponent implements OnInit {
-
+  pageOfItems: Array<any>;
+  @Output() changePage = new EventEmitter<any>(true);
+  @Input() initialPage = 1;
+  @Input() pageSize = 10;
+  @Input() maxPages = 10;
+  pager: any = {};
+  searchCtrl = new FormControl();
+  tempinvoice:any  
    invoices:any
     invoiceslistLabels = [
     {
@@ -40,9 +50,11 @@ export class InvoiceComponent implements OnInit {
     private clientservice:ClientService,private snackbar:MatSnackBar) { }
 
   ngOnInit() {
+ 
   //   document.querySelector(".dropbtn").onclick = function () {
   //     document.getElementById("myDropdown").classList.toggle("dropbtn_show");
   // }
+
   document.querySelectorAll(".export_btn").forEach(e => {
       
     e.addEventListener("click", () => {
@@ -53,9 +65,23 @@ export class InvoiceComponent implements OnInit {
     this.invoiceservice.getallinvoices().subscribe(res =>{
       if(res['code']==200){
        this.invoices=res['data'];
+       this.tempinvoice=res['data'];
        console.log("invoices",res);
+       this.setPage(this.initialPage);
       }
     })
+    this.searchCtrl.valueChanges.subscribe(res=>{
+      console.log("typing",res);
+      if(!res){
+       this.pageOfItems=this.tempinvoice;
+       
+      }
+      console.log("this.pageOfItems",this.pageOfItems);
+     this.pageOfItems=this.pageOfItems.filter(item => item.invoice_name.search(new RegExp(res, 'i')) > -1 
+      || item.billing_address.search(new RegExp(res,'i')) > -1 
+     )
+     
+   })
 
 
 
@@ -104,6 +130,29 @@ export class InvoiceComponent implements OnInit {
    this.router.navigate(['/invoice/invoice-preview'],{queryParams:{invoice_id:invoice.invoice_id} })
 
  }
+ onChangePage(pageOfItems: Array<any>) {
+  // update current page of items
+  this.pageOfItems = pageOfItems;
+}
+ngOnChanges(changes: SimpleChanges) {
+  // reset page if items array has changed
+  if (changes.clients.currentValue !== changes.clients.previousValue) {
+    this.setPage(this.initialPage);
+  }
+}
+ setPage(page: number) {
+  // get new pager object for specified page
+  console.log("page",page);
+  this.pager = paginate(this.invoices.length, page, this.pageSize, this.maxPages);
+
+  // get new page of items from items array
+  var pageOfItems = this.invoices.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  console.log("pageOfItems",pageOfItems);
+  // call change page function in parent component
+  this.onChangePage(pageOfItems);
+  this.changePage.emit(pageOfItems);
+}
+ 
   
 
 }

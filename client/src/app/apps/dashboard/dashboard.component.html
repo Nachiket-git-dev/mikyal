@@ -25,7 +25,20 @@
                       </svg>
                    </div>
                 </div>
-                <div id="dashboard-chart-total"></div>
+                <apx-chart
+               [series]="chartOptions1.series"
+               [chart]="chartOptions1.chart"
+               [xaxis]="chartOptions1.xaxis"
+               [yaxis]="chartOptions1.yaxis"
+               [dataLabels]="chartOptions1.dataLabels"
+               [grid]="chartOptions1.grid"
+               [stroke]="chartOptions1.stroke"
+               [title]="chartOptions1.title"
+               [tooltip]="chartOptions1.tooltip"
+               [markers]="chartOptions1.markers"></apx-chart>      
+                <div id="dashboard-chart-total">
+                  
+                </div>
              </div>
              <div class="information_list-item chart-box">
                 <div class="chart-header">
@@ -40,6 +53,16 @@
                       </svg>
                    </div>
                 </div>
+                <apx-chart
+               [series]="chartOptions2.series"
+               [chart]="chartOptions2.chart"
+               [xaxis]="chartOptions2.xaxis"
+               [yaxis]="chartOptions2.yaxis"
+               [dataLabels]="chartOptions2.dataLabels"
+               [grid]="chartOptions2.grid"
+               [stroke]="chartOptions2.stroke"
+               [title]="chartOptions2.title"
+               [markers]="chartOptions2.markers"></apx-chart> 
                 <div id="dashboard-chart-sales"></div>
              </div>
           </li>
@@ -68,11 +91,11 @@
                    </div>
                 </div>
                 <ul class="information_list-item-content scroll_style__gray">
-                   <li class="information_list-item-content__item">
+                   <li *ngFor="let tasks of alltasks" class="information_list-item-content__item">
                       <div class="flex-between">
-                         <label class="item-check-circle_checkbox"><input type="checkbox" checked="checked" class="item-check-circle_checkbox__input"> <span class="item-check-circle_checkbox__checkmark"></span></label>
+                         <label class="item-check-circle_checkbox"><input type="checkbox" [checked]="tasks.isdone" class="item-check-circle_checkbox__input"> <span class="item-check-circle_checkbox__checkmark"></span></label>
                          <div class="information_list-item-content__item-information">
-                            <p class="information_list-item-content__item-information_text">Do something right now or just do not. One two three</p>
+                            <p class="information_list-item-content__item-information_text">{{tasks.task_header}}</p>
                             <div class="information_list-item-content__item-information_detail">
                                <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow">Frontend</p>
                                <p class="information_list-item-content__item-information_detail_executor">Morris W.</p>
@@ -92,7 +115,7 @@
                          </ul>
                       </div>
                    </li>
-                   <li class="information_list-item-content__item checked">
+                   <!-- <li class="information_list-item-content__item checked">
                       <div class="flex-between">
                          <label class="item-check-circle_checkbox"><input type="checkbox" class="item-check-circle_checkbox__input"> <span class="item-check-circle_checkbox__checkmark"></span></label>
                          <div class="information_list-item-content__item-information">
@@ -115,8 +138,8 @@
                             <li><a href="">Delete</a></li>
                          </ul>
                       </div>
-                   </li>
-                   <li class="information_list-item-content__item">
+                   </li> -->
+                   <!-- <li class="information_list-item-content__item">
                       <div class="flex-between">
                          <label class="item-check-circle_checkbox"><input type="checkbox" class="item-check-circle_checkbox__input"> <span class="item-check-circle_checkbox__checkmark"></span></label>
                          <div class="information_list-item-content__item-information">
@@ -211,7 +234,7 @@
                             <li><a href="">Delete</a></li>
                          </ul>
                       </div>
-                   </li>
+                   </li> -->
                 </ul>
              </div>
              <div class="information_list-item projects-block">

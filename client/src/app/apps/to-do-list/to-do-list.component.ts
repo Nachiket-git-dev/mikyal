@@ -20,19 +20,8 @@ export class ToDoListComponent implements OnInit,OnChanges{
  
     debounceTime(10)
   );
-  stageclass=[
-    {
-      class:'todo-list__priority todo-list__priority-js todo-list__priority__low'
-    },
-    {
-      class:'todo-list__priority todo-list__priority-js todo-list__priority__medium'
-    },
-    {
-      class:'todo-list__priority todo-list__priority-js todo-list__priority__high'
-    },
-
-
-  ]
+  stageclass;
+  
   constructor( private fb: FormBuilder,private todoservice:ToDoListService,private snackbar:MatSnackBar) {
     this.todoservice.getalltask().subscribe(res =>{
       if(res['code']==200){
@@ -55,6 +44,19 @@ export class ToDoListComponent implements OnInit,OnChanges{
   });
   tasks:any;
   ngOnInit() {
+    this.stageclass=[
+      {
+        class:'todo-list__priority todo-list__priority-js todo-list__priority__low'
+      },
+      {
+        class:'todo-list__priority todo-list__priority-js todo-list__priority__medium'
+      },
+      {
+        class:'todo-list__priority todo-list__priority-js todo-list__priority__high'
+      },
+  
+  
+    ]
     this.loadanumation();
    
     this.searchCtrl.valueChanges.subscribe(res=>{
@@ -185,9 +187,10 @@ checkboxstatus(event, activity){
   console.log("activity",activity);
   const index = this.tasks.findIndex(c => c.task_id ===activity.task_id );
   console.log("index",index);
-  this.tasks[index].isdone=event.checked;
+  this.tasks[index].isdone=event.target.checked;
+  
    let status={
-      isdone: event.checked ? 1 : 0,
+      isdone: event.target.checked ? 1 : 0,
       task_id:activity.task_id
    }  
  this.todoservice.updateisdone(status).subscribe(res=>{

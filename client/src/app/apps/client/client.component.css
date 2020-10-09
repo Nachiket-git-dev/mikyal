@@ -1,1 +1,11 @@
 
+.pagination .page-link{
+    display:none;
+
+}
+.pagination .next-item{
+    display:none;
+}
+.pagination .page-item .page-link{
+    display:none;
+}

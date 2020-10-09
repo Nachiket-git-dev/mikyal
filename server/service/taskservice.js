@@ -50,7 +50,9 @@ Service.prototype.getprojectsallpendingtask=function(dbname){
 Service.prototype.isdonestatus=function(dbname,stausdata){
     return new Promise(async(resolve,reject)=>{
         let status={isdone:stausdata.isdone};
+
         let task_id=stausdata.task_id;
+        console.log("t=>",status);
         let custres=await taskmodel.isdonestatus(dbname,status,task_id);
         if(custres.affectedRows>0  ){  
             resolve(responseHelper.generateResponse("Success", custres));      

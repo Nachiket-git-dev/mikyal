@@ -115,7 +115,7 @@ export class CalendarComponent implements OnInit {
   ngOnInit() {
     this.document.body.classList.add(this.darkThemeClass);
   }
-  ayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||

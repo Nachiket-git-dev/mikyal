@@ -5,7 +5,9 @@ import {AnalyticsRoutingModule} from './analytics-routing.module'
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
-
+import { NgApexchartsModule } from "ng-apexcharts";
+import * as PlotlyJS from 'plotly.js/dist/plotly.js';
+import { PlotlyModule } from 'angular-plotly.js'
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
@@ -15,11 +17,14 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   slidesPerView: 1,
   centeredSlides: true
 };
+PlotlyModule.plotlyjs = PlotlyJS
 @NgModule({
   declarations: [AnalyticsComponent],
   imports: [
     CommonModule,
     AnalyticsRoutingModule,
+    NgApexchartsModule,
+    PlotlyModule,
     SwiperModule,
   ],
   

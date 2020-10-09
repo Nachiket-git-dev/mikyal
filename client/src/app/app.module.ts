@@ -9,10 +9,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {LoginService} from './apps/login/login.service'
 import { AuthGuard } from './auth/auth.guard';
 import { AuthService } from './auth/auth.service';
-
+//import { JwPaginationComponent } from 'jw-angular-pagination';
 @NgModule({
   declarations: [
-    AppComponent, 
+    AppComponent,
+    //JwPaginationComponent 
   ],
   imports: [
     BrowserModule,

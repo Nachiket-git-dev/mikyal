@@ -7,7 +7,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import {MatMenuModule} from '@angular/material/menu'
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [ClientComponent],
@@ -21,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MatSnackBarModule,
     MatMenuModule
-  ]
+  ],
+  exports: []
 })
 export class ClientModule { }

@@ -204,7 +204,7 @@
         </div>
     </form>
 </div> -->
-<section class="main-content-projects">
+<section class="main-content-projects" [formGroup]="form">
     <div class="content-wrapper content-wrapper__content">
 <!--            class="Modal"-->
      <div class="addprojectstep1">
@@ -243,13 +243,13 @@
                         <label for="create-project-title-input" class="input-box-with-label__label">
                             Project name
                         </label>
-                        <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="Loop CRM">
+                        <input type="text" formControlName="project_name" id="create-project-title-input" class="input-box-with-label__input" placeholder="Loop CRM">
                     </div>
                     <div class="input-box-with-label Modal_Body_content__col2 w-md-100p">
                         <label for="create-project-title-input" class="input-box-with-label__label">
                             Project owner
                         </label>
-                        <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="Krox">
+                        <input type="text" formControlName="project_owner" id="create-project-title-input" class="input-box-with-label__input" placeholder="Krox">
                     </div>
                 </div>
                 <div class="flex-between Modal_Body_content flex-md-coloum ">
@@ -257,13 +257,18 @@
                             <label for="create-project-title-input" class="input-box-with-label__label">
                                 Customer name
                             </label>
-                            <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="Loop Inc">
+                            <input type="text" id="create-project-title-input" class="input-box-with-label__input" [matAutocomplete]="auto" formControlName="client_select" placeholder="Loop Inc">
+                            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="handler($event)">
+                                <mat-option *ngFor="let clients of filteredOptions " [value]="clients.client_id">
+                                  {{ clients.first_name }} {{ clients.last_name }}   
+                                </mat-option>
+                              </mat-autocomplete>
                         </div>
                         <div class="input-box-with-label Modal_Body_content__col2 w-md-100p">
                             <label for="create-project-title-input" class="input-box-with-label__label">
                                 Contact phone
                             </label>
-                            <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="(219) 555-0114">
+                            <input type="text" formControlName="client_phone" id="create-project-title-input" class="input-box-with-label__input" placeholder="(219) 555-0114">
                         </div>
                 </div>
                 <div class="flex-between Modal_Body_content flex-md-coloum ">
@@ -271,13 +276,13 @@
                         <label for="create-project-title-input" class="input-box-with-label__label">
                             Email address
                         </label>
-                        <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="benjamin.ray@example.com">
+                        <input type="text" formControlName="client_email" id="create-project-title-input" class="input-box-with-label__input" placeholder="benjamin.ray@example.com">
                     </div>
                     <div class="input-box-with-label Modal_Body_content__col2 w-md-100p">
                         <label for="create-project-title-input" class="input-box-with-label__label">
                             Company site
                         </label>
-                        <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="loop">
+                        <input type="text"  formControlName="client_company" id="create-project-title-input" class="input-box-with-label__input" placeholder="loop">
                     </div>
                 </div>
                 <div class="Modal_Body_content">
@@ -506,93 +511,85 @@
                </ng-template>
                <div class="Modal_Body_line"></div>
                <div class="Modal_Body_content">
-                   <p class="black18">Review your details and submit</p>
-               </div>
-               <div class="Modal_Body_content">
-                  <p class="black18">Project details</p>
-               </div>
-               <div class="Modal_Body_content">
-                   <div class="Modal_Body_content_info">
-                      <p>Name:</p>
-                       <p>Loop Inc CRM App</p>
-                   </div>
-                   <div class="Modal_Body_content_info">
-                       <p>Phone::</p>
-                       <p>(225) 555-0118</p>
-                   </div>
-                   <div class="Modal_Body_content_info">
-                       <p>Email::</p>
-                       <p>donald.phillips@example.com</p>
-                   </div>
-                   <div class="Modal_Body_line"></div>
-               </div>
+                <p class="black18">Review your details and submit</p>
+            </div>
+            <div class="Modal_Body_content">
+               <p class="black18">Project details</p>
+            </div>
+            <div class="Modal_Body_content">
+                <div class="Modal_Body_content_info">
+                   <p>Name:</p>
+                    <p>Loop Inc CRM App</p>
+                </div>
+                <div class="Modal_Body_content_info">
+                    <p>Phone::</p>
+                    <p>(225) 555-0118</p>
+                </div>
+                <div class="Modal_Body_content_info">
+                    <p>Email::</p>
+                    <p>donald.phillips@example.com</p>
+                </div>
+                <div class="Modal_Body_line"></div>
+            </div>
 
-               <div class="Modal_Body_content">
-                   <p class="black18">Delivery info</p>
-               </div>
-               <div class="Modal_Body_content">
-                   <div class="Modal_Body_content_info">
-                       <p>Address line 1:</p>
-                       <p>Fox Avenue 5-6B</p>
-                   </div>
-                   <div class="Modal_Body_content_info">
-                       <p>Address line 2:</p>
-                       <p>Melbourne VIC</p>
-                   </div>
-                   <div class="Modal_Body_content_info">
-                       <p>Post:</p>
-                       <p>3000</p>
-                   </div>
-                   <div class="Modal_Body_content_info">
-                       <p>Country:</p>
-                       <p>Australia</p>
-                   </div>
-                   <div class="Modal_Body_line"></div>
-               </div>
-               <div class="Modal_Body_content">
-                   <p class="black18">Payment details</p>
-               </div>
-               <div class="Modal_Body_content">
-                   <div class="Modal_Body_content_info">
-                       <p>Card number:</p>
-                       <p>xxxx xxxx xxxx 1234</p>
-                   </div>
-                   <div class="Modal_Body_content_info">
-                       <p>Card name:</p>
-                       <p>Stella Alexander</p>
-                   </div>
-                   <div class="Modal_Body_content_info">
-                       <p>Card expiry:</p>
-                       <p>03/23</p>
-                   </div>
-                   <div class="Modal_Body_line"></div>
-               </div>
-               <div class="flex-between__center Modal_Body_content modal-body-btn">
-                   <button class="gray-btn mb-sm-15" cdkStepperPrevious>
-                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                           <circle cx="12" cy="12" r="10" fill="#CCD0E3"/>
-                           <path d="M13 8L9 12L13 16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                       </svg>
-                       <p>
-                           Previous
-                       </p>
-                   </button>
-                   <!-- <div class="blue-btn">
-                       <a href="AddProjectStep4.html">Next step</a>
-                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                           <circle cx="12" cy="12" r="10" fill="white"/>
-                           <path d="M10 8L14 12L10 16" stroke="#546AE4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                       </svg>
-                   </div> -->
-                   <button class="blue-btn" cdkStepperNext>
-
+            <div class="Modal_Body_content">
+                <p class="black18">Delivery info</p>
+            </div>
+            <div class="Modal_Body_content">
+                <div class="Modal_Body_content_info">
+                    <p>Address line 1:</p>
+                    <p>Fox Avenue 5-6B</p>
+                </div>
+                <div class="Modal_Body_content_info">
+                    <p>Address line 2:</p>
+                    <p>Melbourne VIC</p>
+                </div>
+                <div class="Modal_Body_content_info">
+                    <p>Post:</p>
+                    <p>3000</p>
+                </div>
+                <div class="Modal_Body_content_info">
+                    <p>Country:</p>
+                    <p>Australia</p>
+                </div>
+                <div class="Modal_Body_line"></div>
+            </div>
+            <!-- <div class="Modal_Body_content">
+                <p class="black18">Payment details</p>
+            </div> -->
+            <!-- <div class="Modal_Body_content">
+                <div class="Modal_Body_content_info">
+                    <p>Card number:</p>
+                    <p>xxxx xxxx xxxx 1234</p>
+                </div>
+                <div class="Modal_Body_content_info">
+                    <p>Card name:</p>
+                    <p>Stella Alexander</p>
+                </div>
+                <div class="Modal_Body_content_info">
+                    <p>Card expiry:</p>
+                    <p>03/23</p>
+                </div>
+                <div class="Modal_Body_line"></div>
+            </div> -->
+            <div class="flex-between__center Modal_Body_content modal-body-btn">
+                <button class="gray-btn mb-sm-15">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" fill="#CCD0E3"/>
+                        <path d="M13 8L9 12L13 16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p>
+                        Previous
+                    </p>
+                </button>
+                <div class="blue-btn">
+                    <a href="AddProjectStep4.html">Next step</a>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="10" fill="white"/>
                         <path d="M10 8L14 12L10 16" stroke="#546AE4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg> 
-                    Next
-                </button>
-               </div>
+                    </svg>
+                </div>
+            </div>
             </cdk-step>
             
             

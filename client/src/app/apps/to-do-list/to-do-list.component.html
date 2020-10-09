@@ -11,7 +11,7 @@
                 <li *ngFor="let task of tasks; index as i; let last=last" class="todo-list__item flex-between__center">
                     
                     <div class="check-box-round item-check-circle_checkbox">
-                        <input type="checkbox" class="item-check-circle_checkbox__input" id="item{{i+1}}" [checked]="task.isdone" (change)="checkboxstatus($event, task)">
+                        <input type="checkbox" class="item-check-circle_checkbox__input" id="item{{i+1}}" [checked]="task.isdone== 1 ? true:false " (change)="checkboxstatus($event, task)">
                         <span class="item-check-circle_checkbox__checkmark"></span>
                         <label for="item{{i+1}}" class="todo-list__text flex__column ">
                             {{task.task_header}}
@@ -24,7 +24,7 @@
                             {{task.created_date | date :'mediumDate'}}
                         </div>
                          <div class="todo-list__change todo-list__priority-js">
-                            <div class="icons-box-mark todo-list-dots" [matMenuTriggerFor]="menu" [matMenuTriggerData]="{task:task}">
+                            <div class="icons-box-mark todo-list-dots" >
                                 <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
                                     <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
@@ -930,11 +930,8 @@
         </div>
       </mat-menu>
       
-      <mat-menu #status="matMenu">
+      <!-- <mat-menu #status="matMenu">
         <div class="tooltip tooltip_priority-js tooltip__active">
-            <!-- <div class="tooltip__item tooltip__item__circle tooltip__item__circle__high">High</div>
-            <div class="tooltip__item tooltip__item__circle tooltip__item__circle__medium">Medium</div>
-            <div class="tooltip__item tooltip__item__circle tooltip__item__circle__low">Low</div> -->
             
             <div class="flex-between__center input-bg__gray input-box-with-label__input" (click)="$event.stopPropagation();">
                
@@ -946,6 +943,6 @@
             </div>
         </div>
 
-      </mat-menu>
+      </mat-menu> -->
  
 </section>

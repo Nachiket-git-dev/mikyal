@@ -24,6 +24,17 @@
                             </svg>
                         </div>
                     </div>
+                    <apx-chart
+                    [series]="chartOptions1.series"
+                    [chart]="chartOptions1.chart"
+                    [xaxis]="chartOptions1.xaxis"
+                    [yaxis]="chartOptions1.yaxis"
+                    [dataLabels]="chartOptions1.dataLabels"
+                    [grid]="chartOptions1.grid"
+                    [stroke]="chartOptions1.stroke"
+                    [title]="chartOptions1.title"
+                    [tooltip]="chartOptions1.tooltip"
+                    [markers]="chartOptions1.markers"></apx-chart> 
                     <div id="dashboard-chart-total">
                     </div>
                 </div>
@@ -49,6 +60,17 @@
                             </svg>
                         </div>
                     </div>
+                    <apx-chart
+                    [series]="chartOptions1.series"
+                    [chart]="chartOptions1.chart"
+                    [xaxis]="chartOptions1.xaxis"
+                    [yaxis]="chartOptions1.yaxis"
+                    [dataLabels]="chartOptions1.dataLabels"
+                    [grid]="chartOptions1.grid"
+                    [stroke]="chartOptions1.stroke"
+                    [title]="chartOptions1.title"
+                    [tooltip]="chartOptions1.tooltip"
+                    [markers]="chartOptions1.markers"></apx-chart> 
                     <div id="dashboard-chart-sales">
 
                     </div>
@@ -76,6 +98,17 @@
                             </svg>
                         </div>
                     </div>
+                    <apx-chart
+               [series]="chartOptions1.series"
+               [chart]="chartOptions1.chart"
+               [xaxis]="chartOptions1.xaxis"
+               [yaxis]="chartOptions1.yaxis"
+               [dataLabels]="chartOptions1.dataLabels"
+               [grid]="chartOptions1.grid"
+               [stroke]="chartOptions1.stroke"
+               [title]="chartOptions1.title"
+               [tooltip]="chartOptions1.tooltip"
+               [markers]="chartOptions1.markers"></apx-chart> 
                     <div id="dashboard-chart-total-cost">
                     </div>
                 </div>
@@ -111,6 +144,7 @@
                             Sales Goals
                         </h2>
                     </div>
+                  
                     <div id="dashboard-chart-sales-goals">
                     </div>
                     <div class="pie-chart-footer">
@@ -184,7 +218,7 @@
             <p class="projects-title projects-title_active pointer">Сurrent projects</p>
             <p class="projects-title pointer">All projects</p>
         </div>
-        <div class="swiper-container slider-project" [swiper]="config" [(index)]="index">
+        <div class="swiper-container slider-project" [swiper]="config" >
             <div class="swiper-wrapper" >
                 <div class="swiper-slide slide" >
                     <div class="slide-progress_bg"></div>

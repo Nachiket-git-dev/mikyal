@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges } from '@angular/core';;
 import {MatDialog} from '@angular/material/Dialog';
 import {CreateClientComponent} from './create-client/create-client.component';
 import { FormBuilder, FormGroup,FormControl,Validators,FormArray } from '@angular/forms';
 import {ClientService} from './client.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import paginate from 'jw-paginate';
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
@@ -13,14 +14,21 @@ export class ClientComponent implements OnInit {
   clients:any
   searchCtrl = new FormControl();
   tempclients:any
+  pageOfItems: Array<any>;
+  @Output() changePage = new EventEmitter<any>(true);
+  @Input() initialPage = 1;
+  @Input() pageSize = 10;
+  @Input() maxPages = 10;
+  pager: any = {};
   constructor(private dialog:MatDialog,private clientservice:ClientService,private snackbar:MatSnackBar) { }
 
   ngOnInit() {
     this.searchCtrl.valueChanges.subscribe(res=>{
       if(!res){
-       this.clients=this.tempclients;
+       this.pageOfItems=this.tempclients;
+       
       }
-     this.clients=this.clients.filter(item => item.first_name.search(new RegExp(res, 'i')) > -1 
+     this.pageOfItems=this.pageOfItems.filter(item => item.first_name.search(new RegExp(res, 'i')) > -1 
       || item.last_name.search(new RegExp(res,'i')) > -1 
      )
      
@@ -30,6 +38,7 @@ export class ClientComponent implements OnInit {
         this.clients=client['data'];
         this.tempclients=client['data'];
         console.log("this.clients",this.clients);
+        this.setPage(this.initialPage);
        }
      
 
@@ -71,6 +80,28 @@ deleteCustomer(customer: any) {
 
     })
   
+}
+onChangePage(pageOfItems: Array<any>) {
+  // update current page of items
+  this.pageOfItems = pageOfItems;
+}
+ngOnChanges(changes: SimpleChanges) {
+  // reset page if items array has changed
+  if (changes.clients.currentValue !== changes.clients.previousValue) {
+    this.setPage(this.initialPage);
+  }
+}
+ setPage(page: number) {
+  // get new pager object for specified page
+  console.log("page",page);
+  this.pager = paginate(this.clients.length, page, this.pageSize, this.maxPages);
+
+  // get new page of items from items array
+  var pageOfItems = this.clients.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  console.log("pageOfItems",pageOfItems);
+  // call change page function in parent component
+  this.onChangePage(pageOfItems);
+  this.changePage.emit(pageOfItems);
 }
 
 }

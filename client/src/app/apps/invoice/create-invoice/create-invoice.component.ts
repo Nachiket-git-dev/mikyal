@@ -4,8 +4,6 @@ import {InvoiceService} from '../invoice.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ClientService} from '../../client/client.service'
 import { Router,ActivatedRoute, Params } from '@angular/router';
-import * as $ from 'jquery';
-
 import {
   MatAutocompleteSelectedEvent,
   MatAutocompleteTrigger,
@@ -48,6 +46,10 @@ export class CreateInvoiceComponent implements OnInit {
     total
     discount_amt;
     subtotal=0;
+    Options = {
+      
+      format: 'DD/MM/YYYY'
+  }
   constructor(private fb: FormBuilder,private invoiceservice:InvoiceService,
     private clientservice:ClientService,private snackbar:MatSnackBar,private router:Router,
     private route:ActivatedRoute) {
@@ -57,10 +59,11 @@ export class CreateInvoiceComponent implements OnInit {
     
    }
    dataker(){
-    $("#duedate").datepicker( {dateFormat : "yy-mm-dd"});
+   
    }
 
   ngOnInit() {
+    
     
   
     this.clientservice.getallclient().subscribe(clients=>{
@@ -239,5 +242,6 @@ private _subscribeToClosingActions(): void {
 
  }
 }
+
 
 }
