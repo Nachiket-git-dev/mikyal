@@ -80,6 +80,7 @@ export class GeneralComponent implements OnInit {
         reader.readAsDataURL(element);
     });
     }  
+    console.log("this.imageprivew",this.imageprivew);
   }
   
 

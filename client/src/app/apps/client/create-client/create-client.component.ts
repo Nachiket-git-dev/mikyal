@@ -51,10 +51,12 @@ export class CreateClientComponent implements OnInit {
           duration: 3000,
           panelClass: ['blue-snackbar']
         });
+        this.dialogRef.close(true);
       }
     },err=>{
 
       console.log("err",err);
+      this.dialogRef.close(true);
     })
   }
   updateCustomer() {
@@ -67,9 +69,11 @@ export class CreateClientComponent implements OnInit {
       this.snackbar.open('Cilent Updated Successfully', 'Ok', {
         duration: 3000
       });
+      this.dialogRef.close(true);
     }
     },err =>{
       console.log("err",err);
+      this.dialogRef.close(true);
     })
    console.log("this.defaults",this.defaults);
     this.dialogRef.close(customer);

@@ -378,8 +378,8 @@ module.exports.checkgoal = function (database,goals_type,duration) {
    return new Promise(async (resolve, reject) => {
       try {
         
-         var sql = "select * from "+database+".user_goals where goal_type= ? AND goal_duration= ?"
-         let query = mysqlLib.query(sql, [goals_type,duration], (err, results) => {
+         var sql = "select * from "+database+".user_goals where goal_type= ?"
+         let query = mysqlLib.query(sql, [goals_type], (err, results) => {
             if (err) {
                reject(err);
                console.log(err);

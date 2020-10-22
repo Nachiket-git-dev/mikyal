@@ -129,6 +129,32 @@ Service.prototype.deleteinvoice=function(dbname,invoice_id){
     })
 
 }
+
+Service.prototype.getpaidinvoice=function(dbname){
+    return new Promise(async(resolve,reject)=>{
+        let db=dbname.database;
+        let custres=await invoicemodel.getpaidinvoice(db);
+        if(custres.length>0  ){  
+            resolve(responseHelper.generateResponse("Success", custres));      
+        }else{
+            resolve(responseHelper.generateError("error",custres));
+        }
+    })
+
+}
+
+Service.prototype.getprojectinvoice=function(dbname,proj_id){
+    return new Promise(async(resolve,reject)=>{
+        let db=dbname.database;
+        let custres=await invoicemodel.getprojectinvoice(db,proj_id);
+        if(custres.length>0  ){  
+            resolve(responseHelper.generateResponse("Success", custres));      
+        }else{
+            resolve(responseHelper.generateError("error",custres));
+        }
+    })
+
+}
 module.exports = {
     getInst: function () {
         return new Service();

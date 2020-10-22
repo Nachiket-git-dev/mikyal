@@ -20,6 +20,39 @@ Service.prototype.createcard=function(dbname,carddata){
     })
     
 }
+
+Service.prototype.createlist=function(dbname,listdata){
+    return new Promise(async(resolve,reject)=>{
+       let listdetails={name:listdata.name,description:listdata.description};
+        let db=dbname.database;
+        let taskres=await scrummodel.createlist(db,listdetails);
+        console.log(taskres);
+        if(taskres.affectedRows>0  ){  
+            let insertid=taskres.insertId;
+            resolve(responseHelper.generateResponse("Success", taskres));      
+        }else{
+            resolve(responseHelper.generateError("error",taskres));
+        }
+    })
+    
+}
+Service.prototype.getlists=function(dbname){
+    return new Promise(async(resolve,reject)=>{
+        let db=dbname.database;
+        if(db){
+        let cardres=await scrummodel.getlists(db);
+        if(cardres.length>0  ){  
+            resolve(responseHelper.generateResponse("Success", cardres));      
+        }else{
+            resolve(responseHelper.generateError("error",cardres));
+        }
+    }else{
+        resolve(responseHelper.generateError("error","username not define"));
+    }
+
+    })
+
+}
 Service.prototype.getallcards=function(dbname){
     return new Promise(async(resolve,reject)=>{
         let db=dbname.database;

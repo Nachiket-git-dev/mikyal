@@ -235,7 +235,7 @@
                         <p>Project details</p>
                      </div>
                   </ng-template>
-                <div class="Modal_Body_content">
+                <!--<div class="Modal_Body_content">
                     <p>Project details</p>
                 </div>
                 <div class="flex-between Modal_Body_content flex-md-coloum">
@@ -292,8 +292,150 @@
                             <circle cx="12" cy="12" r="10" fill="white"/>
                             <path d="M10 8L14 12L10 16" stroke="#546AE4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                    </div> -->
+                    </div> 
                     <button class="blue-btn" cdkStepperNext>Next</button>
+                </div> -->
+                <div class="flex-between create-new-area project_setp">
+                    <div class="create-project_col2 create-project__content">
+                        <div class="create-project-title input-box-with-label">
+                            <label for="create-project-title-input" class="input-box-with-label__label">
+                                Title
+                            </label>
+                            <input type="text" formControlName="project_name" id="create-project-title-input" class="input-box-with-label__input" placeholder="Enter the title">
+                        </div>
+                        <textarea placeholder="Description" class="input-box-with-label__input create-project-title__textarea " formControlName="description"></textarea>
+                        <div class="create-project-date flex-between">
+                            <div class="input-box-with-label create-project_col2 start-date-option">
+                                <h4 class="input-box-with-label__label">
+                                    Start Date
+                                </h4>
+                                <div class="header-menu-item date-picker border-picker">
+                                    <input type="date" formControlName="start_date" class="date-pickers" value="10/24/1984">
+                                    <div class="header-menu-item-icon-box righ-icon-box">
+                                        <!-- <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0 8H18V16C18 17.1046 17.1046 18 16 18H2C0.89543 18 0 17.1046 0 16V8Z" fill="#CCD0E3"></path>
+                                            <path d="M0 6H18V4C18 2.89543 17.1046 2 16 2H2C0.89543 2 0 2.89543 0 4V6Z" fill="#CCD0E3"></path>
+                                            <path d="M4 4H6V1C6 0.447715 5.55228 0 5 0C4.44772 0 4 0.447715 4 1V4Z" fill="#CCD0E3"></path>
+                                            <path d="M12 4H14V1C14 0.447715 13.5523 0 13 0C12.4477 0 12 0.447715 12 1V4Z" fill="#CCD0E3"></path>
+                                        </svg> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-box-with-label create-project_col2">
+                                <h4 class="input-box-with-label__label">
+                                    End Date
+                                </h4>
+                                <div class="header-menu-item date-picker border-picker">
+                                    <input type="date" formControlName="end_date" class="date-pickers" value="10/24/1984">
+                                    <div class="header-menu-item-icon-box righ-icon-box">
+                                        <!-- <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0 8H18V16C18 17.1046 17.1046 18 16 18H2C0.89543 18 0 17.1046 0 16V8Z" fill="#CCD0E3"></path>
+                                            <path d="M0 6H18V4C18 2.89543 17.1046 2 16 2H2C0.89543 2 0 2.89543 0 4V6Z" fill="#CCD0E3"></path>
+                                            <path d="M4 4H6V1C6 0.447715 5.55228 0 5 0C4.44772 0 4 0.447715 4 1V4Z" fill="#CCD0E3"></path>
+                                            <path d="M12 4H14V1C14 0.447715 13.5523 0 13 0C12.4477 0 12 0.447715 12 1V4Z" fill="#CCD0E3"></path>
+                                        </svg> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="create-project-tags">
+                            <div class="create-project-tags__box input-box-with-label__input">
+                              
+                                <div class="input-box-with-label Modal_Body_content__col2 mb-md-25 w-md-100p">
+                                    <!-- <label for="create-project-title-input" class="input-box-with-label__label">
+                                        Customer name
+                                    </label> -->
+                                    <input type="text" id="create-project-title-input" class="input-box-with-label__input" [matAutocomplete]="auto" formControlName="client_select" placeholder="clinet Name">
+                                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="handler($event)">
+                                        <mat-option *ngFor="let clients of filteredOptions " [value]="clients.client_id">
+                                          {{ clients.first_name }} {{ clients.last_name }}   
+                                        </mat-option>
+                                      </mat-autocomplete>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="create-project__line"> </div>
+                    <div class="create-project_col2 create-project__content">
+                        <div class="flex-between__columns create-project-milestones">
+                            <h4 class="input-box-with-label__label">
+                                Milestones
+                            </h4>
+                            <ul class="flex-between__columns">
+                                <!-- <li class="create-project-milestones__item flex-between__center " *ngFor="let row of form.get('rows')?.controls;let index = index;">
+                                    <p>
+                                        Milestone No {{index}}
+                                    </p>
+                                  
+                                    <div class="icons-box__gray">
+                                        <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10 0C10.5523 0 11 0.447715 11 1L13 1C13.5523 1 14 1.44772 14 2C14 2.55229 13.5523 3 13 3L1 3C0.447716 3 0 2.55228 0 2C0 1.44772 0.447715 0.999999 1 0.999999L3 1C3 0.447715 3.44772 0 4 0H10Z" fill="#CCD0E3"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4H13V16C13 17.1046 12.1046 18 11 18H3C1.89543 18 1 17.1046 1 16V4ZM4.5 6C4.22386 6 4 6.22386 4 6.5V15.5C4 15.7761 4.22386 16 4.5 16C4.77614 16 5 15.7761 5 15.5V6.5C5 6.22386 4.77614 6 4.5 6ZM9.5 6C9.22386 6 9 6.22386 9 6.5V15.5C9 15.7761 9.22386 16 9.5 16C9.77614 16 10 15.7761 10 15.5V6.5C10 6.22386 9.77614 6 9.5 6Z" fill="#CCD0E3"></path>
+                                        </svg>
+            
+                                    </div>
+                                </li> -->
+                                <!-- <li class="create-project-milestones__item flex-between__center ">
+                                    <p>
+                                        Milestone No 2
+                                    </p>
+                                    <div class="icons-box__gray">
+                                        <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10 0C10.5523 0 11 0.447715 11 1L13 1C13.5523 1 14 1.44772 14 2C14 2.55229 13.5523 3 13 3L1 3C0.447716 3 0 2.55228 0 2C0 1.44772 0.447715 0.999999 1 0.999999L3 1C3 0.447715 3.44772 0 4 0H10Z" fill="#CCD0E3"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4H13V16C13 17.1046 12.1046 18 11 18H3C1.89543 18 1 17.1046 1 16V4ZM4.5 6C4.22386 6 4 6.22386 4 6.5V15.5C4 15.7761 4.22386 16 4.5 16C4.77614 16 5 15.7761 5 15.5V6.5C5 6.22386 4.77614 6 4.5 6ZM9.5 6C9.22386 6 9 6.22386 9 6.5V15.5C9 15.7761 9.22386 16 9.5 16C9.77614 16 10 15.7761 10 15.5V6.5C10 6.22386 9.77614 6 9.5 6Z" fill="#CCD0E3"></path>
+                                        </svg>
+            
+                                    </div>
+                                </li>
+                                <li class="create-project-milestones__item flex-between__center ">
+                                    <p>
+                                        Milestone No 3
+                                    </p>
+                                    <div class="icons-box__gray">
+                                        <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10 0C10.5523 0 11 0.447715 11 1L13 1C13.5523 1 14 1.44772 14 2C14 2.55229 13.5523 3 13 3L1 3C0.447716 3 0 2.55228 0 2C0 1.44772 0.447715 0.999999 1 0.999999L3 1C3 0.447715 3.44772 0 4 0H10Z" fill="#CCD0E3"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4H13V16C13 17.1046 12.1046 18 11 18H3C1.89543 18 1 17.1046 1 16V4ZM4.5 6C4.22386 6 4 6.22386 4 6.5V15.5C4 15.7761 4.22386 16 4.5 16C4.77614 16 5 15.7761 5 15.5V6.5C5 6.22386 4.77614 6 4.5 6ZM9.5 6C9.22386 6 9 6.22386 9 6.5V15.5C9 15.7761 9.22386 16 9.5 16C9.77614 16 10 15.7761 10 15.5V6.5C10 6.22386 9.77614 6 9.5 6Z" fill="#CCD0E3"></path>
+                                        </svg>
+            
+                                    </div>
+                                </li>
+                                <li class="create-project-milestones__item flex-between__center ">
+                                    <p>
+                                        Milestone No 4
+                                    </p>
+                                    <div class="icons-box__gray">
+                                        <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10 0C10.5523 0 11 0.447715 11 1L13 1C13.5523 1 14 1.44772 14 2C14 2.55229 13.5523 3 13 3L1 3C0.447716 3 0 2.55228 0 2C0 1.44772 0.447715 0.999999 1 0.999999L3 1C3 0.447715 3.44772 0 4 0H10Z" fill="#CCD0E3"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4H13V16C13 17.1046 12.1046 18 11 18H3C1.89543 18 1 17.1046 1 16V4ZM4.5 6C4.22386 6 4 6.22386 4 6.5V15.5C4 15.7761 4.22386 16 4.5 16C4.77614 16 5 15.7761 5 15.5V6.5C5 6.22386 4.77614 6 4.5 6ZM9.5 6C9.22386 6 9 6.22386 9 6.5V15.5C9 15.7761 9.22386 16 9.5 16C9.77614 16 10 15.7761 10 15.5V6.5C10 6.22386 9.77614 6 9.5 6Z" fill="#CCD0E3"></path>
+                                        </svg>
+            
+                                    </div>
+                                </li> -->
+            
+                            </ul>
+                            <div class="flex-between__center ">
+                                <input type="text" class="input-box-with-label__input create-project-milestones__input" placeholder="New checklist item">
+                                <div class="icons-box_square-gray__small" (click)="onAddRow()">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM9 6C9 5.44772 9.44771 5 10 5C10.5523 5 11 5.44772 11 6V9H14C14.5523 9 15 9.44771 15 10C15 10.5523 14.5523 11 14 11H11V14C11 14.5523 10.5523 15 10 15C9.44771 15 9 14.5523 9 14V11H6C5.44772 11 5 10.5523 5 10C5 9.44771 5.44772 9 6 9H9V6Z" fill="#CCD0E3"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="create-project-price input-box-with-label">
+                            <h4 class="input-box-with-label__label">
+                                Price
+                            </h4>
+                            <div class="flex-between__center input-box-with-label__input ">
+                                <div class="icons-box__gray">
+                                    <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.07194 12.3407C7.07194 11.8233 6.91658 11.4132 6.60588 11.1104C6.30192 10.8013 5.78183 10.5174 5.04559 10.2587C4.30935 10 3.67443 9.74448 3.14083 9.49211C2.60723 9.23344 2.14792 8.94006 1.76292 8.61199C1.38467 8.2776 1.08747 7.88644 0.871327 7.43849C0.661938 6.99054 0.557244 6.45741 0.557244 5.83912C0.557244 4.77287 0.921986 3.89905 1.65147 3.21767C2.38095 2.53628 3.35022 2.1388 4.55927 2.02524V0.810537C4.55927 0.362889 4.92216 0 5.36981 0C5.81745 0 6.18034 0.36289 6.18034 0.810537V2.05363C7.37589 2.21136 8.31138 2.67823 8.98683 3.45426C9.46985 4.00469 9.78016 4.67288 9.91777 5.45884C10.013 6.00284 9.55228 6.45426 9 6.45426H8.07194C7.51965 6.45426 7.10371 5.99496 6.9461 5.46564C6.86167 5.1821 6.73475 4.94697 6.56535 4.76025C6.23438 4.3817 5.78858 4.19243 5.22796 4.19243C4.6741 4.19243 4.24519 4.34069 3.94124 4.63722C3.63728 4.92744 3.48531 5.33123 3.48531 5.84858C3.48531 6.32808 3.63391 6.71293 3.9311 7.00315C4.2283 7.29338 4.77879 7.58991 5.58257 7.89274C6.39311 8.19558 7.05843 8.48265 7.57852 8.75394C8.09861 9.01893 8.53766 9.32177 8.89564 9.66246C9.25363 9.99685 9.52719 10.3817 9.71631 10.817C9.90544 11.2461 10 11.7476 10 12.3218C10 13.3943 9.64201 14.265 8.92604 14.9338C8.21006 15.6025 7.22391 15.9968 5.96758 16.1167V17.1945C5.96758 17.6394 5.60696 18 5.16211 18C4.71726 18 4.35664 17.6394 4.35664 17.1945V16.1262C2.97197 15.9874 1.89801 15.53 1.13475 14.7539C0.583295 14.1837 0.232832 13.4776 0.0833638 12.6357C-0.0131838 12.092 0.447715 11.6404 1 11.6404H1.92806C2.48035 11.6404 2.89706 12.1011 3.06674 12.6267C3.16129 12.9196 3.30419 13.1681 3.49544 13.3722C3.88045 13.7697 4.43094 13.9685 5.14691 13.9685C5.7413 13.9685 6.21074 13.8233 6.55522 13.5331C6.8997 13.2366 7.07194 12.8391 7.07194 12.3407Z" fill="#CCD0E3"></path>
+                                    </svg>
+                                </div>
+                                <input type="text" formControlName="budget" class="input-icon create-project-link__input" placeholder="example">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </cdk-step>
             <cdk-step>
@@ -417,7 +559,7 @@
                           <label for="create-project-title-input" class="input-box-with-label__label">
                               Address line 1
                           </label>
-                          <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="Address line 1">
+                          <input type="text" formControlName="address1" id="create-project-title-input" class="input-box-with-label__input" placeholder="Address line 1">
                       </div>
                   </div>
                   <div class="flex-between Modal_Body_content">
@@ -430,16 +572,16 @@
                   </div>
                   <div class="flex-between Modal_Body_content modal-input-area">
                       <div class="input-box-with-label Modal_Body_content__col2 mb-md-25">
-                          <label for="create-project-title-input" class="input-box-with-label__label">
+                          <label for="create-project-title-input"  class="input-box-with-label__label">
                               Postcode
                           </label>
-                          <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="English">
+                          <input type="text" id="create-project-title-input" formControlName="address2" class="input-box-with-label__input" placeholder="English">
                       </div>
                       <div class="input-box-with-label Modal_Body_content__col2">
-                          <label for="create-project-title-input" class="input-box-with-label__label">
+                          <label for="create-project-title-input"  class="input-box-with-label__label">
                               City
                           </label>
-                          <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="Krox">
+                          <input type="text" id="create-project-title-input" formControlName="city" class="input-box-with-label__input" placeholder="Krox">
                       </div>
                   </div>
                   <div class="flex-between Modal_Body_content modal-input-area">
@@ -447,7 +589,7 @@
                           <label for="create-project-title-input" class="input-box-with-label__label">
                               State
                           </label>
-                          <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="VIC">
+                          <input type="text" id="create-project-title-input" formControlName="state" class="input-box-with-label__input" placeholder="VIC">
                       </div>
                       <div class="input-box-with-label Modal_Body_content__col2">
                           <label for="create-project-title-input" class="input-box-with-label__label">
@@ -519,15 +661,15 @@
             <div class="Modal_Body_content">
                 <div class="Modal_Body_content_info">
                    <p>Name:</p>
-                    <p>Loop Inc CRM App</p>
+                    <p>{{form.value.project_name}}</p>
                 </div>
                 <div class="Modal_Body_content_info">
                     <p>Phone::</p>
-                    <p>(225) 555-0118</p>
+                    <p>{{form.value.client_phone}}</p>
                 </div>
                 <div class="Modal_Body_content_info">
                     <p>Email::</p>
-                    <p>donald.phillips@example.com</p>
+                    <p>{{form.value.client_email}}</p>
                 </div>
                 <div class="Modal_Body_line"></div>
             </div>
@@ -538,15 +680,15 @@
             <div class="Modal_Body_content">
                 <div class="Modal_Body_content_info">
                     <p>Address line 1:</p>
-                    <p>Fox Avenue 5-6B</p>
+                    <p>{{form.value.address1}}</p>
                 </div>
                 <div class="Modal_Body_content_info">
                     <p>Address line 2:</p>
-                    <p>Melbourne VIC</p>
+                    <p>{{form.value.address2}}</p>
                 </div>
                 <div class="Modal_Body_content_info">
                     <p>Post:</p>
-                    <p>3000</p>
+                    <p>{{form.value.postcode}}</p>
                 </div>
                 <div class="Modal_Body_content_info">
                     <p>Country:</p>
@@ -582,8 +724,8 @@
                         Previous
                     </p>
                 </button>
-                <div class="blue-btn">
-                    <a href="AddProjectStep4.html">Next step</a>
+                <div class="blue-btn" (click)="submit()">
+                    <a>submit</a>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="10" fill="white"/>
                         <path d="M10 8L14 12L10 16" stroke="#546AE4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

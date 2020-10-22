@@ -10,7 +10,8 @@ Service.prototype.createproject=function(dbname,project){
     return new Promise(async(resolve,reject)=>{
         let db=dbname.database;
         let project_data={client_id:project.client_id,client_name:project.client_select,project_name:project.project_name,project_subject:project.project_subject,description:project.description,
-            start_date:project.start_date,end_date:project.end_date,budget:project.budget,project_expenses:project.project_expenses}
+            start_date:project.start_date,end_date:project.end_date,budget:project.budget,project_expenses:project.project_expenses,client_email:project.client_email
+            ,address1:project.address,address2:project.address2,city:project.city,state:project.state,postcode:project.postcode}
             let project_files=project.rows;
            
         let custres=await projectmodel.createproject(db,project_data);
@@ -19,23 +20,44 @@ Service.prototype.createproject=function(dbname,project){
              await projectmodel.makelink(db,insertid);
              let taskdata=await taskservice.makeautotask(db,insertid);
              console.log("taskdata",taskdata);
-              if(project_files.length>0){
-             for(let i=0;i<project_files.length;i++){
-                 let files_data={project_id:insertid,filename:project_files[i].filename,size:project_files[i].size,file_blob:project_files[i].base64};
-                 let fileres=await projectmodel.uploadfiles(db,files_data);
+            //   if(project_files.length>0){
+            //  for(let i=0;i<project_files.length;i++){
+            //      let files_data={project_id:insertid,filename:project_files[i].filename,size:project_files[i].size,file_blob:project_files[i].base64};
+            //      let fileres=await projectmodel.uploadfiles(db,files_data);
                 
-                 if(fileres.affectedRows>0){
-                 //resolve(responseHelper.generateResponse("Success", [custres,fileres]));
-                 }else{
-                    //resolve(responseHelper.generateError("error",fileres));
-                 }
-             }
-              } 
+            //      if(fileres.affectedRows>0){
+            //      //resolve(responseHelper.generateResponse("Success", [custres,fileres]));
+            //      }else{
+            //         //resolve(responseHelper.generateError("error",fileres));
+            //      }
+            //  }
+            //   } 
 
             resolve(responseHelper.generateResponse("Success", custres));      
         }else{
             resolve(responseHelper.generateError("error",custres));
         }
+    })
+
+}
+Service.prototype.uploadfiles=function(dbname,project_files,project_id){
+    return new Promise(async(resolve,reject)=>{
+        let custres;
+        let db=dbname.database;
+    
+        for(let i=0;i<project_files.length;i++){
+                 let files_data={project_id:project_id,filename:project_files[i].filename,size:project_files[i].size,file_blob:project_files[i].base64};
+                 let custres=await projectmodel.uploadfiles(db,files_data);
+                
+                 if(custres.affectedRows>0){
+                 resolve(responseHelper.generateResponse("Success", custres));
+                 }else{
+                    resolve(responseHelper.generateError("error",custres));
+                 }
+             }
+       
+        
+
     })
 
 }
@@ -97,7 +119,8 @@ Service.prototype.updatestatus=function(dbname,proj_id,status){
 Service.prototype.updateproject=function(dbname,proj_id,project){
     return new Promise(async(resolve,reject)=>{
         project_data={client_id:project.client_id,client_name:project.client_select,project_name:project.project_name,project_subject:project.project_subject,description:project.description,
-            start_date:project.start_date,end_date:project.end_date,budget:project.budget,project_expenses:project.project_expenses}
+            start_date:project.start_date,end_date:project.end_date,budget:project.budget,project_expenses:project.project_expenses,client_email:project.client_email
+            ,address1:project.address,address2:project.address2,city:project.city,state:project.state,postcode:project.postcode}
         let db=dbname.database;
         let project_files=project.rows;
         let custres=await projectmodel.updateproject(db,proj_id,project_data);

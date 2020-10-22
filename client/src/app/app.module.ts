@@ -13,6 +13,7 @@ import { AuthService } from './auth/auth.service';
 @NgModule({
   declarations: [
     AppComponent,
+    
     //JwPaginationComponent 
   ],
   imports: [

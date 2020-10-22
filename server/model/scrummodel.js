@@ -19,6 +19,23 @@ module.exports.createcard = function (database,cards) {
     });
  
  }
+ module.exports.createlist = function (database,list) {
+   return new Promise(async (resolve, reject) => {
+      try {
+         let sql="INSERT INTO "+database+".scrumboad_list SET ? ";
+         let query = mysqlLib.query(sql,list,(err, results) => {
+           if(err){
+              console.log(err);
+              reject(err);
+           }else
+             resolve(results);
+         })
+      } catch (err) {
+         resolve(responseHelper.generateError("Somthing went wrong", err));
+      }
+   });
+
+}
  
  module.exports.getallcards = function (database) {
     return new Promise(async (resolve, reject) => {
@@ -39,6 +56,26 @@ module.exports.createcard = function (database,cards) {
     });
  
  }
+ 
+ module.exports.getlists = function (database) {
+   return new Promise(async (resolve, reject) => {
+      try {
+        
+         var sql = "select * from "+database+".scrumboad_list";
+         let query = mysqlLib.query(sql, (err, results) => {
+            if (err) {
+               resolve(err);
+            } else
+               resolve(results);
+         });
+
+      } catch (err) {
+         resolve(responseHelper.generateError("Somthing went wrong", err));
+
+      }
+   });
+
+}
  module.exports.changelist=function(database,scrum_id,id){
    return new Promise(async (resolve,reject)=>{
     try{

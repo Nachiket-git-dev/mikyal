@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
+    "outDir": "./distout/out-tsc",
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
@@ -21,7 +21,6 @@
     ],
     "types": [
       "plotly.js",
-      "jest"
     ],"paths": {
       "plotly.js": [
         "./node_modules/plotly.js/dist/plotly-basic.js"

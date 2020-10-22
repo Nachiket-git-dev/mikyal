@@ -1,8 +1,10 @@
 import { Component, OnInit ,Input} from '@angular/core';
-import {FormBuilder, FormGroup, Validators,AbstractControl} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators,AbstractControl,FormArray} from '@angular/forms';
 import {DomSanitizer} from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 import {ClientService} from '../../client/client.service'
+import { ProjectService } from '../../../services/project/project.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import Stepper from 'bs-stepper';
 @Component({
   selector: 'app-create-project',
@@ -19,31 +21,39 @@ export class CreateProjectComponent   implements OnInit {
   clientlist:any;
   filteredOptions;
   frmValues: object = {};
-  constructor(private fb: FormBuilder,private clientservice:ClientService) { 
-      
+  constructor(private fb: FormBuilder,private clientservice:ClientService,private projectservice:ProjectService,private snackbar:MatSnackBar ) { 
+    this.rows = this.fb.array([]);
     }
     frmStepper: FormGroup;
+    rows: FormArray;
 
     get formArray(): AbstractControl {
       return this.frmStepper.get('steps');
     }
     form = this.fb.group({
       project_name: ['', Validators.required],
-      project_subject:['',Validators.required],
+      // project_subject:['',Validators.required],
       project_owner:null,
       description: ['', Validators.required],
       start_date: ['', Validators.required],
       end_date: ['', Validators.required],
       budget: ['', Validators.required],
-      project_expenses:['', Validators.required],
+      project_expenses:null,
       client_select:[],
       client_id:null,
-      client_email:null,
+      client_email:['', Validators.required],
       company_site:null,
-      client_phone:null
+      client_phone:['', Validators.required],
+      address1:null,
+      address2:null,
+      city:null,
+      state:null,
+      postcode:null
+
+
     });
   ngOnInit() {
-
+    this.form.addControl('rows', this.rows);
     this.frmStepper = this.fb.group({
       steps: this.fb.array([
         this.fb.group({
@@ -89,7 +99,18 @@ export class CreateProjectComponent   implements OnInit {
     this.stepper.next();
   }
   submit() {
-    return false;
+    console.log("project detail=>",this.form.value);
+   if(this.form.valid){
+    this.projectservice.createproject(this.form.value).subscribe(res=>{
+      console.log("res",res);
+      if(res['message'] == "Success"){
+        this.snackbar.open('Project Created SuccessFully', 'Ok', {
+          duration: 3000            
+        });
+        location.reload();
+      } 
+    });
+   }
   }
   private _filter(value: string): string[] {
     if(value){
@@ -111,6 +132,18 @@ export class CreateProjectComponent   implements OnInit {
      client_company:clientrow.company,
      client_phone:clientrow.phone
    })
+}
+onAddRow() {
+  this.rows.push(this.createItemFormGroup());
+}
+onRemoveRow(rowIndex:number){
+  this.rows.removeAt(rowIndex);
+}
+createItemFormGroup(): FormGroup {
+  return this.fb.group({
+    milestone: null,
+    
+  });
 }
 
 }

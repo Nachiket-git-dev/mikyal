@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {siteConfig} from 'src/app/sitesettings';
+import { SwiperOptions } from 'swiper';
 import {ToDoListService} from '../to-do-list/to-do-list.service';
 import {
   ChartComponent,
@@ -33,7 +34,18 @@ export type ChartOptions = {
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
 export class DashboardComponent implements OnInit {
+  public config: SwiperOptions = {
+    a11y: { enabled: true },
+    direction: 'horizontal',
+    slidesPerView: 2,
+    keyboard: true,
+    mousewheel: true,
+    scrollbar: false,
+    navigation: true,
+    pagination: false
+  };
   public chartOptions1: Partial<ChartOptions>;
   public chartOptions2: Partial<ChartOptions>;
   constructor(private todolistservice:ToDoListService ) { 

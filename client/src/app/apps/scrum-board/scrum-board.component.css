@@ -40,3 +40,14 @@
   .cdk-drag-animating {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1) !important;
   } 
+  .dropdown_con{
+    display: block;
+    box-shadow: 0px 10px 40px #0F0F11;
+    border-radius: 6px;
+    z-index: 5;
+    background: #2C2C2E;
+    min-width: 130px;
+    right: 0;
+    top: 100%;
+   
+  }

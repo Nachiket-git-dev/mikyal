@@ -209,3 +209,42 @@ module.exports.deleteinvoice = function (database,invoice_id) {
    });
 
 }
+module.exports.getpaidinvoice = function (database) {
+   return new Promise(async (resolve, reject) => {
+      try {
+        
+         var sql = "select * from "+database+".invoices where status='1'";
+         let query = mysqlLib.query(sql, (err, results) => {
+            if (err) {
+               resolve(err);
+            } else
+               resolve(results);
+         });
+
+      } catch (err) {
+         resolve(responseHelper.generateError("Somthing went wrong", err));
+
+      }
+   });
+
+}
+
+module.exports.getprojectinvoice = function (database,proj_id) {
+   return new Promise(async (resolve, reject) => {
+      try {
+        
+         var sql = "select * from "+database+".invoices where project_id=?";
+         let query = mysqlLib.query(sql, proj_id, (err, results) => {
+            if (err) {
+               resolve(err);
+            } else
+               resolve(results);
+         });
+
+      } catch (err) {
+         resolve(responseHelper.generateError("Somthing went wrong", err));
+
+      }
+   });
+
+}

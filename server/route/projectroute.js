@@ -41,9 +41,11 @@ router.post('/insertfile',(req,res) =>{
     console.log("request query");
     console.log(req.query);
      var dbname=req.query;
+     var proj_id=req.query.proj_id;
      var files=req.body;
-    console.log("name",files.rows.name);
-     //responseHandler(req, res, projectservice.getprojectbyid(dbname,proj_id));
+    console.log("name",files);
+    
+    responseHandler(req, res, projectservice.uploadfiles(dbname,files,proj_id));
 });
 router.get('/getfilesbyprojectid',(req,res) =>{
 

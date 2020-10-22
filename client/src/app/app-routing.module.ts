@@ -80,6 +80,10 @@ const routes: Routes = [
     path:'login',
     loadChildren: () => import('./apps/login/login.module').then(m => m.LoginModule)
   },
+  {
+    path:'register',
+    loadChildren: () => import('./apps/register/register.module').then(m => m.RegisterModule)
+  },
  
   {
     path: '',

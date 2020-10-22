@@ -31,7 +31,8 @@ export class AddCardComponent implements OnInit {
       this.snackbar.open('Card created ', 'OK', {
         duration: 10000,
         panelClass: ['blue-snackbar']
-      })
+      });
+      location.reload();
      }
  })
 

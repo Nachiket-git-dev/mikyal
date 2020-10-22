@@ -39,4 +39,24 @@ export class ScrumBoardService {
     console.log("in service=> ",res);
     return res;
   }
+  createlist(listdata){
+    let body;
+    let database=localStorage.getItem('Database_Name');
+    console.log("database",database);
+    let params = new HttpParams().set('database',database);
+    const url = `${siteConfig.nodeAPIBaseUrl}/createlist`;
+    let res = this._http.post(url,listdata,{ params: params });
+    console.log("in service=> ",res);
+    return res;
+  }
+  getlists(){
+    let body;
+    let database=localStorage.getItem('Database_Name');
+    console.log("database",database);
+    let params = new HttpParams().set('database',database);
+    const url = `${siteConfig.nodeAPIBaseUrl}/getlists`;
+    let res = this._http.get(url,{ params: params });
+    console.log("in service=> ",res);
+    return res;
+  }
 }

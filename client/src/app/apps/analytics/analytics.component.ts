@@ -1,8 +1,13 @@
-import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
+import { Component, OnInit,ViewChild,ElementRef,Inject } from '@angular/core';
 import { SwiperComponent, SwiperDirective } from 'ngx-swiper-wrapper';
 import { SwiperOptions } from 'swiper';
+import {MatSnackBar} from '@angular/material/snack-bar';
 declare var Plotly: any;
 import * as Plotly from 'plotly.js';
+import {MatDialog} from '@angular/material/Dialog';
+import {CreateSalesGoalService} from './create-sales-goals/create-sales-goal.service'
+import {CreateSalesGoalsComponent} from './create-sales-goals/create-sales-goals.component'
+import {AnalyticsService} from './analytics.service'
 import {Config, Data, Layout} from 'plotly.js'
 import {
   ChartComponent,
@@ -58,10 +63,19 @@ export class AnalyticsComponent implements OnInit {
     navigation: true,
     pagination: false
   };
+  salegoal=0;
  public polyoption1:Partial<polyoption>
  
 
-  constructor(private elementRef:ElementRef) {
+  constructor(private elementRef:ElementRef ,private snackbar:MatSnackBar,
+    private dialog:MatDialog,private salesgolasservice:CreateSalesGoalService
+    ,private analyticsservice:AnalyticsService)  {
+    this.salesgolasservice.getusergoal().subscribe(res=>{
+      if(res['code']==200){
+        this.salegoal=res['data'][0].total_goal;
+       
+      }
+    })
     this.chartOptions1 = {
 			series: [{
 				name: "",
@@ -301,50 +315,79 @@ this.polyoption1={
    }
 
   ngOnInit() {
-    if (document.querySelector("#dashboard-chart-sales-goals")) {
-      Plotly.newPlot("dashboard-chart-sales-goals", [{
-        values: [4, 10],
-        name: "",
-        hoverinfo: "none",
-        hole: .7,
-        type: "pie",
-        marker: {
-          colors: ["#2C2C2E", "#48C2A5"],
-          line: {
-            color: "#1B1B1D",
-            width: 8
-          }
+    this.analyticsservice.getpaidinvoice().subscribe(res=>{
+       console.log("paid invoice=>",res);
+       let totalsale=0;
+       if(res['code']==200){
+       res['data'].forEach(element => {
+        totalsale+=element.total;
+        console.log("this.salegoal",this.salegoal);
+        this.showgoalchart( totalsale,this.salegoal)
+       });
+      }
+    })
+    
+}
+
+showgoalchart(achive,totalgoal){
+  let deff=0;
+   if(totalgoal<achive){
+    deff=0
+   }else{
+    deff=totalgoal-achive
+   }
+  if (document.querySelector("#dashboard-chart-sales-goals")) {
+    Plotly.newPlot("dashboard-chart-sales-goals", [{
+      values: [deff, totalgoal],
+      name: "",
+      hoverinfo: "none",
+      hole: .7,
+      type: "pie",
+      marker: {
+        colors: ["#2C2C2E", "#48C2A5"],
+        line: {
+          color: "#1B1B1D",
+          width: 8
+        }
+      },
+      textposition: "none"
+    }], {
+      height: 253,
+      margin: {
+        t: 10,
+        l: 0,
+        r: 0,
+        b: 20
+      },
+      annotations: [{
+        font: {
+          size: 26,
+          family: "Source Sans Pro",
+          color: "#D7DAE5"
         },
-        textposition: "none"
-      }], {
-        height: 253,
-        margin: {
-          t: 10,
-          l: 0,
-          r: 0,
-          b: 20
-        },
-        annotations: [{
-          font: {
-            size: 26,
-            family: "Source Sans Pro",
-            color: "#D7DAE5"
-          },
-          showarrow: !1,
-          text: "<span>$ 24.546</span><br>62,2%",
-          x: .5,
-          y: .5
-        }],
-        showlegend: !1
-      }, {
-        displayModeBar: !1
-      })
-  }
+        showarrow: !1,
+        text: "<span>$ 24.546</span><br>62,2%",
+        x: .5,
+        y: .5
+      }],
+      showlegend: !1
+    }, {
+      displayModeBar: !1
+    })
+}
+
+
 }
   
   closeright(event) {
     console.log(event);
     const el = document.querySelector('.right-sidebar');
   el.className = 'right-sidebar';
+  }
+  salesgoals(){
+    this.dialog.open(CreateSalesGoalsComponent,{
+      data:'',
+      // panelClass: 'custom-dialog-container'
+    })
   }
 }

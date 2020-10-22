@@ -36,7 +36,7 @@ export class ToDoListComponent implements OnInit,OnChanges{
    }
   form = this.fb.group({
     task_header:['',Validators.required],
-    stage:0,
+    stage:1,
     notes: null,
     start_date:null,
     project_id:null
@@ -86,6 +86,10 @@ export class ToDoListComponent implements OnInit,OnChanges{
 
   newtask(){
     
+    if(this.form.value.stage==null){
+      this.form.value.stage=1;
+    }
+    console.log("this.form.value",this.form.value);
     this.todoservice.createtask(this.form.value).subscribe(res =>{
       console.log(res);
       if(res['code']==200){

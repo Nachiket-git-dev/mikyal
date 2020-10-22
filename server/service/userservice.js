@@ -34,8 +34,7 @@ Service.prototype.createuser=function(user){
             resolve(responseHelper.generateError("error in create user",custres));
         }
     } 
-    })
-    
+})
 
 }
 Service.prototype.login=function(userdetails){
@@ -177,7 +176,8 @@ Service.prototype.disabletour=function(user_id){
 
 Service.prototype.setgoal=function(database,goal){
     return new Promise(async(resolve,reject)=>{
-     let  goaldata={goal_type:goal.goal_type,total_goal:goal.total_goal,goal_duration:goal.duration}
+    //  let  goaldata={goal_type:goal.goal_type,total_goal:goal.total_goal,goal_duration:goal.duration}
+       let goaldata={total_goal:goal.total_goal,goal_type:goal.goal_type};
         let check=await usermodel.checkgoal(database,goal.goal_type,goal.duration);
         if(check.length>0){
             let custres=await usermodel.updategoal(database,goaldata,check[0].goal_id);

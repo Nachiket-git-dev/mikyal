@@ -16,6 +16,6 @@ import { MatInputModule } from '@angular/material/input';
     
   ],
   exports:[CreateClientComponent],
-  entryComponents: [CreateClientComponent],
+  entryComponents: [CreateClientComponent]
 })
 export class CreateClientModule { }

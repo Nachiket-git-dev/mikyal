@@ -7,6 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
+import {CreateTaskModule} from './create-task/create-task.module'
+
 @NgModule({
   declarations: [ToDoListComponent],
   imports: [
@@ -16,7 +18,8 @@ import {MatSelectModule} from '@angular/material/select';
     ReactiveFormsModule,    
     MatInputModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    CreateTaskModule
   ]
 })
 export class ToDoListModule { }

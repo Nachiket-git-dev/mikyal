@@ -1,0 +1,55 @@
+<form (ngSubmit)="newtask()" [formGroup]="form">  
+    <div class="create-project__overlay todo-overlay new-task-js active">
+        <div class="flex-between__column create-project edit-task new-task">
+            <div class="flex__reverse">
+                <div class="icons-box-mark btn-popup-close-new-task" (click)="dialogRef.close(true)">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.05071 1.05022C0.660181 1.44074 0.660181 2.07391 1.05071 2.46443L4.58625 5.99997L1.05072 9.5355C0.660192 9.92602 0.660192 10.5592 1.05072 10.9497C1.44124 11.3402 2.07441 11.3402 2.46493 10.9497L6.00046 7.41419L9.53599 10.9497C9.92651 11.3402 10.5597 11.3402 10.9502 10.9497C11.3407 10.5592 11.3407 9.92602 10.9502 9.5355L7.41467 5.99997L10.9502 2.46443C11.3407 2.07391 11.3407 1.44074 10.9502 1.05022C10.5597 0.659696 9.92652 0.659696 9.536 1.05022L6.00046 4.58576L2.46492 1.05022C2.07439 0.659693 1.44123 0.659693 1.05071 1.05022Z" fill="black"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="flex-between__center new-task_head">
+                <div class="input-box-with-label create-project_col2">
+                    <label for="create-project-title-input" class="input-box-with-label__label">
+                        Title
+                    </label>
+                    <input type="text" id="create-project-title-input" formControlName="task_header" class="input-box-with-label__input" placeholder="Enter the title">
+                </div>
+                <!-- <div class="input-box-with-label create-project_col2">
+                    <h4 class="input-box-with-label__label">
+                        Start date
+                    </h4>
+                    <div class="input-box-with-label__input create-project-date__pick">
+                        <p>02.16.2020</p>
+                        <svg class="icon-calendar icons-box__blue" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 8H18V16C18 17.1046 17.1046 18 16 18H2C0.89543 18 0 17.1046 0 16V8Z" fill="#CCD0E3"></path>
+                            <path d="M0 6H18V4C18 2.89543 17.1046 2 16 2H2C0.89543 2 0 2.89543 0 4V6Z" fill="#CCD0E3"></path>
+                            <path d="M4 4H6V1C6 0.447715 5.55228 0 5 0C4.44772 0 4 0.447715 4 1V4Z" fill="#CCD0E3"></path>
+                            <path d="M12 4H14V1C14 0.447715 13.5523 0 13 0C12.4477 0 12 0.447715 12 1V4Z" fill="#CCD0E3"></path>
+                        </svg>
+                    </div>
+                </div> -->
+            </div>
+            <textarea placeholder="Place for description" formControlName="notes"  class="input-box-with-label__input create-project-title__textarea"></textarea>
+            <div class="create-project-buttons flex-center">
+                <button class="gray-btn create-project-buttons__discard create-project-buttons_btn">
+                    <svg class="icon-path__hover" width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 0C10.5523 0 11 0.447715 11 1L13 1C13.5523 1 14 1.44772 14 2C14 2.55229 13.5523 3 13 3L1 3C0.447716 3 0 2.55228 0 2C0 1.44772 0.447715 0.999999 1 0.999999L3 1C3 0.447715 3.44772 0 4 0H10Z" fill="#CCD0E3"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4H13V16C13 17.1046 12.1046 18 11 18H3C1.89543 18 1 17.1046 1 16V4ZM4.5 6C4.22386 6 4 6.22386 4 6.5V15.5C4 15.7761 4.22386 16 4.5 16C4.77614 16 5 15.7761 5 15.5V6.5C5 6.22386 4.77614 6 4.5 6ZM9.5 6C9.22386 6 9 6.22386 9 6.5V15.5C9 15.7761 9.22386 16 9.5 16C9.77614 16 10 15.7761 10 15.5V6.5C10 6.22386 9.77614 6 9.5 6Z" fill="#CCD0E3"></path>
+                    </svg>
+                    <p>
+                        Discard
+                    </p>
+                </button>
+                <button [disabled]="!form.valid" type="submit" class="blue-btn create-project-buttons__add create-project-buttons_btn">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM9 6C9 5.44772 9.44771 5 10 5C10.5523 5 11 5.44772 11 6V9H14C14.5523 9 15 9.44771 15 10C15 10.5523 14.5523 11 14 11H11V14C11 14.5523 10.5523 15 10 15C9.44771 15 9 14.5523 9 14V11H6C5.44772 11 5 10.5523 5 10C5 9.44771 5.44772 9 6 9H9V6Z" fill="white"/>
+                    </svg>
+                    <p>
+                        Add task
+                    </p>
+                </button>
+            </div>
+        </div>
+    </div>
+ </form>   

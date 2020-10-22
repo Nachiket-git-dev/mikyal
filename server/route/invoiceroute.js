@@ -25,6 +25,17 @@ router.get('/getallinvoices',(req,res) =>{
       
      responseHandler(req, res, invoiceservice.getallinvoices(database));
 });
+router.get('/getprojectinvoice',(req,res) =>{
+  console.log("request body");
+  console.log("request query");
+  console.log(req.query);
+   var database=req.query
+   var project_id=req.query.proj_id;
+
+
+    
+   responseHandler(req, res, invoiceservice.getprojectinvoice(database,project_id));
+});
 router.post('/changestatus',(req,res) =>{
     console.log("request body");
     console.log("request query");
@@ -121,7 +132,7 @@ var mailOptions = {
     attachments: [
       {   // encoded string as an attachment
         filename: 'invoice.png',       
-        content: new Buffer(req.body.pdf.split("base64,")[1], "base64"),
+        content: new Buffer.from(req.body.pdf.split("base64,")[1], "base64"),
         encoding: 'base64'
       }
     ]
@@ -129,5 +140,17 @@ var mailOptions = {
   console.log("Message sent: %s", info.messageId);
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info))
    //responseHandler(req, res, invoiceservice.sendmail(database,item_id));
+});
+
+router.get('/getpaidinvoice',(req,res) =>{
+  console.log("request body");
+  console.log("request query");
+  console.log(req.query);
+   var database=req.query
+   var invoice=req.body
+
+
+    
+   responseHandler(req, res, invoiceservice.getpaidinvoice(database));
 });
 module.exports = router;

@@ -107,6 +107,23 @@ export class InvoiceComponent implements OnInit {
   ondropdown(e){
     document.getElementById("myDropdown").classList.toggle("dropbtn_show");
   }
+  filterdrop(filterdrp){
+    console.log("inside",filterdrp);
+    if(filterdrp=='all'){
+         this.pageOfItems=this.tempinvoice;
+       }
+       else{
+        this.pageOfItems=this.invoices.filter(c=>c.status==filterdrp);
+       }
+
+    
+  // if(filterdrp=='all'){
+  //   this.pageOfItems=this.tempinvoice;
+  // }
+  // if(filterdrp=='approved'){
+  //   this.pageOfItems=this.pageOfItems.filter(c=>c.status==0);
+  // }
+}
   invoiceedit(invoice){
     console.log("edit run",invoice);
     this.router.navigate(['/invoice/create-invoice'],{queryParams:{invoice_id:invoice.invoice_id} })

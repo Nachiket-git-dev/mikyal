@@ -30,7 +30,8 @@
                             <li (click)="changeProjectStatus(project.project_id, 'cancelled')"><a><span class="circle circle-red"></span>Cancelled</a></li>
                         </ul>
                     </div>
-                    <a [routerLink]="['/overview/project-overview']">
+                    
+                    <a [routerLink]="['/overview/project-overview']" [queryParams]="{proj_id:project.project_id}">
                         <div class="sbc-single-card-heading flex-between align-items-center position-border">
                             <div class="sbc-sch-date d-flex align-items-center">
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -71,7 +71,7 @@ deleteCustomer(customer: any) {
           duration: 3000
         });
         this.clients.splice(this.clients.findIndex((existingCustomer) => existingCustomer.client_id === customer.client_id), 1);
-    
+        location.reload();
       }
     },err =>{
       this.snackbar.open('this Client Is Associated with Project! Cannot removed', 'OK', {

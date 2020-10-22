@@ -13,7 +13,7 @@
                             <div class="flex-between__center overview-head-price ">
                                 <p class="overview-head-detail__item">Price</p>
                                 <div class="line-vertical"></div>
-                                <p class="overview-head-detail__item"><b>$1260</b></p>
+                                <p class="overview-head-detail__item"><b>{{budget}}</b></p>
                             </div>
                         </div>
                         <div class="overview-head-additional">
@@ -123,34 +123,31 @@
                     </div>
                     <div class="flex__column overview-head-main__content">
                         <div class="overview-head-main__content-detail">
-                            <h4 class="title-heading">Client: <a href="Client.html">Morris w</a>
+                            <h4 class="title-heading">Client: <a href="Client.html"> {{client_name}}</a>
                             </h4>
                             <h2 class="overview-head-main__content-title">
-                                Huge project for capable guys
+                                {{project_name}}
                             </h2>
                             <p class="overview-head-main__content-text">
-                                Project Description. In this section, you can expand on the project details.
-                                Give more info on the purpose of the application, the current stage of the project,
-                                the artifacts you will provide (designs, wireframes, specs),
-                                the desired timeline. Add examples of similar apps to help freelancers better understand your vision
+                                {{description}}
                             </p>
                         </div>
                         <div class="flex-between__center">
-                            <div class="flex information_list-item-content__item-information_detail">
+                            <!-- <div class="flex information_list-item-content__item-information_detail">
                                 <p class="flex-center information_list-item-content__item-information_detail_work detail_work__green"> Design </p>
                                 <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow"> Frontend </p>
                                 <p class="flex-center information_list-item-content__item-information_detail_work detail_work__purple">Backend</p>
-                            </div>
+                            </div> -->
                             <div class="flex overview-head-main__content-date">
                                 <div class="flex">
                                     <p>
-                                        Start: <span>May 22, 2020</span>
+                                        Start: <span>{{start_date | date :'mediumDate'}}</span>
                                     </p>
                                 </div>
                                 <div class="line-vertical"></div>
                                 <div class="flex">
                                     <p>
-                                        End: <span>May 29, 2020</span>
+                                        End: <span>{{end_date | date :'mediumDate'}}</span>
                                     </p>
                                 </div>
                             </div>
@@ -216,7 +213,7 @@
                     <div class="information_list-item-header">
                         <h2 class="information_list-item_title">Tasks</h2>
                         <div class="all-task-dropdown pointer">
-                            <div class="icons-box__gray add-task-btn">
+                            <div class="icons-box__gray add-task-btn" (click)="createtask()">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                         d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM9 6C9 5.44772 9.44771 5 10 5C10.5523 5 11 5.44772 11 6V9H14C14.5523 9 15 9.44771 15 10C15 10.5523 14.5523 11 14 11H11V14C11 14.5523 10.5523 15 10 15C9.44771 15 9 14.5523 9 14V11H6C5.44772 11 5 10.5523 5 10C5 9.44771 5.44772 9 6 9H9V6Z"
@@ -248,7 +245,7 @@
                         </div>
                     </div>
                     <ul class="information_list-item-content scroll_style__gray">
-                        <li class="information_list-item-content__item">
+                        <!-- <li class="information_list-item-content__item">
                             <div class="flex-between">
                                 <label class="item-check-circle_checkbox">
                                     <input type="checkbox" checked="checked" class="item-check-circle_checkbox__input">
@@ -268,21 +265,21 @@
                                     <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
                                 </svg>
                             </div>
-                        </li>
-                        <li class="information_list-item-content__item checked">
+                        </li> -->
+                        <li class="information_list-item-content__item " *ngFor="let task of projecttask; index as i; let last=last" >
                             <div class="flex-between">
                                 <label class="item-check-circle_checkbox">
-                                    <input type="checkbox" class="item-check-circle_checkbox__input">
+                                    <input type="checkbox" [checked]="task.isdone== 1 ? true:false " class="item-check-circle_checkbox__input">
                                     <span class="item-check-circle_checkbox__checkmark"></span>
                                 </label>
                                 <div class="information_list-item-content__item-information">
                                     <p class="information_list-item-content__item-information_text">
-                                        This task must be done any time.
+                                        {{task.task_header}}
                                     </p>
-                                    <div class="information_list-item-content__item-information_detail">
+                                    <!-- <div class="information_list-item-content__item-information_detail">
                                         <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow"> Backend </p>
                                         <p class="information_list-item-content__item-information_detail_executor">Jennie J.</p>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="icons-box-mark">
@@ -292,7 +289,7 @@
                                 </svg>
                             </div>
                         </li>
-                        <li class="information_list-item-content__item ">
+                        <!-- <li class="information_list-item-content__item ">
                             <div class="flex-between">
                                 <label class="item-check-circle_checkbox">
                                     <input type="checkbox" class="item-check-circle_checkbox__input">
@@ -375,7 +372,7 @@
                                     <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
                                 </svg>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <div class="information_list-item custom-width work-timeline">
@@ -705,7 +702,7 @@
                     <div class="information_list-item-header">
                         <h2 class="information_list-item_title">Files</h2>
                         <div class="icons-box__blue__circle relative">
-                            <input type="file" class="upload-file">
+                            <input type="file" class="upload-file" #fileInput   (change)="uploadFile($event.target.files)">
                             <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M16 6C18.2091 6 20 7.79086 20 10C20 12.2091 18.2091 14 16 14H11V9.41824L12.1213 10.5396C12.5119 10.9301 13.145 10.9301 13.5356 10.5396C13.9261 10.1491 13.9261 9.5159 13.5356 9.12538L10.7586 6.34842C10.5752 6.1351 10.3034 6 10 6C9.69652 6 9.42463 6.13518 9.24123 6.34861L6.46446 9.12538C6.07394 9.5159 6.07394 10.1491 6.46446 10.5396C6.85499 10.9301 7.48815 10.9301 7.87868 10.5396L9 9.41827V14H5C2.23858 14 0 11.7614 0 9C0 6.46726 1.88316 4.37436 4.32568 4.04508C5.13649 1.69118 7.37075 0 10 0C13.3137 0 16 2.68629 16 6Z"
@@ -715,19 +712,22 @@
                         </div>
                     </div>
                     <ul class="information_list-item-content scroll_style__gray">
-                        <li class="information_list-item-content__item ">
+                        <li *ngFor="let file of filesres" class="information_list-item-content__item ">
                             <p class="information_list-item-content__text">
-                                Full Developer Manual For 4.7 <span>.pdf</span>
+                                {{file.filename}}
                             </p>
                             <div class="icons-box__blue__square">
-                                <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0C5.58579 0 5.25 0.335786 5.25 0.75V7.89675L2.08624 4.72952C1.78056 4.4235 1.28495 4.4235 0.979262 4.72952C0.673579 5.03553 0.67358 5.53169 0.979263 5.83771L5.40717 10.2705C5.57003 10.4335 5.7868 10.5097 6.00003 10.499C6.21325 10.5097 6.43001 10.4335 6.59285 10.2705L11.0208 5.83771C11.3264 5.53169 11.3264 5.03553 11.0208 4.72951C10.7151 4.42349 10.2195 4.4235 9.91379 4.72952L6.75 7.89678V0.75C6.75 0.335786 6.41421 0 6 0Z" fill="white"></path>
-                                    <path d="M0.75 12.75C0.75 12.3358 1.08579 12 1.5 12H10.5C10.9142 12 11.25 12.3358 11.25 12.75C11.25 13.1642 10.9142 13.5 10.5 13.5H1.5C1.08579 13.5 0.75 13.1642 0.75 12.75Z" fill="white"></path>
-                                </svg>
+                                <a [href]="file.file_blob" [download]="file.filename">
+                                    <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 0C5.58579 0 5.25 0.335786 5.25 0.75V7.89675L2.08624 4.72952C1.78056 4.4235 1.28495 4.4235 0.979262 4.72952C0.673579 5.03553 0.67358 5.53169 0.979263 5.83771L5.40717 10.2705C5.57003 10.4335 5.7868 10.5097 6.00003 10.499C6.21325 10.5097 6.43001 10.4335 6.59285 10.2705L11.0208 5.83771C11.3264 5.53169 11.3264 5.03553 11.0208 4.72951C10.7151 4.42349 10.2195 4.4235 9.91379 4.72952L6.75 7.89678V0.75C6.75 0.335786 6.41421 0 6 0Z" fill="white"></path>
+                                        <path d="M0.75 12.75C0.75 12.3358 1.08579 12 1.5 12H10.5C10.9142 12 11.25 12.3358 11.25 12.75C11.25 13.1642 10.9142 13.5 10.5 13.5H1.5C1.08579 13.5 0.75 13.1642 0.75 12.75Z" fill="white"></path>
+                                    </svg>
+                                </a>
+                                
                                 
                             </div>
                         </li>
-                        <li class="information_list-item-content__item ">
+                        <!-- <li class="information_list-item-content__item ">
                             <p class="information_list-item-content__text">
                                 Project Launch Evgent<span>.jpeg</span>
                             </p>
@@ -781,7 +781,7 @@
                                     <path d="M0.75 12.75C0.75 12.3358 1.08579 12 1.5 12H10.5C10.9142 12 11.25 12.3358 11.25 12.75C11.25 13.1642 10.9142 13.5 10.5 13.5H1.5C1.08579 13.5 0.75 13.1642 0.75 12.75Z" fill="white"></path>
                                 </svg>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>

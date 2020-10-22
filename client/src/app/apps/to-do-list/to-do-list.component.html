@@ -24,7 +24,7 @@
                             {{task.created_date | date :'mediumDate'}}
                         </div>
                          <div class="todo-list__change todo-list__priority-js">
-                            <div class="icons-box-mark todo-list-dots" >
+                            <div class="icons-box-mark todo-list-dots" [matMenuTriggerFor]="menu" [matMenuTriggerData]="{task:task}" >
                                 <svg width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2 4.40674C0.89543 4.40674 -4.82823e-08 3.51131 0 2.40674C4.82823e-08 1.30217 0.895431 0.406738 2 0.406738C3.10457 0.406738 4 1.30217 4 2.40674C4 3.51131 3.10457 4.40674 2 4.40674Z" fill="#001431"></path>
                                     <path d="M2 12.4067C0.89543 12.4067 -4.82823e-08 11.5113 0 10.4067C4.82823e-08 9.30217 0.895431 8.40674 2 8.40674C3.10457 8.40674 4 9.30217 4 10.4067C4 11.5113 3.10457 12.4067 2 12.4067Z" fill="#001431"></path>
@@ -54,7 +54,8 @@
                             </div>-->
                         </div> 
                         <div class="todo-list__priority_overflow todo-list__priority-js" (click)="openlist($event)">
-                            <div [ngClass]="stageclass[task.stage]['class']"></div>
+                            <div *ngIf="task.stage!=null" [ngClass]="stageclass[task.stage]['class']"></div>
+                            
                         </div>
                     </div>
                     <div class="tooltip tooltip_priority-js">

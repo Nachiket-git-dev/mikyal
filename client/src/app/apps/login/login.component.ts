@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
         duration: 10000,
         panelClass: ['blue-snackbar']
       });
-      this.router.navigate(['/dashboard']);  
+      this.router.navigate(['/invoice']);  
      }else{
 
      }

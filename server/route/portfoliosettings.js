@@ -11,14 +11,13 @@ router.post('/saveportfolio',(req,res) =>{
   
 
       
-     responseHandler(req, res, portfolioservice.saveportfolio(database,portfolio));
+responseHandler(req, res, portfolioservice.saveportfolio(database,portfolio));
 });
 router.get('/getportfolio',(req,res) =>{
     console.log("request body");
     console.log("request query");
     console.log(req.query);
      var database=req.query.database
-    
      responseHandler(req, res, portfolioservice.getportfolio(database));
 });
 

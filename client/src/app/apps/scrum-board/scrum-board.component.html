@@ -1,4 +1,4 @@
-<section class="main-content-projects" *ngIf="board$ | async as board">
+<section class="main-content-projects" >
     <div class="content-wrapper content-wrapper__content project-content acme-aplication-area">
         <div class="scram-board-heading-area flex-between align-items-center">
            <div class="d-flex align-items-center">
@@ -18,13 +18,31 @@
                 </div>
            </div>
             <div class="scram-board-heading-setting d-flex align-items-center">
-                <div class="mr-15 add-sbc-card"  (click)="sbc_card_Show()">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                <div class="mr-15 add-sbc-card"  [matMenuTriggerFor]="menu">
+                    <!-- <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM9 6C9 5.44772 9.44771 5 10 5C10.5523 5 11 5.44772 11 6V9H14C14.5523 9 15 9.44771 15 10C15 10.5523 14.5523 11 14 11H11V14C11 14.5523 10.5523 15 10 15C9.44771 15 9 14.5523 9 14V11H6C5.44772 11 5 10.5523 5 10C5 9.44771 5.44772 9 6 9H9V6Z"
                             fill="#D7DAE5"></path>
-                    </svg>
+                    </svg> -->
+                    <div class="dropwrapper">
+                        <div class="dropdownbtn">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM9 6C9 5.44772 9.44771 5 10 5C10.5523 5 11 5.44772 11 6V9H14C14.5523 9 15 9.44771 15 10C15 10.5523 14.5523 11 14 11H11V14C11 14.5523 10.5523 15 10 15C9.44771 15 9 14.5523 9 14V11H6C5.44772 11 5 10.5523 5 10C5 9.44771 5.44772 9 6 9H9V6Z"
+                                    fill="#D7DAE5"></path>
+                            </svg>
+                        </div>
+   
+                   
+                    </div>
+                    <mat-menu #menu="matMenu">
+                        <div class="dropdown_content dropdown_show">
+                            <a (click)="sbc_card_Show()">Add Board</a>
+                            <a (click)="add_board_Show()">Add Card Group</a>
+                        </div>
+                    </mat-menu>   
                 </div>
                 <svg version="1.1" id="Capa_1" height="25" width="25" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
                     y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -91,13 +109,13 @@
         </div>
      
         <div (cdkDropListDropped)="dropList($event)"
-        [cdkDropListData]="board.children"
+        [cdkDropListData]="alllist"
         cdkDropList cdkDropListOrientation="horizontal" id="drag-drop-wrapper" class="scram-board-content-area scroll_style__gray d-flex align-items-center">
-            <div class="scram-board-content-card" *ngFor="let list of board.children;trackBy: trackById"  [cdkDragData]="list"
+            <div class="scram-board-content-card" *ngFor="let list of alllist;trackBy: trackById"  [cdkDragData]="list"
             cdkDrag
             cdkDropListGroup>
                 <div class="sbc-card-heading flex-between align-items-center">
-                    <h4>Design</h4>
+                    <h4>{{list.name}}</h4>
                     <div class="icons-box-mark">
                         <svg class="options-dots" width="4" height="13" viewBox="0 0 4 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -111,7 +129,7 @@
                 </div>
                 <div  cdkDropListGroup  > 
                 <div  (cdkDropListDropped)="drop($event)" cdkDropList
-                [cdkDropListConnectedTo]="getConnectedList(board)"
+                [cdkDropListConnectedTo]="getConnectedList(alllist)"
                 [cdkDropListData]="getchildlist(list)"  id="{{ list.id }}" class="sbc-single-card-wrapper scroll_style__gray ui-sortable">
                  <div> 
                     <div class="sbc-single-card mb-20" *ngFor="let card of getchildlist(list); trackBy: trackById" [cdkDragData]="card" cdkDrag>
@@ -131,7 +149,7 @@
                                         d="M13.6667 6.99992C13.6667 10.6818 10.6819 13.6666 7.00004 13.6666C3.31814 13.6666 0.333374 10.6818 0.333374 6.99992C0.333374 3.31802 3.31814 0.333252 7.00004 0.333252C10.6819 0.333252 13.6667 3.31802 13.6667 6.99992ZM12.3334 6.99992C12.3334 9.94544 9.94556 12.3333 7.00004 12.3333C4.05452 12.3333 1.66671 9.94544 1.66671 6.99992C1.66671 4.0544 4.05452 1.66659 7.00004 1.66659C9.94556 1.66659 12.3334 4.0544 12.3334 6.99992Z"
                                         fill="#D7DAE5" />
                                 </svg>
-                                <p>Feb 2, 2020</p>
+                                <p> {{card.start_date | date:'mediumDate'}}</p>
                             </div>
                             <div class="sbc-sch-time d-flex align-items-center">
                                 <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1961,4 +1979,5 @@
             </div>
         </div>
     </form>
+
 </div>
