@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../services/project/project.service';
-
+import {InvoiceService} from '../invoice/invoice.service'
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
@@ -13,9 +13,10 @@ export class ProjectComponent implements OnInit {
   public dropDownFlag: DropDownFlags[] = [];
   public projects: any = [];
 
-  constructor(private _projectService: ProjectService) { }
+  constructor(private _projectService: ProjectService,private invoiceservice:InvoiceService) { }
   ngOnInit() {
     this.getAllProjects();
+    
   }
 
   getAllProjects() {

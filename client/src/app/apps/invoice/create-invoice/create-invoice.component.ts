@@ -3,6 +3,7 @@ import { FormBuilder,FormControl,Validators,FormGroup,FormArray } from '@angular
 import {InvoiceService} from '../invoice.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ClientService} from '../../client/client.service';
+import {ProjectService} from '../../../services/project/project.service'
 
 import { Router,ActivatedRoute, Params } from '@angular/router';
 import {
@@ -23,6 +24,7 @@ export class CreateInvoiceComponent implements OnInit {
   rows: FormArray;
   form = this.fb.group({
     invoice_id:null,
+    project_id:null,
     invoice_name: ['', Validators.required],
     billing_address:null,//['',Validators.required],
     house_no:null,
@@ -34,6 +36,7 @@ export class CreateInvoiceComponent implements OnInit {
      discount:[0,Validators.pattern("\\d+(?:\\.\\d+)?")],
      tax:[0,Validators.pattern("\\d+(?:\\.\\d+)?")],
     client_select:[],
+    project_select:[],
     client_id:null,
     tax_amount:null,
     discount_amount:null,
@@ -43,7 +46,9 @@ export class CreateInvoiceComponent implements OnInit {
 
   })
     clientlist:any[];
+    projectlist:any[];
     filteredOptions;
+    filterprojectoptions;
     total
     discount_amt;
     subtotal=0;
@@ -53,14 +58,14 @@ export class CreateInvoiceComponent implements OnInit {
   }
   constructor(private fb: FormBuilder,private invoiceservice:InvoiceService,
     private clientservice:ClientService,private snackbar:MatSnackBar,private router:Router,
-    private route:ActivatedRoute) {
-      this.rows = this.fb.array([]);
+    private route:ActivatedRoute,private projectservice:ProjectService) {
+    this.rows = this.fb.array([]);
     this.form.addControl('rows', this.rows);
     //this.rows.push(this.createItemFormGroup());
     
    }
    dataker(){
-   
+    
    }
 
   ngOnInit() {
@@ -70,9 +75,20 @@ export class CreateInvoiceComponent implements OnInit {
     this.clientservice.getallclient().subscribe(clients=>{
       this.clientlist=clients['data'];
     })
+    this.projectservice.getproject().subscribe(res=>{
+      if(res['code']==200){
+       this.projectlist=res['data']
+      }
+    })
+    
     this.form.get('client_select').valueChanges.subscribe(val => {
       
       this.filteredOptions=this._filter(val)
+     
+     })
+     this.form.get('project_select').valueChanges.subscribe(val => {
+      
+      this.filterprojectoptions=this._filterproject(val)
      
      })
 
@@ -104,8 +120,12 @@ export class CreateInvoiceComponent implements OnInit {
        this.clientservice.getclientbyid(res['data'][0].client_id).subscribe(client=>{
          console.log("client",client);
          if(client['code']==200 && client['message']=='Success'){
-         this.form.patchValue({client_select:client['data'][0].first_name+" "+client['data'][0].last_name})
+            this.form.patchValue({client_select:client['data'][0].first_name+" "+client['data'][0].last_name})
          }
+       })
+       this.projectservice.getprojectbyid(res['data'][0].project_id).subscribe(res=>{
+        this.form.patchValue({project_select:res['data'][0].project_name})
+
        })
        });
        this.invoiceservice.getinvoiceservice(this.route.snapshot.queryParams['invoice_id']).subscribe(service=>{
@@ -116,7 +136,7 @@ export class CreateInvoiceComponent implements OnInit {
           this.discount_amt=service['data'][i].discount_amt;
           this.rows.push(this.createItemFormGroupupdate(service['data'][i].item_id,service['data'][i].service_name,service['data'][i].description,service['data'][i].price,service['data'][i].unit_price,service['data'][i].qty,service['data'][i].discount))
         }
-        console.log("this.rows update",this.rows);
+          console.log("this.rows update",this.rows);
 
        })
     }
@@ -169,6 +189,13 @@ export class CreateInvoiceComponent implements OnInit {
     return this.clientlist.filter(option =>option.first_name.toLowerCase().includes(value));
     }
   }
+  private _filterproject(value: string): string[]{
+    if(value){
+      const filterValue = value.toLowerCase()
+     return this.projectlist.filter(option =>option.project_name.toLowerCase().includes(value));
+     }
+
+  }
   handler(event:any): void {
     console.log("event",event);
    let clientrow =  this.clientlist.find(x => x.client_id == event.option.value);
@@ -183,6 +210,17 @@ export class CreateInvoiceComponent implements OnInit {
      city:clientrow.city
    })
 }
+projecthandler(event:any): void {
+  console.log("event",event);
+ let projectrow =  this.projectlist.find(x => x.project_id == event.option.value);
+ console.log("clientrow",projectrow);
+ let project_name= projectrow.project_name;
+ 
+ this.form.patchValue({
+  project_id:projectrow.project_id,
+  project_select:project_name
+ })
+}
 ngAfterViewInit() {
   this._subscribeToClosingActions();
 }
@@ -196,7 +234,8 @@ private _subscribeToClosingActions(): void {
     .subscribe(e => {
       if (!e || !e.source) {
         this.form.patchValue({
-          client_select:null
+          client_select:null,
+          project_select:null
         })
       }
     },
@@ -212,7 +251,8 @@ private _subscribeToClosingActions(): void {
      return
    }
    if(this.route.snapshot.queryParams['invoice_id']){
-    console.log("update_inv");
+    console.log("update_inv",this.form.value);
+    
      this.invoiceservice.updateinvoice(this.form.value).subscribe(res=>{
         console.log("res",res);
         if(res['code']==200){

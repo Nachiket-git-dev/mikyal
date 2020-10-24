@@ -8,7 +8,7 @@ function Service() {
 
 Service.prototype.createinvoice=function(dbname,invoice){
     return new Promise(async(resolve,reject)=>{
-       let invoicedata={invoice_name:invoice.invoice_name,client_id:invoice.client_id,
+       let invoicedata={invoice_name:invoice.invoice_name,project_id:invoice.project_id,client_id:invoice.client_id,
         house_no:invoice.house_no,street:invoice.street,city:invoice.city,zip:invoice.zip,billing_address:invoice.billing_address,subtotal:invoice.subtotal,
         due_date:invoice.due_date,discount:invoice.discount,discount_amt:invoice.discount_amt,
         tax:invoice.tax,tax_amount:invoice.tax_amount,discount_amount:invoice.discount_amount,
@@ -53,6 +53,19 @@ Service.prototype.changestatus=function(dbname,status_body){
 
 }
 
+Service.prototype.getinvoicebydaterange=function(dbname,start_date,end_date){
+    return new Promise(async(resolve,reject)=>{
+        let db=dbname.database;
+        
+        let custres=await invoicemodel.getinvoicebydaterange(db,start_date,end_date);
+        if(custres.length>0  ){  
+            resolve(responseHelper.generateResponse("Success", custres));      
+        }else{
+            resolve(responseHelper.generateError("error",custres));
+        }
+    })
+
+}
 Service.prototype.getinvoicebyid=function(dbname,invoice_id){
     return new Promise(async(resolve,reject)=>{
         let db=dbname.database;
@@ -86,7 +99,7 @@ Service.prototype.getservice=function(dbname,invoice_id){
 Service.prototype.updateinvoice=function(dbname,invoice){
     return new Promise(async(resolve,reject)=>{
        // console.log("invoice",invoice);
-        let invoicedata={invoice_name:invoice.invoice_name,client_id:invoice.client_id,
+        let invoicedata={invoice_name:invoice.invoice_name,project_id:invoice.project_id,client_id:invoice.client_id,
             house_no:invoice.house_no,street:invoice.street,city:invoice.city,zip:invoice.zip,billing_address:invoice.billing_address,subtotal:invoice.subtotal,
             due_date:invoice.due_date,discount:invoice.discount,discount_amt:invoice.discount_amt,
             tax:invoice.tax,tax_amount:invoice.tax_amount,discount_amount:invoice.discount_amount,total:invoice.total,client_note:invoice.client_note};

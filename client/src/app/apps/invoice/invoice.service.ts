@@ -89,4 +89,32 @@ export class InvoiceService {
     return res;
 
   }
+  getprojectinvoice(project_id){
+    let database=localStorage.getItem('Database_Name');
+    //let database_name = localStorage.getItem('Database_Name');
+    let params = new HttpParams().set('database', database).set('proj_id',project_id);
+    const url = `${siteConfig.nodeAPIBaseUrl}/getprojectinvoice`;
+    let res = this._http.get(url, { params: params });
+    return res;
+
+  }
+  getpaidinvoice(){
+    let body;
+    let database=localStorage.getItem('Database_Name');
+    let params = new HttpParams().set('database',database);
+    const url = `${siteConfig.nodeAPIBaseUrl}/getpaidinvoice`;
+    let res = this._http.get(url,{ params: params });
+    console.log("in service=> ",res);
+    return res;
+  }
+
+  getinvoicebydaterange(start_date,end_date){
+    let body;
+    let database=localStorage.getItem('Database_Name');
+    let params = new HttpParams().set('database',database).set("start_date",start_date).set("end_date",end_date);
+    const url = `${siteConfig.nodeAPIBaseUrl}/getinvoicebydaterange`;
+    let res = this._http.get(url,{ params: params });
+    console.log("in service=> ",res);
+    return res;
+  }
 }

@@ -7,7 +7,7 @@ import { NgApexchartsModule } from "ng-apexcharts";
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
-
+import { DatePipe } from '@angular/common'
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
   direction: 'horizontal',
@@ -24,10 +24,11 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     NgApexchartsModule,
     SwiperModule
   ],
-  providers: [
+  providers: [ DatePipe,
     {
       provide: SWIPER_CONFIG,
-      useValue: DEFAULT_SWIPER_CONFIG
+      useValue: DEFAULT_SWIPER_CONFIG,
+     
     }
   ]
 })

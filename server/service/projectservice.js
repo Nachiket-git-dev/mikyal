@@ -118,7 +118,7 @@ Service.prototype.updatestatus=function(dbname,proj_id,status){
 
 Service.prototype.updateproject=function(dbname,proj_id,project){
     return new Promise(async(resolve,reject)=>{
-        project_data={client_id:project.client_id,client_name:project.client_select,project_name:project.project_name,project_subject:project.project_subject,description:project.description,
+        let project_data={client_id:project.client_id,client_name:project.client_select,project_name:project.project_name,project_subject:project.project_subject,description:project.description,
             start_date:project.start_date,end_date:project.end_date,budget:project.budget,project_expenses:project.project_expenses,client_email:project.client_email
             ,address1:project.address,address2:project.address2,city:project.city,state:project.state,postcode:project.postcode}
         let db=dbname.database;

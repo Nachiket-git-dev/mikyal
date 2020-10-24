@@ -8,6 +8,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import {CreateTaskComponent} from '../../to-do-list/create-task/create-task.component'
 import {ToDoListService} from '../../to-do-list/to-do-list.service'
+import {InvoiceService} from '../../invoice/invoice.service'
 @Component({
   selector: 'app-project-overview',
   templateUrl: './project-overview.component.html',
@@ -17,6 +18,7 @@ export class ProjectOverviewComponent implements OnInit {
   files: any = [];
   project:any[];
   projecttask:any[]
+  projectinvoice:any[]
   filesres:any
   filesrows:FormArray;
   project_id:number;
@@ -33,7 +35,8 @@ export class ProjectOverviewComponent implements OnInit {
   fileUrl
   fileform=this.fb.group({});
   constructor(private projectservice:ProjectService,private route:ActivatedRoute,
-    private fb: FormBuilder,private snackbar:MatSnackBar,private sanitizer: DomSanitizer,private Dialog:MatDialog) {
+    private fb: FormBuilder,private snackbar:MatSnackBar,private sanitizer: DomSanitizer,
+    private Dialog:MatDialog,private invoiceservice:InvoiceService,private router: Router ) {
     
    }
 
@@ -68,7 +71,6 @@ export class ProjectOverviewComponent implements OnInit {
                this.portfolio=project['data'][0].portfolio
                if(project['data'][0].client_name){
                 this.client_name=project['data'][0].client_name;
-               
                 console.log("inside if conn");
                }
                console.log(" this.description", this.description);
@@ -94,7 +96,10 @@ this.projectservice.getprojecttask(this.route.snapshot.queryParams['proj_id']).s
   }
   
 })
-
+ this.invoiceservice.getprojectinvoice(this.route.snapshot.queryParams['proj_id']).subscribe(res=>{
+  if(res['code']==200) 
+  this.projectinvoice=res['data']
+ })
 
 
   }
@@ -144,6 +149,14 @@ this.projectservice.getprojecttask(this.route.snapshot.queryParams['proj_id']).s
       data:this.route.snapshot.queryParams['proj_id'] || null,
       width: '600px'
     });
+  }
+  invoiceview(invoice){
+    console.log("invoice",invoice);
+    this.router.navigate(['/invoice/invoice-preview'],{queryParams:{invoice_id:invoice.invoice_id} })
+  }
+  invoiceedit(invoice){
+    this.router.navigate(['/invoice/create-invoice'],{queryParams:{invoice_id:invoice.invoice_id} })
+    
   }
 
 }

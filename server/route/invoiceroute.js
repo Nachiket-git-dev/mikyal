@@ -66,6 +66,18 @@ router.get('/getservice',(req,res) =>{
     
    responseHandler(req, res, invoiceservice.getservice(database,invoice_id));
 });
+
+router.get('/getinvoicebydaterange',(req,res) =>{
+  console.log("request body");
+  console.log("request query");
+  console.log(req.query);
+   var database=req.query
+   var start_date=req.query.start_date;
+   var end_date=req.query.end_date;
+
+    
+   responseHandler(req, res, invoiceservice.getinvoicebydaterange(database,start_date,end_date));
+})
 router.post('/updateinvoice',(req,res) =>{
   console.log("request body");
   console.log("request query");

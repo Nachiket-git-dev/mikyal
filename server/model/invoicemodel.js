@@ -1,6 +1,6 @@
 const responseHelper = require('../Helper/commonHelper');
 const mysqlLib = require('../config/database');
-
+var moment = require('moment');
 module.exports.createinvoice = function (database,invoice,item_rows) {
     return new Promise(async (resolve, reject) => {
        try {
@@ -67,8 +67,16 @@ module.exports.getallinvoices = function (database) {
  module.exports.changestatus = function (database,status,invoice_id) {
     return new Promise(async (resolve, reject) => {
        try {
+         var sql=''
+          if(status==1){
          
-          var sql = "UPDATE "+database+".invoices SET status= ? WHERE invoice_id= ?"
+            var todaydate=moment().format('YYYY-MM-DD');
+            console.log("todaydate",todaydate);
+            sql = "UPDATE "+database+".invoices SET status= ?,paiddate='"+todaydate+"' WHERE invoice_id= ?"
+          }else{
+             sql = "UPDATE "+database+".invoices SET status= ? WHERE invoice_id= ?"
+          }
+           console.log(sql);
           let query = mysqlLib.query(sql, [status,invoice_id], (err, results) => {
              if (err) {
                 reject(err);
@@ -102,6 +110,26 @@ module.exports.getallinvoices = function (database) {
       }
    });
 
+}
+module.exports.getinvoicebydaterange = function (database,start_date,end_date) {
+   return new Promise(async (resolve, reject) => {
+      try {
+         console.log("start_date",start_date);
+         console.log("end_date",end_date);
+         var sql = "select * from "+database+".invoices where paiddate >='"+ start_date+"' AND paiddate <= '"+end_date +"' ";
+          console.log("sql",sql);
+         let query = mysqlLib.query(sql,(err, results) => {
+            if (err) {
+               resolve(err);
+            } else
+               resolve(results);
+         });
+
+      } catch (err) {
+         resolve(responseHelper.generateError("Somthing went wrong", err));
+
+      }
+   });
 }
 module.exports.getservice = function (database,invoice_id) {
    return new Promise(async (resolve, reject) => {

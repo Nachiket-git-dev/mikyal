@@ -5,6 +5,7 @@ import {ProjectOverviewRoutingModule} from './project-overview-routing.module'
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import {CreateTaskModule} from '../../to-do-list/create-task/create-task.module'
+import {MatMenuModule} from '@angular/material/menu';
 @NgModule({
   declarations: [ProjectOverviewComponent],
   imports: [
@@ -12,7 +13,8 @@ import {CreateTaskModule} from '../../to-do-list/create-task/create-task.module'
     ProjectOverviewRoutingModule,
     MatSnackBarModule,
     MatDialogModule,
-    CreateTaskModule
+    CreateTaskModule,
+    MatMenuModule
   ]
 })
 export class ProjectOverviewModule { }
