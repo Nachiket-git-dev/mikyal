@@ -6,9 +6,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { FormBuilder } from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import html2canvas from 'html2canvas';
+import * as jspdf from 'jspdf';
+import { jsPDF } from "jspdf";
 import {CreateTaskComponent} from '../../to-do-list/create-task/create-task.component'
 import {ToDoListService} from '../../to-do-list/to-do-list.service'
 import {InvoiceService} from '../../invoice/invoice.service'
+import {CreateMilestoneComponent} from '../create-milestone/create-milestone.component'
 @Component({
   selector: 'app-project-overview',
   templateUrl: './project-overview.component.html',
@@ -18,7 +22,8 @@ export class ProjectOverviewComponent implements OnInit {
   files: any = [];
   project:any[];
   projecttask:any[]
-  projectinvoice:any[]
+  projectinvoice:any[];
+  projectmilestone:any[];
   filesres:any
   filesrows:FormArray;
   project_id:number;
@@ -100,6 +105,12 @@ this.projectservice.getprojecttask(this.route.snapshot.queryParams['proj_id']).s
   if(res['code']==200) 
   this.projectinvoice=res['data']
  })
+ this.projectservice.getmilestonebyproject(this.route.snapshot.queryParams['proj_id']).subscribe(res=>{
+   console.log("getmilestonebyproject res",res);
+   if(res['code']==200){
+     this.projectmilestone=res['data'];
+   }
+ })
 
 
   }
@@ -158,5 +169,31 @@ this.projectservice.getprojecttask(this.route.snapshot.queryParams['proj_id']).s
     this.router.navigate(['/invoice/create-invoice'],{queryParams:{invoice_id:invoice.invoice_id} })
     
   }
+  makepdf(){
+    document.querySelector('.tooltip').classList.remove('tooltip__active');
+    
+    document.querySelector('#PDf-section').classList.add('pdfclass');
+    var data = document.getElementById('PDf-section');
+    html2canvas(data).then(canvas => {
+    // Few necessary setting options
+    var imgWidth = 208;
+    var pageHeight = 295;
+    var imgHeight = canvas.height * imgWidth / canvas.width;
+    var heightLeft = imgHeight;
+     
+    const contentDataURL = canvas.toDataURL('image/png')
+    let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+    var position = 0;
+    pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+    pdf.save(''+this.project_name+'.pdf'); // Generated PDF
+    });
+  }
+  createmilestone(){
+    this.Dialog.open(CreateMilestoneComponent, {
+      data:this.route.snapshot.queryParams['proj_id'] || null,
+      width: '600px'
+    });
+  }
+
 
 }

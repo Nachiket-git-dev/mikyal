@@ -1,3 +1,8 @@
 @import "../../../assets/login_assets/css/style.css";
 @import "../../../assets/login_assets/css/bootstrap.min.css";
 @import "../../../assets/login_assets/css/icofont.css";
+.invalid-feedback{
+
+    font-family: sans-serif;
+    color: red;
+}

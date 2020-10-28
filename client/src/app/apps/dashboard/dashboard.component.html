@@ -4,7 +4,8 @@
        <section class="greeting">
           <img src="../../../assets/img/dashboard/triangle.svg" class="greeting-img-triangle" alt="">
           <div class="greeting-title-box">
-             <h1 class="greeting-title">Good morning, <b>Bill</b></h1>
+             
+             <h1 class="greeting-title">{{greet}}, <b>{{username}}</b></h1>
              <p class="greeting-subtitle">You have completed all of your tasks for today!</p>
              <img src="img/dashboard/circle-main-screen.svg" class="greeting-title-box-img_position greeting-title-box-img-circle" alt=""> <img src="img/dashboard/rectangle.svg" class="greeting-title-box-img_position greeting-title-box-img-rect" alt="">
           </div>
@@ -16,10 +17,10 @@
                 <div class="chart-header">
                    <div class="chart-header-box profit">
                       <h2 class="chart-header__title">Total profit</h2>
-                      <p class="chart-header__sum">$14.692</p>
+                      <!-- <p class="chart-header__sum">$14.692</p> -->
                    </div>
                    <div class="chart-header-box green">
-                      <p class="chart-header__percent">+35%</p>
+                      <!-- <p class="chart-header__percent">+35%</p> -->
                       <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                          <path d="M4.29333 0.841799L0.38167 5.44608C-0.170155 6.09561 0.291477 7.09354 1.14377 7.09354H8.96709C9.81938 7.09353 10.281 6.09561 9.72919 5.44608L5.81753 0.8418C5.41818 0.371745 4.69267 0.371743 4.29333 0.841799Z" fill="#48C2A5"/>
                       </svg>
@@ -259,9 +260,9 @@
                    </div>
                 </div>
                 <ul class="information_list-item-content scroll_style__gray">
-                   <li class="information_list-item-content__item done">
-                      <div class="information_list-item-content__item-information">
-                         <p class="information_list-item-content__item-information_text">Pretty important task(Please, attend!)</p>
+                   <li *ngFor="let project of allprojects" class="information_list-item-content__item" >
+                      <div class="information_list-item-content__item-information" >
+                         <p class="information_list-item-content__item-information_text">{{project.project_name}}</p>
                          <div class="information_list-item-content__item-information_detail">
                             <p class="flex-center information_list-item-content__item-information_detail_work detail_work__yellow">Frontend</p>
                             <p class="information_list-item-content__item-information_detail_executor">Morris W.</p>
@@ -270,7 +271,7 @@
                             <div class="project-progress_line">
                                <div class="project-progress_line-bg"></div>
                             </div>
-                            <div class="project-progress_text">Done</div>
+                            <!-- <div class="project-progress_text">Done</div> -->
                          </div>
                       </div>
                       <div class="icons-box-mark export_btn relative">
@@ -285,7 +286,7 @@
                          </ul>
                       </div>
                    </li>
-                   <li class="information_list-item-content__item">
+                   <!-- <li class="information_list-item-content__item">
                       <div class="information_list-item-content__item-information">
                          <p class="information_list-item-content__item-information_text">Dribble, Behance, UpLabs &amp; Pinterest Post</p>
                          <div class="information_list-item-content__item-information_detail">
@@ -390,7 +391,7 @@
                             <li><a href="">Project Settings</a></li>
                          </ul>
                       </div>
-                   </li>
+                   </li> -->
                 </ul>
              </div>
           </li>
@@ -505,7 +506,7 @@
                    <h2 class="information_list-item_title">Client</h2>
                 </div>
                 <ul class="information_list-item-content scroll_style__gray">
-                   <li class="information_list-item-content__item">
+                   <!-- <li class="information_list-item-content__item">
                       <div class="work-timeline-comment-box">
                          <div class="work-timeline-information">
                             <p class="information_list-item-content__item-information_text">Jennie J. Commented</p>
@@ -516,12 +517,20 @@
                             <p class="work-timeline-detail_time">Mon 8:17pm</p>
                          </div>
                       </div>
-                   </li>
-                   <li class="information_list-item-content__item">
+                   </li> -->
+                   <li *ngFor="let client of allclient" class="information_list-item-content__item">
                       <div class="work-timeline-comment-box">
                          <div class="work-timeline-information">
-                            <p class="information_list-item-content__item-information_text">Zack H. attached file</p>
-                            <p class="work-timeline-information__detail">on <span>Add angular...</span></p>
+                            <p class="information_list-item-content__item-information_text">{{client.first_name}} {{client.last_name}}</p>
+                            <!-- <p class="work-timeline-information__detail">on <span>Add angular...</span></p> -->
+                         </div>
+                      </div>
+                   </li>
+                   <!-- <li class="information_list-item-content__item">
+                      <div class="work-timeline-comment-box">
+                         <div class="work-timeline-information">
+                            <p class="information_list-item-content__item-information_text">Jennie J. Commented</p>
+                            <p class="work-timeline-information__detail">on <span>Fresh desig...</span></p>
                          </div>
                       </div>
                    </li>
@@ -532,15 +541,7 @@
                             <p class="work-timeline-information__detail">on <span>Fresh desig...</span></p>
                          </div>
                       </div>
-                   </li>
-                   <li class="information_list-item-content__item">
-                      <div class="work-timeline-comment-box">
-                         <div class="work-timeline-information">
-                            <p class="information_list-item-content__item-information_text">Jennie J. Commented</p>
-                            <p class="work-timeline-information__detail">on <span>Fresh desig...</span></p>
-                         </div>
-                      </div>
-                   </li>
+                   </li> -->
                 </ul>
              </div>
           </li>
@@ -699,7 +700,38 @@
        </div>
        <div class="swiper-container slider-project" [swiper]="config">
           <div class="swiper-wrapper">
-             <div class="swiper-slide slide">
+             <div *ngFor="let project of allprojects"  class="swiper-slide slide" style="margin-left: 20px;">
+                <div class="slide-progress_bg"></div>
+                <div class="slide-box_title">
+                   <p class="slide_title">Design</p>
+                </div>
+                <div class="slide-detail">
+                   <p class="slide-detail_title">{{project.project_name}}</p>
+                   <p class="slide-detail-counter">7 <span>of </span>30</p>
+                </div>
+             </div>
+             <!-- <div  *ngIf="i%2==1" class="swiper-slide slide slide-ocean_bg">
+                <div class="slide-progress_bg"></div>
+                <div class="slide-box_title">
+                   <p class="slide_title">Frontend</p>
+                   <p class="slide_title">Backend</p>
+                </div>
+                <div class="slide-detail">
+                   <p class="slide-detail_title">Add Angular Starter-kit</p>
+                   <p class="slide-detail-counter">14 <span>of </span>18</p>
+                </div>
+             </div> -->
+             <!-- <div class="swiper-slide slide" style="background: #F5F5FB;">
+                <div class="slide-progress_bg" style="background: #E5E5EE;"></div>
+                <div class="slide-box_title">
+                   <p class="slide_title" style="color: #001431;">Design</p>
+                </div>
+                <div class="slide-detail">
+                   <p class="slide-detail_title" style="color: #001431;">Dribble, Behance, UpLabs & Pinter...</p>
+                   <p class="slide-detail-counter" style="color: #001431;">7 <span style="color: #001431; opacity: 0.38">of </span>30</p>
+                </div>
+             </div> -->
+             <!-- <div class="swiper-slide slide">
                 <div class="slide-progress_bg"></div>
                 <div class="slide-box_title">
                    <p class="slide_title">Design</p>
@@ -729,38 +761,7 @@
                    <p class="slide-detail_title" style="color: #001431;">Dribble, Behance, UpLabs & Pinter...</p>
                    <p class="slide-detail-counter" style="color: #001431;">7 <span style="color: #001431; opacity: 0.38">of </span>30</p>
                 </div>
-             </div>
-             <div class="swiper-slide slide">
-                <div class="slide-progress_bg"></div>
-                <div class="slide-box_title">
-                   <p class="slide_title">Design</p>
-                </div>
-                <div class="slide-detail">
-                   <p class="slide-detail_title">Dribble, Behance, UpLabs & Pinter...</p>
-                   <p class="slide-detail-counter">7 <span>of </span>30</p>
-                </div>
-             </div>
-             <div class="swiper-slide slide slide-ocean_bg">
-                <div class="slide-progress_bg"></div>
-                <div class="slide-box_title">
-                   <p class="slide_title">Frontend</p>
-                   <p class="slide_title">Backend</p>
-                </div>
-                <div class="slide-detail">
-                   <p class="slide-detail_title">Add Angular Starter-kit</p>
-                   <p class="slide-detail-counter">14 <span>of </span>18</p>
-                </div>
-             </div>
-             <div class="swiper-slide slide" style="background: #F5F5FB;">
-                <div class="slide-progress_bg" style="background: #E5E5EE;"></div>
-                <div class="slide-box_title">
-                   <p class="slide_title" style="color: #001431;">Design</p>
-                </div>
-                <div class="slide-detail">
-                   <p class="slide-detail_title" style="color: #001431;">Dribble, Behance, UpLabs & Pinter...</p>
-                   <p class="slide-detail-counter" style="color: #001431;">7 <span style="color: #001431; opacity: 0.38">of </span>30</p>
-                </div>
-             </div>
+             </div> -->
           </div>
        </div>
        <div class=""></div>

@@ -6,6 +6,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import {CreateTaskModule} from '../../to-do-list/create-task/create-task.module'
 import {MatMenuModule} from '@angular/material/menu';
+import {CreateMilestoneModule} from '../create-milestone/create-milestone.module'
 @NgModule({
   declarations: [ProjectOverviewComponent],
   imports: [
@@ -14,7 +15,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatSnackBarModule,
     MatDialogModule,
     CreateTaskModule,
-    MatMenuModule
+    MatMenuModule,
+    CreateMilestoneModule
   ]
 })
 export class ProjectOverviewModule { }

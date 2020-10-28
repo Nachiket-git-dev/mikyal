@@ -3,7 +3,8 @@ import { NavigationEnd, Router,ActivatedRoute } from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import Stepper from 'bs-stepper';
 import {CreateProjectComponent} from '../apps/project/create-project/create-project.component';
-import {CreateClientComponent} from '../apps/client/create-client/create-client.component'
+import {CreateClientComponent} from '../apps/client/create-client/create-client.component';
+import {LoginService} from '../apps/login/login.service'
 @Component({
   selector: 'app-custommodule',
   templateUrl: './custommodule.component.html',
@@ -13,7 +14,10 @@ export class CustommoduleComponent implements OnInit {
   isOpened=false
   isheaderactive=false;
   private stepper: Stepper;
-  constructor(private route:ActivatedRoute,private dialog:MatDialog,private elementRef:ElementRef) { }
+   first_name;
+   last_name;
+  constructor(private route:ActivatedRoute,private dialog:MatDialog,private elementRef:ElementRef,
+    private loginservice:LoginService) { }
 
   ngOnInit() {
     console.log("custom module");
@@ -22,6 +26,10 @@ export class CustommoduleComponent implements OnInit {
     //   linear: false,
     //   animation: true
     // })
+   let userdata=this.loginservice.getUserData();
+   this.first_name=userdata[0]['first_name'];
+   this.last_name=userdata[0]['last_name'];
+   console.log("userdata",userdata[0]['first_name']);
   }
   isOpen(){
     return this.isOpened;
@@ -79,4 +87,5 @@ export class CustommoduleComponent implements OnInit {
 onClick(event) {
   console.log(event);
 }
+
 }

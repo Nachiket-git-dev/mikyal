@@ -196,4 +196,25 @@ router.get('/getprojectlink',(req,res) =>{
       var dbname=req.query;
       responseHandler(req, res, projectservice.getallcoverimage(dbname));
  });
+ router.post('/createmilestone',(req,res) =>{
+
+     console.log("request query");
+     //console.log(req.query);
+      var dbname=req.query;
+      var last_index=req.query.last_index
+      var milestone=req.body;
+      //console.log(project);
+      var proj_id=req.query.proj_id;
+      responseHandler(req, res, projectservice.createmilestone(dbname,proj_id,milestone));
+ });
+ router.get('/getmilestonebyproject',(req,res) =>{
+
+     console.log("request query");
+     //console.log(req.query);
+      var dbname=req.query;
+     
+      //console.log(project);
+      var proj_id=req.query.project_id;
+      responseHandler(req, res, projectservice.getmilestonebyproject(dbname,proj_id));
+ });
  

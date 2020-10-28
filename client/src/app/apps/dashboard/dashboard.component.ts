@@ -3,6 +3,9 @@ import {siteConfig} from 'src/app/sitesettings';
 import { SwiperOptions } from 'swiper';
 import {InvoiceService} from '../invoice/invoice.service'
 import { DatePipe } from '@angular/common'
+import {ProjectService} from '../../services/project/project.service'
+import {ClientService} from '../client/client.service'
+import {LoginService} from '../login/login.service'
 import {ToDoListService} from '../to-do-list/to-do-list.service';
 import {
   ChartComponent,
@@ -54,8 +57,14 @@ export class DashboardComponent implements OnInit {
   paidinvoice:any[];
   saleseriesdata:any[]=[];
   weeksdays:any[]=[]
+  allprojects:any[]
+  allclient:any[]
+  username
+  greet='';
   
-  constructor(private todolistservice:ToDoListService,private invoiceservice:InvoiceService,public datepipe: DatePipe ) { 
+  constructor(private todolistservice:ToDoListService,private invoiceservice:InvoiceService,
+    public datepipe: DatePipe,private projectservice:ProjectService,private clinetservice:ClientService
+    ,private loginservice:LoginService ) { 
     var beforeOneWeek = new Date(new Date().getTime() - 60 * 60 * 24 * 7 * 1000)
     , day = beforeOneWeek.getDay()
     , diffToMonday = beforeOneWeek.getDate() - day + (day === 0 ? -6 : 1)
@@ -73,36 +82,47 @@ export class DashboardComponent implements OnInit {
            console.log(res['data']);
            for(day=1;day<7;day++){
             lastdates.setDate(lastdates.getDate());
-           
-            console.log(this.datepipe.transform(lastdates, 'yyyy-MM-dd'))
             let filerinvoice=res['data'].filter(c=>this.datepipe.transform(c.paiddate, 'yyyy-MM-dd')==this.datepipe.transform(lastdates, 'yyyy-MM-dd'))
             
             console.log("Day",lastdates.getDate());
             if(filerinvoice.length>0){
               let total=0
-            filerinvoice.forEach(element => {
-              console.log("element",element.paiddate)
+              filerinvoice.forEach(element => {
               total+=element.total;
               this.saleseriesdata.push(total);
               this.weeksdays.push(days[lastdates.getDay()]);
             });
             this.showprofitshart(this.saleseriesdata,this.weeksdays);
+            this.totalrevinewchart(this.saleseriesdata,this.weeksdays);
             console.log("this.saleseriesdata", this.saleseriesdata);
           }
           lastdates.setDate(lastdates.getDate()+1);
            }
            
-          res['data'].forEach(element => {
+          // res['data'].forEach(element => {
            
-            if(element.paiddate!=null){
+          //   if(element.paiddate!=null){
               
-            }
-          });
+          //   }
+          // });
          }
 
      })
+
+     this.projectservice.getproject().subscribe(res=>{
+        console.log("projects")
+        if(res['code']==200){
+          this.allprojects=res['data'];
+        }
+     })
+     this.clinetservice.getallclient().subscribe(res=>{
+      if(res['code']==200){
+        this.allclient=res['data'];
+      }
+
+     })
     //this.showprofitshart();
-    this.totalrevinewchart();
+    
 
 
 
@@ -116,6 +136,20 @@ export class DashboardComponent implements OnInit {
          console.log("alltasks",this.alltasks);
 
      })
+     let userdata= this.loginservice.getUserData();
+     this.username=userdata[0].first_name;
+     var myDate = new Date();
+   var hrs = myDate.getHours();
+
+  
+
+   if (hrs < 12)
+       this.greet = 'Good Morning';
+   else if (hrs >= 12 && hrs <= 17)
+       this.greet = 'Good Afternoon';
+   else if (hrs >= 17 && hrs <= 24)
+       this.greet = 'Good Evening';
+     
 
     
     
@@ -229,11 +263,11 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  totalrevinewchart(){
+  totalrevinewchart(seriesdata,weekdays){
     this.chartOptions2={
       series: [{
         name: "",
-        data: [1, 2, 1.5, 1.8, 1.5, 3, 3.6]
+        data: seriesdata
       }],
       chart: {
         height: 150,
@@ -264,7 +298,7 @@ export class DashboardComponent implements OnInit {
         }
       },
       xaxis: {
-        categories: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+        categories: weekdays,
        
         labels: {
           style: {

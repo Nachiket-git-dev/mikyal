@@ -1,7 +1,7 @@
-<section class="main-content-dashboard">
+<section class="main-content-dashboard" [formGroup]="form">
     <div class="content-wrapper content-wrapper__content billing pr-lg-0">
         <div class="profile-setting-area">
-            <form class="todo profile-setting heading-setting mb-35">
+            <div class="todo profile-setting heading-setting mb-35" >
                 <div class="profile-setting-header d-flex justify-content-between align-items-center">
                     <h2>Header</h2>
                     <input type="checkbox" class="item-check__checkbox item-check__checkbox-switch">
@@ -11,15 +11,15 @@
                     <label for="1" class="input-box-with-label__label">
                         Header Title
                     </label>
-                    <input type="text" id="1" class="input-bg__gray" FormControlName="header_title"  placeholder="title">
+                    <input type="text" id="1" class="input-bg__gray" formControlName="header_title"  placeholder="title">
                 </div>
                 <div class="input-box-with-label mb-20">
                     <label for="1" class="input-box-with-label__label">
                         Heading
                     </label>
-                    <input type="text" id="1" class="input-bg__gray" FormControlName="sub_header" placeholder="Heading">
+                    <input type="text" id="1" class="input-bg__gray" formControlName="sub_header" placeholder="Heading">
                 </div>
-                <div class="input-box-with-label mb-20">
+                <!-- <div class="input-box-with-label mb-20">
                     <label for="1" class="input-box-with-label__label">
                         description
                     </label>
@@ -36,8 +36,8 @@
                         </label>
                         <input id="files" name="files[]" type="file" class="file-input" />
                     </div>
-                </div>
-            </form>
+                </div> -->
+            </div>
             <!-- <form class="todo profile-setting heading-setting">
                 <div class="profile-setting-header d-flex justify-content-between align-items-center">
                     <h2>project</h2>
@@ -130,7 +130,7 @@
                 </div>
             </form> -->
 
-            <form class="todo profile-setting heading-setting">
+            <div class="todo profile-setting heading-setting">
                 <div class="profile-setting-header d-flex justify-content-between align-items-center">
                     <h2>Footer</h2>
                     <input type="checkbox" class="item-check__checkbox item-check__checkbox-switch">
@@ -138,21 +138,21 @@
                 
                 <div class="input-box-with-label mb-20">
                     <label for="1" class="input-box-with-label__label">
-                        Title
+                        Twitter
                     </label>
-                    <input type="text" id="1" class="input-bg__gray " placeholder="">
+                    <input type="text" formControlName="social_twitter" id="1" class="input-bg__gray " placeholder="">
+                </div>
+                <div class="input-box-with-label mb-20">
+                    <label for="1"  class="input-box-with-label__label">
+                        Facebook
+                    </label>
+                    <input type="text" formControlName="social_facebook" id="1" class="input-bg__gray " placeholder="">
                 </div>
                 <div class="input-box-with-label mb-20">
                     <label for="1" class="input-box-with-label__label">
-                        Heading
+                        Instagram
                     </label>
-                    <input type="text" id="1" class="input-bg__gray " placeholder="">
-                </div>
-                <div class="input-box-with-label mb-20">
-                    <label for="1" class="input-box-with-label__label">
-                        Button
-                    </label>
-                    <input type="text" id="1" class="input-bg__gray " placeholder="">
+                    <input type="text" id="1" formControlName="social_google" class="input-bg__gray " placeholder="">
                 </div>
                 <div class="file-upload mb-20">
                     <h4>Footer logo</h4>
@@ -172,7 +172,7 @@
                     </label>
                     <input type="text" id="1" class="input-bg__gray " placeholder="">
                 </div>
-            </form>
+            </div>
         </div>
     </div>
     <div class="right-sidebar right-sidebar-todo flex-between__column px-xl-15">
@@ -273,15 +273,15 @@
                 </a>
             </div>
         </div>
-        <div class="gray-btn flex-center account-unpublish-btn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="gray-btn flex-center account-unpublish-btn" (click)="save()">
+            <!-- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M14.9966 6.28711L11 7.99996V10.2838L14.9966 6.28711ZM9 12.2838V7.99996H5C3.9 7.99996 3 8.89996 3 9.99996V14C3 15.1 3.9 16 5 16H5.2838L9 12.2838ZM7.34783 21L9 19.3478V21H7.34783ZM11.9435 16.4043L21 7.34779V10.2695C21.3038 10.4449 21.5561 10.6971 21.7317 11.0009C21.9072 11.3046 21.9997 11.6492 22 12C21.9994 12.3504 21.9067 12.6946 21.7312 12.998C21.5557 13.3013 21.3035 13.5532 21 13.7285V21H19L18 19L11.9435 16.4043Z"
                     fill="#001431" />
                 <rect x="22.5195" y="1" width="2" height="29.0182" rx="1" transform="rotate(45 22.5195 1)"
                     fill="#001431" />
-            </svg>
-            <p>Unpublish</p>
+            </svg> -->
+            <p>publish</p>
         </div>
     </div>
 </section>

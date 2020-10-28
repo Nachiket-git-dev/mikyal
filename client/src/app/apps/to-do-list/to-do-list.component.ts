@@ -4,7 +4,7 @@ import { FormControl,Validators,FormGroup,FormArray } from '@angular/forms';
 import {ToDoListService} from './to-do-list.service';
 import { debounceTime } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import paginate from 'jw-paginate';
 @Component({
   selector: 'app-to-do-list',
   templateUrl: './to-do-list.component.html',
@@ -16,6 +16,12 @@ export class ToDoListComponent implements OnInit,OnChanges{
  
   searchCtrl = new FormControl();
   temptask:any;
+  @Output() changePage = new EventEmitter<any>(true);
+  @Input() initialPage = 1;
+  @Input() pageSize = 9;
+  @Input() maxPages = 100;
+  pageOfItems: Array<any>;
+  pager: any = {};
   searchStr$ = this.searchCtrl.valueChanges.pipe(
  
     debounceTime(10)
@@ -28,9 +34,8 @@ export class ToDoListComponent implements OnInit,OnChanges{
         this.tasks=res['data'];
         this.temptask=res['data'];
         console.log(this.tasks);
-        
-      
-      }
+        this.setPage(this.initialPage);
+        }
    
       })
    }
@@ -61,13 +66,11 @@ export class ToDoListComponent implements OnInit,OnChanges{
    
     this.searchCtrl.valueChanges.subscribe(res=>{
        if(!res){
-        this.tasks=this.temptask;
+        this.pageOfItems=this.temptask;
        }
-       
-      this.tasks=this.tasks.filter(item => item.task_header.search(new RegExp(res, 'i')) > -1 )
+      this.pageOfItems=this.pageOfItems.filter(item => item.task_header.search(new RegExp(res, 'i')) > -1 )
       
     })
-
   }
   clearForm() {
     this.form.reset();
@@ -79,10 +82,7 @@ export class ToDoListComponent implements OnInit,OnChanges{
   el.className='right-sidebar'
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-   console.log("changes",changes);
-
-  }
+  
 
   newtask(){
     
@@ -232,6 +232,28 @@ prioritytask(priority){
   if(priority=='done'){
     this.tasks=this.tasks.filter(c => c.isdone==1);
   }
+}
+onChangePage(pageOfItems: Array<any>) {
+  // update current page of items
+  this.pageOfItems = pageOfItems;
+}
+ngOnChanges(changes: SimpleChanges) {
+  // reset page if items array has changed
+  if (changes.clients.currentValue !== changes.clients.previousValue) {
+    this.setPage(this.initialPage);
+  }
+}
+ setPage(page: number) {
+  // get new pager object for specified page
+  console.log("page",page);
+  this.pager = paginate(this.tasks.length, page, this.pageSize, this.maxPages);
+
+  // get new page of items from items array
+  var pageOfItems = this.tasks.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  console.log("pageOfItems",pageOfItems);
+  // call change page function in parent component
+  this.onChangePage(pageOfItems);
+  this.changePage.emit(pageOfItems);
 }
 
 

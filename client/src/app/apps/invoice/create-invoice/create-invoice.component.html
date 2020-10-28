@@ -5,7 +5,7 @@
                 <div class="flex-between new-invoice-product-input">
                     <div class="input-box-with-label create-project_col2 new-invoice-product__date">
                         <h4 class="input-box-with-label__label">
-                            Date issued
+                            Date issued*
                         </h4>
                         <div class="input-box-with-label__input create-project-date__pick date-picker">
                             <input type="date" FormControlName="start_date" >
@@ -24,18 +24,18 @@
                     </div>
                     <div class="input-box-with-label create-project_col2 new-invoice-product__date">
                         <h4 class="input-box-with-label__label">
-                            Invoice#
+                            Invoice#*
                         </h4>
                         <div class="input-box-with-label__input create-project-date__pick date-picker">
                             <input type="text" id="create-project-title-input"
-                            placeholder="#000" formControlName="invoice_name">
+                            placeholder="#000" formControlName="invoice_name" required>
                         </div>
                     </div>
-                    <div class="input-box-with-label create-project_col2 new-invoice-product__date">
+                    <div class="input-box-with-label create-project_col2 new-invoice-product__date" required>
                         <h4 class="input-box-with-label__label">
-                            Due date
+                            Due date*
                         </h4>
-                    <div class="input-box-with-label__input create-project-date__pick date-picker">
+                    <div class="input-box-with-label__input create-project-date__pick date-picker" required>
                             <input  type="date"   formControlName="due_date">
                            
                             
@@ -57,10 +57,10 @@
                 </div>
                 <div class="new-invoice-product__line"></div>
                 <div>
-                    <h4 class="input-box-with-label__label">Bill To</h4>
+                    <h4 class="input-box-with-label__label">Bill To*</h4>
                     <div class="flex-between flex_wrap">
                         <div class="new-invoice-product__col2">
-                            <input type="text" class="input-box-with-label__input new-invoice-product-client__ma" [matAutocomplete]="auto" formControlName="client_select" placeholder="client name">
+                            <input type="text" class="input-box-with-label__input new-invoice-product-client__ma" [matAutocomplete]="auto" formControlName="client_select" placeholder="client name" required>
                             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="handler($event)">
                                 <mat-option *ngFor="let clients of filteredOptions " [value]="clients.client_id">
                                   {{ clients.first_name }} {{ clients.last_name }}   
@@ -116,7 +116,7 @@
             
                         <div class="new-invoice-product-item-box__col flex-start__column">
                             <label for="create-project-title-input" class="input-box-with-label__label">
-                                Item
+                                Item*
                             </label>
                             <input type="text" id="create-project-title-input" [formControl]="row.get('service_name')"
                                 class="input-box-with-label__input  new-invoice-product-client__mb"
@@ -138,13 +138,13 @@
                         </div>
                         <div class="new-invoice-product-item-box__col flex-start__column">
                             <label for="create-project-title-input" class="input-box-with-label__label">
-                                Qty
+                                Qty*
                             </label>
                             <input type="text" id="create-project-title-input" [formControl]="row.get('qty')" class="input-box-with-label__input" placeholder="#000">
                         </div>
                         <div class="new-invoice-product-item-box__col flex-start__column">
                             <h4 class="input-box-with-label__label">
-                                Price
+                                Price*
                             </h4>
                             <div class="flex-between__center input-bg__gray input-box-with-label__input">
                                 <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -280,29 +280,29 @@
                 </div>
             </div>
             <div class="right-sidebar-new-invoice__row2">
-                <div class="blue-btn new-invoice-product-client__ma">
+                <!-- <div class="blue-btn new-invoice-product-client__ma">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1.66667 0C1.22464 0 0.800716 0.175595 0.488155 0.488155C0.175595 0.800716 0 1.22464 0 1.66667V6.66667C0.000542317 7.01186 0.108254 7.34837 0.308258 7.62971C0.508262 7.91106 0.790691 8.12336 1.11654 8.2373C1.29321 8.30003 1.47919 8.33249 1.66667 8.33333C1.67263 8.33337 1.6786 8.33337 1.68457 8.33333L11.6667 10L1.68457 11.6683C1.67861 11.6677 1.67264 11.6672 1.66667 11.6667C1.47865 11.6673 1.29209 11.6998 1.11491 11.7627C0.789367 11.8769 0.50729 12.0893 0.307594 12.3707C0.107898 12.652 0.000423941 12.9883 0 13.3333V18.3333C0 18.7754 0.175595 19.1993 0.488155 19.5118C0.800716 19.8244 1.22464 20 1.66667 20C1.95684 19.9995 2.24185 19.9231 2.49349 19.7786H2.49512L19.4922 10.7682L19.4938 10.765C19.6438 10.701 19.7717 10.5944 19.8616 10.4584C19.9516 10.3224 19.9997 10.163 20 10C20.0002 9.83622 19.9522 9.676 19.8619 9.53937C19.7715 9.40274 19.643 9.29575 19.4922 9.23177L2.49512 0.221354C2.243 0.0765757 1.9574 0.000265201 1.66667 0Z" fill="white"/>
                     </svg>
                     <p>Send invoice</p>
-                </div>
-                <div class="gray-btn new-invoice-product-client__ma ">
+                </div> -->
+                <!-- <div class="gray-btn new-invoice-product-client__ma ">
                     <p>Download invoice</p>
-                </div>
+                </div> -->
                 <div class="flex-between invoice-new-right-btn">
-                    <div class="gray-btn new-invoice-product-client__ma right-sidebar-new-invoice__btn">
+                    <!-- <div class="gray-btn new-invoice-product-client__ma right-sidebar-new-invoice__btn">
                         <p>Preview</p>
-                    </div>
+                    </div> -->
                     <div (click)="saveinvoice()" class="gray-btn new-invoice-product-client__ma right-sidebar-new-invoice__btn">
                         <p>Save</p>
                     </div>
                 </div>
-                <div class="aqua-btn">
+                <!-- <div class="aqua-btn">
                     <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M7.07194 12.3407C7.07194 11.8233 6.91658 11.4132 6.60588 11.1104C6.30192 10.8013 5.78183 10.5174 5.04559 10.2587C4.30935 10 3.67443 9.74448 3.14083 9.49211C2.60723 9.23344 2.14792 8.94006 1.76292 8.61199C1.38467 8.2776 1.08747 7.88644 0.871327 7.43849C0.661938 6.99054 0.557244 6.45741 0.557244 5.83912C0.557244 4.77287 0.921986 3.89905 1.65147 3.21767C2.38095 2.53628 3.35022 2.1388 4.55927 2.02524V0.810537C4.55927 0.362889 4.92216 0 5.36981 0C5.81745 0 6.18034 0.36289 6.18034 0.810537V2.05363C7.37589 2.21136 8.31138 2.67823 8.98683 3.45426C9.46985 4.00469 9.78016 4.67288 9.91777 5.45884C10.013 6.00284 9.55228 6.45426 9 6.45426H8.07194C7.51965 6.45426 7.10371 5.99496 6.9461 5.46564C6.86167 5.1821 6.73475 4.94697 6.56535 4.76025C6.23438 4.3817 5.78858 4.19243 5.22796 4.19243C4.6741 4.19243 4.24519 4.34069 3.94124 4.63722C3.63728 4.92744 3.48531 5.33123 3.48531 5.84858C3.48531 6.32808 3.63391 6.71293 3.9311 7.00315C4.2283 7.29338 4.77879 7.58991 5.58257 7.89274C6.39311 8.19558 7.05843 8.48265 7.57852 8.75394C8.09861 9.01893 8.53766 9.32177 8.89564 9.66246C9.25363 9.99685 9.52719 10.3817 9.71631 10.817C9.90544 11.2461 10 11.7476 10 12.3218C10 13.3943 9.64201 14.265 8.92604 14.9338C8.21006 15.6025 7.22391 15.9968 5.96758 16.1167V17.1945C5.96758 17.6394 5.60696 18 5.16211 18C4.71726 18 4.35664 17.6394 4.35664 17.1945V16.1262C2.97197 15.9874 1.89801 15.53 1.13475 14.7539C0.583295 14.1837 0.232832 13.4776 0.0833638 12.6357C-0.0131838 12.092 0.447715 11.6404 1 11.6404H1.92806C2.48035 11.6404 2.89706 12.1011 3.06674 12.6267C3.16129 12.9196 3.30419 13.1681 3.49544 13.3722C3.88045 13.7697 4.43094 13.9685 5.14691 13.9685C5.7413 13.9685 6.21074 13.8233 6.55522 13.5331C6.8997 13.2366 7.07194 12.8391 7.07194 12.3407Z" fill="#CCD0E3"/>
                     </svg>
                     <p>Add payment</p>
-                </div>
+                </div> -->
             </div>
             <div class="right-sidebar-new-invoice__line"></div>
             <div class="right-sidebar-new-invoice__row2 ">

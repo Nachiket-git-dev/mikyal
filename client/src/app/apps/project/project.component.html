@@ -14,7 +14,7 @@
 <section class="main-content-projects">
     <div class="content-wrapper content-wrapper__content project-content ml-md-0">
         <div class="projects_group">
-                <div *ngFor="let project of projects; let i = index" class="sbc-single-card mb-20 ui-sortable-handle">
+                <div *ngFor="let project of pageOfItems; let i = index" class="sbc-single-card mb-20 ui-sortable-handle">
                     <div 
                         class="border-line border-progress export_btn relative"
                         (click)="openToolTipDropDown(i)"
@@ -543,17 +543,18 @@
 </section>
 <div class="table__pagination">
     <div class="pagination">
-        <div class="my-btn ">
+        <div class="my-btn " (click)="setPage(pager.currentPage - 1)">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="0.5" y="0.5" width="23" height="23" rx="3.5" fill="#F5F5FB" stroke="#E4E4F1"></rect>
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M14.5098 7.14645C14.7051 7.34171 14.7051 7.65829 14.5098 7.85355L10.2066 12.1567L14.5098 16.4599C14.7051 16.6552 14.7051 16.9718 14.5098 17.167C14.3145 17.3623 13.998 17.3623 13.8027 17.167L9.14595 12.5103C8.95069 12.315 8.95069 11.9985 9.14595 11.8032L13.8027 7.14645C13.998 6.95118 14.3145 6.95118 14.5098 7.14645Z"
-                    fill="#001431"></path>
+                <rect x="0.5" y="0.5" width="23" height="23" rx="3.5" fill="#F5F5FB" stroke="#E4E4F1"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5098 7.14645C14.7051 7.34171 14.7051 7.65829 14.5098 7.85355L10.2066 12.1567L14.5098 16.4599C14.7051 16.6552 14.7051 16.9718 14.5098 17.167C14.3145 17.3623 13.998 17.3623 13.8027 17.167L9.14595 12.5103C8.95069 12.315 8.95069 11.9985 9.14595 11.8032L13.8027 7.14645C13.998 6.95118 14.3145 6.95118 14.5098 7.14645Z" fill="#001431"/>
             </svg>
         </div>
-        <div class="pagination__btn pagination__btn_active">1</div>
-        <div class="pagination__btn">2</div>
-        <div class="pagination__btn">3</div>
+        
+        <div *ngFor="let page of pager.pages" [ngClass]="{pagination__btn_active:pager.currentPage === page}" class="pagination__btn" (click)="setPage(page)"> 
+            {{page}}
+        </div>
+        <!-- <div class="pagination__btn">2</div>
+        <div class="pagination__btn pagination__btn_active">3</div>
         <div class="pagination__btn">4</div>
         <div class="pagination__btn">5</div>
         <div class="pagination__btn">6</div>
@@ -561,13 +562,12 @@
         <div class="pagination__btn">8</div>
         <div class="pagination__btn">9</div>
         <div class="pagination__btn">10</div>
-        <div class="pagination__btn">11</div>
-        <div class="my-btn ">
+        <div class="pagination__btn">11</div> -->
+        <!-- <jw-pagination [items]="clients" [pageSize]="1" class="pagination__btn" (changePage)="onChangePage($event)"></jw-pagination> -->
+        <div class="my-btn " (click)="setPage(pager.currentPage + 1)">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="0.5" y="0.5" width="23" height="23" rx="3.5" fill="#F5F5FB" stroke="#E4E4F1"></rect>
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M9.14645 7.14645C8.95118 7.34171 8.95118 7.65829 9.14645 7.85355L13.4496 12.1567L9.14645 16.4599C8.95118 16.6552 8.95118 16.9718 9.14645 17.167C9.34171 17.3623 9.65829 17.3623 9.85355 17.167L14.5103 12.5103C14.7056 12.315 14.7056 11.9985 14.5103 11.8032L9.85355 7.14645C9.65829 6.95118 9.34171 6.95118 9.14645 7.14645Z"
-                    fill="#001431"></path>
+                <rect x="0.5" y="0.5" width="23" height="23" rx="3.5" fill="#F5F5FB" stroke="#E4E4F1"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.14645 7.14645C8.95118 7.34171 8.95118 7.65829 9.14645 7.85355L13.4496 12.1567L9.14645 16.4599C8.95118 16.6552 8.95118 16.9718 9.14645 17.167C9.34171 17.3623 9.65829 17.3623 9.85355 17.167L14.5103 12.5103C14.7056 12.315 14.7056 11.9985 14.5103 11.8032L9.85355 7.14645C9.65829 6.95118 9.34171 6.95118 9.14645 7.14645Z" fill="#001431"/>
             </svg>
         </div>
     </div>

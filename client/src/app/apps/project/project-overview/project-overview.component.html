@@ -2,8 +2,8 @@
     <div class="content-wrapper content-wrapper__content project-overview-content">
         <div class="overview">
             <div class="flex-between overview-head">
-                <div class="flex__column overview-head-main">
-                    <div class="flex-between__center overview-head-main__header">
+                <div id="PDf-section" class="flex__column overview-head-main">
+                    <div  class="flex-between__center overview-head-main__header">
                         <div class="flex">
                             <div class="flex-between__center overview-head-time item_border__6px">
                                 <p class="overview-head-detail__item">Time Remaining</p>
@@ -25,13 +25,13 @@
                                 </svg>
                             </div>
                             <div class="tooltip remaining-tootip">
-                                <div class="tooltip__item tooltip__item__icon">
+                                <div class="tooltip__item tooltip__item__icon" (click)="makepdf()">
                                     <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M10 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H14C15.1 20 16 19.1 16 18V6L10 0ZM11.923 15.698C11.682 16.266 11.201 16.509 10.64 16.347C10.159 16.185 9.597 15.779 9.036 15.131C8.475 15.212 7.913 15.374 7.352 15.536C6.71 16.671 6.069 17.644 5.427 17.887C5.266 17.968 5.106 18 4.945 18C4.624 18 4.384 17.887 4.223 17.644C4.063 17.401 3.742 16.914 4.383 16.185C4.784 15.698 5.746 15.212 6.789 14.888C7.11 14.239 7.35 13.591 7.591 12.861C7.03 11.807 6.709 10.672 6.789 10.023C6.87 9.373 7.282 9 7.832 9C8.382 9 8.714 9.373 8.875 9.941C9.035 10.59 8.875 11.644 8.474 12.86C8.715 13.347 9.035 13.833 9.356 14.319C10.318 14.238 11.12 14.238 11.602 14.562C12.003 14.806 12.083 15.211 11.923 15.698ZM9 7V1.5L14.5 7H9Z" fill="white"/>
                                     </svg>
                                     Export as PDF
                                 </div>
-                                <div class="tooltip__item tooltip__item__icon">
+                                <!-- <div class="tooltip__item tooltip__item__icon">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM9 6C9 5.44772 9.44771 5 10 5C10.5523 5 11 5.44772 11 6V9H14C14.5523 9 15 9.44771 15 10C15 10.5523 14.5523 11 14 11H11V14C11 14.5523 10.5523 15 10 15C9.44771 15 9 14.5523 9 14V11H6C5.44772 11 5 10.5523 5 10C5 9.44771 5.44772 9 6 9H9V6Z" fill="white"/>
                                     </svg>
@@ -42,8 +42,8 @@
                                         <path d="M5.09091 0C4.28727 0 3.63636 0.6802 3.63636 1.52V13.68C3.63636 14.5198 4.28727 15.2 5.09091 15.2H14.5455C15.3491 15.2 16 14.5198 16 13.68V4.94C16 4.7386 15.9237 4.54554 15.7869 4.40266L11.7869 0.222656C11.6502 0.0797762 11.4655 0 11.2727 0H5.09091ZM10.9091 1.44727L14.6151 5.32H11.6364C11.2349 5.32 10.9091 4.97952 10.9091 4.56V1.44727ZM1.45455 3.8C0.650909 3.8 0 4.4802 0 5.32V17.48C0 18.3198 0.650909 19 1.45455 19H10.9091C11.7127 19 12.3636 18.3198 12.3636 17.48V16.72H5.09091C3.48655 16.72 2.18182 15.3566 2.18182 13.68V3.8H1.45455Z" fill="white"/>
                                     </svg>
                                     Add Portal
-                                </div>
-                                <div class="tooltip__item tooltip__item__icon project-link-btn">
+                                </div> -->
+                                <!-- <div class="tooltip__item tooltip__item__icon project-link-btn">
                                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
                                         y="0px" viewBox="0 0 477.867 477.867" style="enable-background:new 0 0 477.867 477.867;" xml:space="preserve">
                                         <g>
@@ -111,13 +111,13 @@
                                         </g>
                                     </svg>
                                     Project Settings
-                                </div>
-                                <div class="tooltip__item tooltip__item__icon">
+                                </div> -->
+                                <!-- <div class="tooltip__item tooltip__item__icon">
                                     <svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7.07194 13.7119C7.07194 13.137 6.91658 12.6814 6.60588 12.3449C6.30192 12.0014 5.78183 11.6859 5.04559 11.3985C4.30935 11.1111 3.67443 10.8272 3.14083 10.5468C2.60723 10.2594 2.14792 9.9334 1.76292 9.56887C1.38467 9.19734 1.08747 8.76271 0.871327 8.26498C0.661938 7.76726 0.557244 7.1749 0.557244 6.48791C0.557244 5.30319 0.921986 4.33228 1.65147 3.57518C2.38095 2.81809 3.35022 2.37645 4.55927 2.25026V0.810537C4.55927 0.36289 4.92216 0 5.36981 0C5.81745 0 6.18034 0.36289 6.18034 0.810537V2.28181C7.37589 2.45706 8.31138 2.97581 8.98683 3.83807C9.4898 4.47492 9.80551 5.25366 9.93394 6.17429C10.0102 6.72127 9.55228 7.1714 9 7.1714H8.07194C7.51965 7.1714 7.09603 6.71664 6.97231 6.17839C6.88896 5.81576 6.75331 5.51935 6.56535 5.28917C6.23438 4.86856 5.78858 4.65825 5.22796 4.65825C4.6741 4.65825 4.24519 4.82299 3.94124 5.15247C3.63728 5.47494 3.48531 5.92359 3.48531 6.49842C3.48531 7.0312 3.63391 7.45882 3.9311 7.78128C4.2283 8.10375 4.77879 8.43323 5.58257 8.76972C6.39311 9.1062 7.05843 9.42517 7.57852 9.7266C8.09861 10.021 8.53766 10.3575 8.89564 10.7361C9.25363 11.1076 9.52719 11.5352 9.71631 12.0189C9.90544 12.4956 10 13.0529 10 13.6909C10 14.8826 9.64201 15.85 8.92604 16.5931C8.21006 17.3361 7.22391 17.7743 5.96758 17.9075V19.1945C5.96758 19.6394 5.60696 20 5.16211 20C4.71726 20 4.35664 19.6394 4.35664 19.1945V17.918C2.97197 17.7638 1.89801 17.2555 1.13475 16.3933C0.562027 15.7352 0.206098 14.9144 0.0669668 13.9308C-0.010389 13.384 0.447715 12.9338 1 12.9338H1.92806C2.48035 12.9338 2.9039 13.3895 3.03847 13.9252C3.13172 14.2963 3.28404 14.6073 3.49544 14.858C3.88045 15.2997 4.43094 15.5205 5.14691 15.5205C5.7413 15.5205 6.21074 15.3593 6.55522 15.0368C6.8997 14.7073 7.07194 14.2657 7.07194 13.7119Z" fill="white"/>
                                     </svg>
                                     Add Invoice
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -164,7 +164,7 @@
                                     <path d="M13.8637 7.67158L9.6211 3.42894L0.721603 12.3284C0.534067 12.516 0.428711 12.7703 0.428711 13.0355L0.428711 15.864C0.42871 16.4163 0.876427 16.864 1.42871 16.864H4.25714C4.52235 16.864 4.77671 16.7586 4.96424 16.5711L13.8637 7.67158Z" fill="#CCD0E3"/>
                                 </svg>
                             </div>
-                            <div class="icons-box__blue__circle add-milestone-btn">
+                            <div class="icons-box__blue__circle add-milestone-btn" (click)="createmilestone()">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM9 6C9 5.44772 9.44771 5 10 5C10.5523 5 11 5.44772 11 6V9H14C14.5523 9 15 9.44771 15 10C15 10.5523 14.5523 11 14 11H11V14C11 14.5523 10.5523 15 10 15C9.44771 15 9 14.5523 9 14V11H6C5.44772 11 5 10.5523 5 10C5 9.44771 5.44772 9 6 9H9V6Z" fill="#546AE4"></path>
                                 </svg>
@@ -173,14 +173,14 @@
                     </div>
                     <ul class="scroll_style__gray overview-head-milestone-content">
                         
-                        <li class="flex-between__center  overview-head-milestone-content__item custom-check-file active">
+                        <li *ngFor="let milestone of projectmilestone" class="flex-between__center  overview-head-milestone-content__item custom-check-file active">
                             <label class="item-check-circle_checkbox">
                                 <input type="checkbox" checked="checked" class="item-check-circle_checkbox__input">
                                 <span class="item-check-circle_checkbox__checkmark"></span>
                             </label>
-                            <p>Antorher one where we all should work</p>
+                            <p>{{milestone.milestone}}</p>
                         </li>
-                        <li class="flex-between__center  overview-head-milestone-content__item custom-check-file">
+                        <!-- <li class="flex-between__center  overview-head-milestone-content__item custom-check-file">
                             <label class="item-check-circle_checkbox">
                                 <input type="checkbox" class="item-check-circle_checkbox__input">
                                 <span class="item-check-circle_checkbox__checkmark"></span>
@@ -203,7 +203,7 @@
                             </label>
                             <p>Antorher one where we all should work</p>
                            
-                        </li>
+                        </li> -->
                         
                     </ul>
                 </div>

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output,Input,EventEmitter,SimpleChanges } from '@angular/core';
 import { ProjectService } from '../../services/project/project.service';
 import {InvoiceService} from '../invoice/invoice.service'
+import paginate from 'jw-paginate';
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
@@ -12,7 +13,12 @@ export class ProjectComponent implements OnInit {
   public isExportDropDown: boolean = false;
   public dropDownFlag: DropDownFlags[] = [];
   public projects: any = [];
-
+  @Output() changePage = new EventEmitter<any>(true);
+  @Input() initialPage = 1;
+  @Input() pageSize = 9;
+  @Input() maxPages = 100;
+  pageOfItems: Array<any>;
+  pager: any = {};
   constructor(private _projectService: ProjectService,private invoiceservice:InvoiceService) { }
   ngOnInit() {
     this.getAllProjects();
@@ -28,6 +34,7 @@ export class ProjectComponent implements OnInit {
       }
       console.log(this.projects);
       console.log(this.dropDownFlag);
+      this.setPage(this.initialPage);
     });
   }
 
@@ -66,6 +73,29 @@ export class ProjectComponent implements OnInit {
         this.getAllProjects();
       });
   }
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    // reset page if items array has changed
+    if (changes.clients.currentValue !== changes.clients.previousValue) {
+      this.setPage(this.initialPage);
+    }
+  }
+   setPage(page: number) {
+    // get new pager object for specified page
+    console.log("page",page);
+    this.pager = paginate(this.projects.length, page, this.pageSize, this.maxPages);
+  
+    // get new page of items from items array
+    var pageOfItems = this.projects.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    console.log("pageOfItems",pageOfItems);
+    // call change page function in parent component
+    this.onChangePage(pageOfItems);
+    this.changePage.emit(pageOfItems);
+  }
+  
 
 
 }

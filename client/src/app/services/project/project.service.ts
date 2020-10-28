@@ -148,6 +148,23 @@ export class ProjectService {
     let res = this._http.get(url,{ params: params });
     return res;
   }
+  
+  createmilestone(milestone){
+    let database=localStorage.getItem('Database_Name');
+    let params = new HttpParams().set('database', database)
+    const url = `${siteConfig.nodeAPIBaseUrl}/createmilestone`;
+    let res = this._http.post(url,milestone,{ params: params });
+    return res;
+  }
+  getmilestonebyproject(projid){
+   
+    let database_name = localStorage.getItem('Database_Name');
+    let params = new HttpParams().set('database', database_name).set('project_id',projid);
+    const url = `${siteConfig.nodeAPIBaseUrl}/getmilestonebyproject`;
+    let res = this._http.get(url,{ params: params });
+    return res;
+
+  }
 }
 
 

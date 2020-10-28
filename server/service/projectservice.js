@@ -363,6 +363,44 @@ Service.prototype.getallcoverimage=function(dbname){
 
 }
 
+Service.prototype.createmilestone=function(dbname,proj_id,milestone){
+    return new Promise(async(resolve,reject)=>{
+        let custres;
+        let db=dbname.database;
+        
+       
+        let milestonedata={project_id:milestone.project_id,stage:milestone.stage,milestone:milestone.milestone};
+         custres=await projectmodel.createmilestone(db,milestonedata);
+    
+        if(custres.affectedRows>0  ){  
+            resolve(responseHelper.generateResponse("Success", custres));      
+        }else{
+            resolve(responseHelper.generateError("error",custres));
+        }
+        
+
+    })
+
+}
+
+Service.prototype.getmilestonebyproject=function(dbname,proj_id){
+    return new Promise(async(resolve,reject)=>{
+        let db=dbname.database;
+        if(db){
+            let custres=await projectmodel.getmilestonebyproject(db,proj_id);
+        if(custres.length>0  ){  
+            resolve(responseHelper.generateResponse("Success", custres));      
+        }else{
+            resolve(responseHelper.generateError("error",custres));
+        }
+    }else{
+        resolve(responseHelper.generateError("error","username not define"));
+    }
+    })
+    
+
+}
+
 
 module.exports = {
     getInst: function () {

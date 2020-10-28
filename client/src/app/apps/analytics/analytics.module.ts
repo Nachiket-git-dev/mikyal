@@ -11,6 +11,7 @@ import * as PlotlyJS from 'plotly.js/dist/plotly.js';
 import { PlotlyModule } from 'angular-plotly.js';
 import {MatDialogModule} from '@angular/material/dialog';
 import {SetGoalsModule} from './create-sales-goals/set-goals.module'
+import { DatePipe } from '@angular/common'
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
@@ -34,7 +35,7 @@ PlotlyModule.plotlyjs = PlotlyJS
     MatDialogModule
   ],
   
-  providers: [
+  providers: [DatePipe,
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG

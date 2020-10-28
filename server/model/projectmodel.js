@@ -472,5 +472,46 @@ module.exports.getallcoverimage = function (database) {
 
       }
    });
+   
+  
+
+}
+module.exports.createmilestone = function (database,milestone) {
+   return new Promise(async (resolve, reject) => {
+      try {
+          
+          var sql = "insert into " + database + ".project_milestone SET ?"
+         let query = mysqlLib.query(sql,milestone,(err, results) => {
+            if (err) {
+               reject(err);
+            } else
+               resolve(results);
+         });
+
+      } catch (err) {
+         resolve(responseHelper.generateError("Somthing went wrong", err));
+
+      }
+   });
+
+}
+
+module.exports.getmilestonebyproject = function (database,project_id) {
+   return new Promise(async (resolve, reject) => {
+      try {
+        
+         var sql = "select * from "+database+".project_milestone where project_id= ?";
+         let query = mysqlLib.query(sql,project_id ,(err, results) => {
+            if (err) {
+               resolve(err);
+            } else
+               resolve(results);
+         });
+
+      } catch (err) {
+         resolve(responseHelper.generateError("Somthing went wrong", err));
+
+      }
+   });
 
 }

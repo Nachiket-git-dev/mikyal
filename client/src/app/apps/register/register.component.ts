@@ -33,6 +33,9 @@ export class RegisterComponent implements OnInit {
   
   send() {
     if (this.form.invalid) {
+      this.snackBar.open('All fields are mandetory and must be valid ', 'OK', {
+        duration: 10000
+      });
       return;
   }
     this.showloader=true;
