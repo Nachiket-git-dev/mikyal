@@ -22,6 +22,7 @@ export class ScrumBoardComponent implements OnInit {
   scrumboardUsers = scrumboardUsers;
   allcards:any;
   alllist:any;
+  showlist=false
   trackById = trackById;
   constructor(private dialog:MatDialog,private route: ActivatedRoute,private scrumservice:ScrumBoardService) { }
   
@@ -30,6 +31,10 @@ export class ScrumBoardComponent implements OnInit {
     map(scrumboardId => this.getalllists())
   );
   ngOnInit() {
+    this.getcardslist();
+  }
+
+  getcardslist(){
     this.scrumservice.getlists().subscribe(res =>{
       console.log("reslist",res);
       if(res['code']==200){
@@ -46,23 +51,31 @@ export class ScrumBoardComponent implements OnInit {
       }
 
     })
+
   }
    async getalllists(){
     return new Promise(async (resolve, reject) => {
-    console.log("get all list");
+    ;
     this.scrumservice.getlists().subscribe(res =>{
       console.log("reslist",res);
       if(res['code']==200){
+        
        this.alllist=res['data'];
+       this.showlist=true;
        resolve(res['data']);
       }
     })
   }) 
 
   }
-  createcard(listid){
+  async createcard(listid){
     const dialogRef = this.dialog.open(AddCardComponent,{
       data:listid
+    });
+    dialogRef.afterClosed().subscribe( async result => {
+      console.log('Dialog close',result );
+     await this.getalllists();
+      this.getcardslist();
     });
   }
    sbc_card_Show() {
@@ -110,11 +123,14 @@ dropList(event: CdkDragDrop<any[]>) {
 }
 
 getConnectedList(board) {
- 
+ if(board){
   return board.map(x => `${x.id}`);
+ }
 }
 getchildlist(board){
+if(this.allcards){  
 return this.allcards.filter(card=>card.scrum_id ==board.id);
+}
 //return  board.children;
 }
  
@@ -128,7 +144,12 @@ return this.allcards.filter(card=>card.scrum_id ==board.id);
 //add board popup
  add_board_Show() {
   const dialogRef = this.dialog.open(CreateListComponent);
-}
+  dialogRef.afterClosed().subscribe(result => {
+    console.log("close");
+    this.getalllists();
+     this.getcardslist();
+})
+ }
 
 
  

@@ -59,6 +59,7 @@ export class AnalyticsComponent implements OnInit {
   public chartOptions2: Partial<ChartOptions>;
   saleseriesdata:any[]=[];
   weeksdays:any[]=[]
+  showchart=false;
   public config: SwiperOptions = {
     a11y: { enabled: true },
     direction: 'horizontal',
@@ -95,6 +96,7 @@ export class AnalyticsComponent implements OnInit {
      this.invoiceservice.getinvoicebydaterange(lastmondy,lastsuday).subscribe(res=>{
        console.log("date_inv=>",res);
          if(res['code']==200){
+           this.showchart=true;
            let day=1;
            let lastdates= new Date(lastmondy);
            console.log(res['data']);
@@ -206,7 +208,7 @@ showgoalchart(achive,totalgoal){
           color: "#D7DAE5"
         },
         showarrow: !1,
-        text: "<span>$ 24.546</span><br>62,2%",
+        text: "<span>$" +totalgoal+"</span><br>62,2%",
         x: .5,
         y: .5
       }],

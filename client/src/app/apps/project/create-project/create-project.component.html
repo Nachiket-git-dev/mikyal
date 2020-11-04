@@ -210,7 +210,7 @@
      <div class="addprojectstep1">
          <div id="ModalWindow" class=" Modal Modal__active">
              <div class="Modal_Body scroll_style__gray">
-                <div class="flex-between__center Modal_Body_content">
+                <div class="flex-between__center Modal_Body_content" (click)="dialogRef.close(true)">
                     <p>Add project</p>
                     <a class="ModalWindowClosestep1 pointer">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -357,7 +357,7 @@
                     </div>
                     <div class="create-project__line"> </div>
                     <div class="create-project_col2 create-project__content">
-                        <div class="flex-between__columns create-project-milestones">
+                        <!-- <div class="flex-between__columns create-project-milestones">
                             <h4 class="input-box-with-label__label">
                                 Milestones
                             </h4>
@@ -410,10 +410,10 @@
                                         </svg>
             
                                     </div>
-                                </li> -->
+                                </li> 
             
                             </ul>
-                            <div class="flex-between__center ">
+                            <!-- <div class="flex-between__center ">
                                 <input type="text" class="input-box-with-label__input create-project-milestones__input" placeholder="New checklist item">
                                 <div class="icons-box_square-gray__small" (click)="onAddRow()">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -421,7 +421,7 @@
                                     </svg>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="create-project-price input-box-with-label">
                             <h4 class="input-box-with-label__label">
                                 Price
@@ -436,7 +436,16 @@
                             </div>
                         </div>
                     </div>
+                  
                 </div>
+                <button class="blue-btn" cdkStepperNext>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" fill="white"/>
+                        <path d="M10 8L14 12L10 16" stroke="#546AE4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg> 
+                    Next
+                </button>
             </cdk-step>
             <cdk-step>
                 <ng-template cdkStepLabel>
@@ -567,7 +576,7 @@
                           <label for="create-project-title-input" class="input-box-with-label__label">
                               Address line 2
                           </label>
-                          <input type="text" id="create-project-title-input" class="input-box-with-label__input" placeholder="Address line 2">
+                          <input type="text" id="create-project-title-input" formControlName="address2" class="input-box-with-label__input" placeholder="Address line 2">
                       </div>
                   </div>
                   <div class="flex-between Modal_Body_content modal-input-area">
@@ -575,7 +584,7 @@
                           <label for="create-project-title-input"  class="input-box-with-label__label">
                               Postcode
                           </label>
-                          <input type="text" id="create-project-title-input" formControlName="address2" class="input-box-with-label__input" placeholder="English">
+                          <input type="text" id="create-project-title-input" formControlName="postcode"  class="input-box-with-label__input" placeholder="English">
                       </div>
                       <div class="input-box-with-label Modal_Body_content__col2">
                           <label for="create-project-title-input"  class="input-box-with-label__label">

@@ -1,11 +1,18 @@
-import { Component, OnInit ,Input} from '@angular/core';
+import { Component,ViewChild, OnInit ,Input} from '@angular/core';
 import {FormBuilder, FormGroup, Validators,AbstractControl,FormArray} from '@angular/forms';
 import {DomSanitizer} from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 import {ClientService} from '../../client/client.service'
+import { MAT_DIALOG_DATA, MatDialogRef,MatDialog } from '@angular/material/dialog';
 import { ProjectService } from '../../../services/project/project.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import Stepper from 'bs-stepper';
+import { Subscription } from 'rxjs';
+import {
+  MatAutocompleteSelectedEvent,
+  MatAutocompleteTrigger,
+  VERSION,
+} from '@angular/material'
 @Component({
   selector: 'app-create-project',
   templateUrl: './create-project.component.html',
@@ -20,8 +27,11 @@ export class CreateProjectComponent   implements OnInit {
   isEditable = true;
   clientlist:any;
   filteredOptions;
+  subscription: Subscription;
   frmValues: object = {};
-  constructor(private fb: FormBuilder,private clientservice:ClientService,private projectservice:ProjectService,private snackbar:MatSnackBar ) { 
+  @ViewChild(MatAutocompleteTrigger,{static:false}) trigger: MatAutocompleteTrigger;
+  constructor(private fb: FormBuilder,private clientservice:ClientService,
+    private projectservice:ProjectService,private snackbar:MatSnackBar,public dialogRef: MatDialogRef<CreateProjectComponent>  ) { 
     this.rows = this.fb.array([]);
     }
     frmStepper: FormGroup;
@@ -41,7 +51,7 @@ export class CreateProjectComponent   implements OnInit {
       project_expenses:null,
       client_select:[],
       client_id:null,
-      client_email:['', Validators.required],
+      client_email:[''],
       company_site:null,
       client_phone:['', Validators.required],
       address1:null,
@@ -54,34 +64,35 @@ export class CreateProjectComponent   implements OnInit {
     });
   ngOnInit() {
     this.form.addControl('rows', this.rows);
-    this.frmStepper = this.fb.group({
-      steps: this.fb.array([
-        this.fb.group({
-          firstName: ['First Name', Validators.compose([Validators.required])],
-          lastName: ['Last Name', Validators.compose([Validators.required])],
-          phone: [null], // optional
-          email: [
-            'johndoe@example.com',
-            Validators.compose([Validators.required, Validators.email]),
-          ],
-        }),
-        this.fb.group({
-          addressOne: [null, Validators.compose([Validators.required])],
-          addressTwo: [null], // optional
-          city: [null, Validators.compose([Validators.required])],
-          county: [null, Validators.compose([Validators.required])],
-          country: [null, Validators.compose([Validators.required])],
-        }),
-        this.fb.group({
-          creditCardNo: [
-            '4111 1111 1111 1111',
-            Validators.compose([Validators.required]),
-          ],
-          expiryDate: ['', Validators.compose([Validators.required])],
-          cvvCode: ['', Validators.compose([Validators.required])],
-        }),
-      ]),
-    });
+    // this.frmStepper = this.fb.group({
+    //   steps: this.fb.array([
+    //     this.fb.group({
+    //       project_name: ['', Validators.required],
+    //       description: ['', Validators.required],
+    //     start_date: ['', Validators.required],
+    //     end_date: ['', Validators.required],
+    //     budget: ['', Validators.required],
+    //     client_phone:[''],
+    //     client_select:[],
+    //   client_id:null,
+    //   client_email:[''],
+    //     }),
+    //     this.fb.group({
+    //       addressOne: [null, Validators.compose([Validators.required])],
+    //       addressTwo: [null], // optional
+    //       city: [null, Validators.compose([Validators.required])],
+    //       county: [null, Validators.compose([Validators.required])],
+    //       country: [null, Validators.compose([Validators.required])],
+    //     }),
+    //     this.fb.group({
+    //       address1:null,
+    //       address2:null,
+    //       city:null,
+    //       state:null,
+    //     postcode:null
+    //     }),
+    //   ]),
+    // });
     this.clientservice.getallclient().subscribe(res=>{
       this.clientlist=res['data'];
       console.log("clientlist",this.clientlist);
@@ -96,6 +107,7 @@ export class CreateProjectComponent   implements OnInit {
    
   }
   next() {
+    console.log("next step")
     this.stepper.next();
   }
   submit() {
@@ -144,6 +156,27 @@ createItemFormGroup(): FormGroup {
     milestone: null,
     
   });
+}
+ngAfterViewInit() {
+  this._subscribeToClosingActions();
+}
+
+private _subscribeToClosingActions(): void {
+  if (this.subscription && !this.subscription.closed) {
+    this.subscription.unsubscribe();
+  }
+
+  this.subscription = this.trigger.panelClosingActions
+    .subscribe(e => {
+      if (!e || !e.source) {
+        this.form.patchValue({
+          client_select:null,
+          project_select:null
+        })
+      }
+    },
+    err => this._subscribeToClosingActions(),
+    () => this._subscribeToClosingActions());
 }
 
 }

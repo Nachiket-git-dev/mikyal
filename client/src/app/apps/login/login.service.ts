@@ -28,6 +28,8 @@ export class LoginService {
       return null;
     }
   }
+
+  
 }
 export interface User {
   user_id:Number,

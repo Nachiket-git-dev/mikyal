@@ -59,6 +59,7 @@
                     <div class="myaccount_input_content_form input-box-with-label">
                         <label for="fname" class="input-box-with-label__label">Phone number</label>
                         <input type="text" formControlName="phone" class="input-box-with-label__input" name="fname" placeholder="(203) 555-0106">
+                        <div *ngIf="f.phone.errors">Number must be Valid Phone Number</div>
                     </div>
                 </div>
                 <div class="myaccount_input_content">

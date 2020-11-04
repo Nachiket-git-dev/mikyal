@@ -6,6 +6,7 @@ function Service() {
 
 Service.prototype.createcard=function(dbname,carddata){
     return new Promise(async(resolve,reject)=>{
+        console.log("carddata",carddata);
        let carddatains={scrum_id:carddata.scrum_id,title:carddata.title,
         start_date:carddata.start_date,description:carddata.description};
         let db=dbname.database;

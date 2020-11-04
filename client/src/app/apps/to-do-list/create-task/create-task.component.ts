@@ -37,8 +37,10 @@ export class CreateTaskComponent implements OnInit {
           duration: 10000,
           panelClass: ['blue-snackbar']
         });
+        location.reload();
         this.dialogRef.close(true);
         document.querySelector(".new-task-js").classList.remove("active");
+       
       }
     },err=>{
       console.log(err);

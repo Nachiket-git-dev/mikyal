@@ -4,7 +4,9 @@ import {MatDialog} from '@angular/material/dialog';
 import Stepper from 'bs-stepper';
 import {CreateProjectComponent} from '../apps/project/create-project/create-project.component';
 import {CreateClientComponent} from '../apps/client/create-client/create-client.component';
-import {LoginService} from '../apps/login/login.service'
+import {LoginService} from '../apps/login/login.service';
+import {MyaccountService } from '../apps/MyAccount/myaccount.service'
+
 @Component({
   selector: 'app-custommodule',
   templateUrl: './custommodule.component.html',
@@ -16,8 +18,9 @@ export class CustommoduleComponent implements OnInit {
   private stepper: Stepper;
    first_name;
    last_name;
+   userimage
   constructor(private route:ActivatedRoute,private dialog:MatDialog,private elementRef:ElementRef,
-    private loginservice:LoginService) { }
+    private loginservice:LoginService,private router: Router,private myaccount:MyaccountService) { }
 
   ngOnInit() {
     console.log("custom module");
@@ -27,9 +30,19 @@ export class CustommoduleComponent implements OnInit {
     //   animation: true
     // })
    let userdata=this.loginservice.getUserData();
+   
    this.first_name=userdata[0]['first_name'];
    this.last_name=userdata[0]['last_name'];
    console.log("userdata",userdata[0]['first_name']);
+   this.myaccount.getuserimage(userdata[0]['user_id']).subscribe(resimg=>{
+     console.log("resimg",resimg);
+      if(resimg['code']==200){
+        if(resimg['data'][0].image_blob){ 
+          this.userimage=window.atob(resimg['data'][0].image_blob);
+          console.log("userimage",this.userimage);
+          }
+      }
+   })
   }
   isOpen(){
     return this.isOpened;
@@ -86,6 +99,14 @@ export class CustommoduleComponent implements OnInit {
 }
 onClick(event) {
   console.log(event);
+}
+logout(){
+
+  localStorage.removeItem('userToken');
+  localStorage.removeItem('userData');
+  localStorage.removeItem('tour');
+  this.router.navigate(['/login']);  
+
 }
 
 }

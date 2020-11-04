@@ -9,7 +9,7 @@ import {CreateSalesGoalService} from './create-sales-goal.service'
 })
 export class CreateSalesGoalsComponent implements OnInit {
   goalsform: FormGroup;
-  constructor(@Inject(MAT_DIALOG_DATA) public defaults: any,private fb: FormBuilder,private salesgoalservice:CreateSalesGoalService ) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public defaults: any,private fb: FormBuilder,private salesgoalservice:CreateSalesGoalService,public dialogRef: MatDialogRef<CreateSalesGoalsComponent> ) { }
 
   ngOnInit() {
     this.goalsform = this.fb.group({
@@ -31,6 +31,7 @@ export class CreateSalesGoalsComponent implements OnInit {
     if(this.goalsform.valid){
     this.salesgoalservice.set_goal(this.goalsform.value).subscribe(res=>{
       console.log("setgoals=>",res);
+      location.reload();
      })
     }
   }

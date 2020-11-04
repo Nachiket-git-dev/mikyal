@@ -1,7 +1,7 @@
 <section class="main-content-dashboard">
     <div class="content-wrapper content-wrapper__content pr-lg-0">
         <ul class="information">
-            <li class="information_list information_list-charts">
+            <li *ngIf="showchart" class="information_list information_list-charts">
                 <div class="information_list-item chart-box dashboard-line-chart__padding">
                     <div class="chart-header">
                         <div class="chart-header-box profit">
@@ -76,7 +76,7 @@
                     </div>
                 </div>
             </li>
-            <li class="information_list information_list-charts">
+            <li *ngIf="showchart" class="information_list information_list-charts">
                 <div class="information_list-item chart-box dashboard-line-chart__padding">
                     <div class="chart-header">
                         <div class="chart-header-box profit">
@@ -218,7 +218,7 @@
             <p class="projects-title projects-title_active pointer">Сurrent projects</p>
             <p class="projects-title pointer">All projects</p>
         </div>
-        <div class="swiper-container slider-project" [swiper]="config" >
+        <!-- <div class="swiper-container slider-project" [swiper]="config" >
             <div class="swiper-wrapper" >
                 <div class="swiper-slide slide" >
                     <div class="slide-progress_bg"></div>
@@ -314,7 +314,7 @@
                 </div>
 
             </div>
-        </div>
+        </div> -->
         <div class="">
 
 

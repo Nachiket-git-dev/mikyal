@@ -312,18 +312,45 @@ module.exports.changepassword= function(user_id,userdetails,newpassword){
    });
 
 }
+// module.exports.getuserimage = function ( user_id) {
+//    return new Promise(async (resolve, reject) => {
+//       try {
+//          console.log("user_id",user_id);
+//          var sql = "select image_blob from phase3_all_user.user_auth WHERE user_id= ?"
+//          let query = mysqlLib.query(sql, user_id, (err, results) => {
+//             if (err) {
+//                reject(err);
+//             } else
+//             console.log(results[0]);
+//              if(results[0].image_blob){
+//             var buffer = new Buffer.form(results[0].image_blob,'binary');
+//             var bufferBase64 = buffer.toString('base64');
+//             console.log(bufferBase64);
+//             results[0].image_blob=bufferBase64;
+//              }
+//                resolve(results);
+//          });
+//       } catch (err) {
+//          resolve(responseHelper.generateError("Somthing went wrong", err));
+
+//       }
+//    });
+
+// }
 module.exports.getuserimage = function ( user_id) {
    return new Promise(async (resolve, reject) => {
       try {
-        
-         var sql = "select image_blob from phase3_all_user.user_auth WHERE user_id= ?"
+         console.log("user_id",user_id);
+         var sql = "select image_blob from phase3_all_user.user_details WHERE user_id= ?"
          let query = mysqlLib.query(sql, user_id, (err, results) => {
             if (err) {
                reject(err);
             } else
+            
              if(results[0].image_blob){
             var buffer = new Buffer(results[0].image_blob,'binary');
             var bufferBase64 = buffer.toString('base64');
+           
             results[0].image_blob=bufferBase64;
              }
                resolve(results);

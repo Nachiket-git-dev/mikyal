@@ -34,4 +34,13 @@ export class MyaccountService {
     console.log("in service=> ",res);
     return res;
   }
+  getuserimage(user_id){
+    let body;
+   
+   let params = new HttpParams().set('user_id',user_id);
+    const url = `${siteConfig.nodeAPIBaseUrl}/getuserimage`;
+    let res = this._http.get(url,{ params: params });
+    console.log("in service=> ",res);
+    return res;
+  }
 }

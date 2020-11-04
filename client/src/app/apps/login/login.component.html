@@ -22,12 +22,15 @@
                                 <div class="form-group">
                                     <label>Password</label>
                                     <div class="input-wrapper">
-                                        <input type="password" formControlName="password" class="form-control custom-control" placeholder="......">
-                                        <i class="icofont-eye-alt"></i>
+                                        <input [type]="inputType" formControlName="password" class="form-control custom-control" placeholder="......">
+                                        <i (click)="toggleVisibility()" class="icofont-eye-alt"></i>
                                     </div>
                                 </div>
                                 <div class="forget-option">
                                     <a href="">Forgot password?</a>
+                                </div>
+                                <div  class="forget-option">
+                                    <a [routerLink]="['/register']">Create Account</a>
                                 </div>
                             </form>
                             <button type="submit" (click)="login()" class="mikyal-btn btn_primary">Sign Up</button>

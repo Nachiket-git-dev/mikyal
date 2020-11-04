@@ -830,7 +830,7 @@
                             </svg>
                             <p>Inbox</p>
                         </div>
-                        <div class="right-sidebar-todo__count">28</div>
+                        <div class="right-sidebar-todo__count">{{indexcount}}</div>
                     </li>
                     <li class="flex-between menu_item-right-sidebar" (click)="prioritytask('done')">
                         <div class="menu_item-right-sidebar__text flex-between__center">
@@ -841,7 +841,7 @@
                             </svg>
                             <p>Done</p>
                         </div>
-                        <div class="right-sidebar-todo__count">4</div>
+                        <div class="right-sidebar-todo__count">{{donecount}}</div>
                     </li>
                     <li class="flex-between menu_item-right-sidebar">
                         <div class="menu_item-right-sidebar__text flex-between__center" (click)="prioritytask('Important')">
@@ -852,9 +852,9 @@
                             </svg>
                             <p>Important</p>
                         </div>
-                        <div class="right-sidebar-todo__count">12</div>
+                        <div class="right-sidebar-todo__count">{{imporortantcount}}</div>
                     </li>
-                    <li class="flex-between menu_item-right-sidebar">
+                    <!-- <li class="flex-between menu_item-right-sidebar">
                         <div class="menu_item-right-sidebar__text flex-between__center">
                             <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -867,7 +867,7 @@
                             <p>Trash</p>
                         </div>
                         <div class="right-sidebar-todo__count">51</div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div  class="blue-btn btn-new-task" (click)="clearForm()">
@@ -896,7 +896,7 @@
                         </label>
                         <input type="text" id="create-project-title-input" formControlName="task_header" class="input-box-with-label__input" placeholder="Enter the title">
                     </div>
-                    <div class="input-box-with-label create-project_col2">
+                    <!-- <div class="input-box-with-label create-project_col2">
                         <h4 class="input-box-with-label__label">
                             Start date
                         </h4>
@@ -909,7 +909,7 @@
                                 <path d="M12 4H14V1C14 0.447715 13.5523 0 13 0C12.4477 0 12 0.447715 12 1V4Z" fill="#CCD0E3"></path>
                             </svg>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <textarea placeholder="Place for description" formControlName="notes"  class="input-box-with-label__input create-project-title__textarea"></textarea>
                 <div class="create-project-buttons flex-center">
@@ -946,12 +946,12 @@
                 </svg>
                 Edit
             </div>
-            <div class="tooltip__item tooltip__item__icon">
+            <!-- <div class="tooltip__item tooltip__item__icon">
                 <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7.97489 14.8472C8.60639 14.4713 9.3932 14.472 10.024 14.849L13.3649 16.8458C14.1642 17.324 15.1424 16.6172 14.932 15.7233L14.0547 12.0032C13.883 11.2749 14.1321 10.5117 14.7005 10.025L17.6351 7.51216C18.3398 6.90932 17.9611 5.76599 17.0356 5.69324L13.1529 5.36753C12.416 5.30572 11.7734 4.84237 11.4819 4.16275L9.96763 0.631427C9.61003 -0.210476 8.38997 -0.210476 8.03237 0.631427L6.51853 4.15376C6.22678 4.8326 5.58452 5.29528 4.84823 5.35705L0.964434 5.68284C0.038871 5.7556 -0.339768 6.89892 0.364921 7.50177L3.29951 10.0146C3.86789 10.5013 4.11704 11.2645 3.94529 11.9928L3.06799 15.7129C2.85763 16.6068 3.83578 17.3136 4.63513 16.8355L7.97489 14.8472Z" fill="white"/>
                 </svg>
                 Important
-            </div>
+            </div> -->
             <div class="tooltip__item tooltip__item__icon" (click)="deletetask(task)">
                 <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 0C10.5523 0 11 0.447715 11 1L13 1C13.5523 1 14 1.44772 14 2C14 2.55229 13.5523 3 13 3L1 3C0.447716 3 0 2.55228 0 2C0 1.44772 0.447715 0.999999 1 0.999999L3 1C3 0.447715 3.44772 0 4 0H10Z" fill="white"/>

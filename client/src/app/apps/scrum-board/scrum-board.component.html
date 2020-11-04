@@ -38,8 +38,8 @@
                    
                     </div>
                     <mat-menu #menu="matMenu">
-                        <div class="dropdown_content dropdown_show">
-                            <a (click)="sbc_card_Show()">Add Board</a>
+                        <div class="dropdown_con">
+                            <!-- <a (click)="sbc_card_Show()">Add Board</a> -->
                             <a (click)="add_board_Show()">Add Card Group</a>
                         </div>
                     </mat-menu>   
@@ -108,10 +108,11 @@
             </div>
         </div>
      
-        <div (cdkDropListDropped)="dropList($event)"
+        <div  (cdkDropListDropped)="dropList($event)"
         [cdkDropListData]="alllist"
         cdkDropList cdkDropListOrientation="horizontal" id="drag-drop-wrapper" class="scram-board-content-area scroll_style__gray d-flex align-items-center">
-            <div class="scram-board-content-card" *ngFor="let list of alllist;trackBy: trackById"  [cdkDragData]="list"
+           
+            <div  class="scram-board-content-card" *ngFor="let list of alllist;trackBy: trackById"  [cdkDragData]="list"
             cdkDrag
             cdkDropListGroup>
                 <div class="sbc-card-heading flex-between align-items-center">

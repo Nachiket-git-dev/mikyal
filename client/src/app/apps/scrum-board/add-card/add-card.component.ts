@@ -1,6 +1,6 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import {ScrumBoardService} from '../scrum-board.service'
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA,MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
@@ -11,7 +11,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class AddCardComponent implements OnInit {
  
   constructor(private scrumservice:ScrumBoardService, @Inject(MAT_DIALOG_DATA) public data: any
-  ,private fb: FormBuilder,private snackbar:MatSnackBar) { }
+  ,private fb: FormBuilder,private snackbar:MatSnackBar,public dialogRef: MatDialogRef<AddCardComponent>) { }
   form: FormGroup;
 
   ngOnInit() {
@@ -32,7 +32,8 @@ export class AddCardComponent implements OnInit {
         duration: 10000,
         panelClass: ['blue-snackbar']
       });
-      location.reload();
+     // location.reload();
+     this.dialogRef.close("success");
      }
  })
 

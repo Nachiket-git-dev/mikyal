@@ -52,11 +52,13 @@ export class CreateClientComponent implements OnInit {
           panelClass: ['blue-snackbar']
         });
         this.dialogRef.close(true);
+        location.reload();
       }
     },err=>{
 
       console.log("err",err);
       this.dialogRef.close(true);
+      location.reload();
     })
   }
   updateCustomer() {
@@ -70,6 +72,7 @@ export class CreateClientComponent implements OnInit {
         duration: 3000
       });
       this.dialogRef.close(true);
+      location.reload();
     }
     },err =>{
       console.log("err",err);
@@ -77,6 +80,7 @@ export class CreateClientComponent implements OnInit {
     })
    console.log("this.defaults",this.defaults);
     this.dialogRef.close(customer);
+    location.reload();
   }
   close(){
     this.dialogRef.close(true);

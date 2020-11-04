@@ -39,7 +39,7 @@ export class CreateInvoiceComponent implements OnInit {
     project_select:[],
     client_id:null,
     tax_amount:null,
-    discount_amount:null,
+    discount_amount:0,
     subtotal:null,
     total:[0,Validators.pattern("\\d+(?:\\.\\d+)?")],
     client_note:''
@@ -50,12 +50,15 @@ export class CreateInvoiceComponent implements OnInit {
     filteredOptions;
     filterprojectoptions;
     total
-    discount_amt;
+    discount_amt=0;
     subtotal=0;
     Options = {
       
       format: 'DD/MM/YYYY'
   }
+  get f() { 
+     
+    return this.form.controls; }
   constructor(private fb: FormBuilder,private invoiceservice:InvoiceService,
     private clientservice:ClientService,private snackbar:MatSnackBar,private router:Router,
     private route:ActivatedRoute,private projectservice:ProjectService) {
@@ -99,10 +102,17 @@ export class CreateInvoiceComponent implements OnInit {
       console.log("val change",val);
       val.forEach((element,index) => {
         const control = <FormArray>this.form.controls['rows'];
-        let total=Number(element.unit_cost)*Number(element.qty)
-        let discount_amt =(total/100)*Number(element.discount); 
-        this.subtotal+=total; 
-        total-=discount_amt;
+        let total=Number(element.unit_cost)*Number(element.qty);
+        let discount_amt=0
+       if(element.discount!=''){ 
+           discount_amt =(total/100)*Number(element.discount); 
+          
+          if(discount_amt>0){
+            total-=discount_amt;
+          }
+      }
+        console.log("total",total);
+        this.subtotal+=total;
         control.at(index).get('price').setValue(total, {onlySelf: true, emitEvent: false});
         this.discount_amt+=discount_amt;           
         this.total+=total;
@@ -166,7 +176,7 @@ export class CreateInvoiceComponent implements OnInit {
       service_name: ['', Validators.required],
        description: '',
       unit_cost:['', Validators.required],
-      discount:null,
+      discount:[0,[Validators.required,Validators.pattern("\\d+(?:\\.\\d+)?")]],
       qty:['', Validators.required],
       price: ['', [Validators.required]]
     });
@@ -176,7 +186,7 @@ export class CreateInvoiceComponent implements OnInit {
       item_id:[item_id || null],
       service_name: [service_name, Validators.required],
       description:'',
-      discount:[discount || ''],
+      discount:[discount || 0,[Validators.required]],
       unit_cost:[unit_cost, Validators.required],
       qty:[qty,Validators.required],
       price: [price, [Validators.required]]
@@ -184,14 +194,14 @@ export class CreateInvoiceComponent implements OnInit {
   }
   private _filter(value: string): string[] {
     if(value){
-     const filterValue = value.toLowerCase();
+     
     console.log("fikler",this.clientlist);
     return this.clientlist.filter(option =>option.first_name.toLowerCase().includes(value));
     }
   }
   private _filterproject(value: string): string[]{
     if(value){
-      const filterValue = value.toLowerCase()
+     
      return this.projectlist.filter(option =>option.project_name.toLowerCase().includes(value));
      }
 
@@ -245,11 +255,24 @@ private _subscribeToClosingActions(): void {
 
 
  saveinvoice(){
-   console.log("this.form",this.form.value)
+  this.form.addControl('rows', this.rows);
+   console.log("this.form",this.form)
+   console.log("this.rows",this.rows);
+  
    if(!this.form.valid){
      console.log("invoice not valid");
+     this.snackbar.open('Invoice Not Valid', 'OK', {
+      duration: 3000,
+      panelClass: ['blue-snackbar']
+    });
      return
    }
+   if(this.rows.length<=0){
+    this.snackbar.open('Please! Add The items', 'ok', {
+      duration: 3000
+    });
+    return;
+  }
    if(this.route.snapshot.queryParams['invoice_id']){
     console.log("update_inv",this.form.value);
     

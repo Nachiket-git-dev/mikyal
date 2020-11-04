@@ -6,6 +6,7 @@ import {SidemenuModule} from '../sidemenu/sidemenu.module'
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [GeneralComponent],
   imports: [
@@ -14,7 +15,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     SidemenuModule,
     RouterModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatInputModule
   ]
 })
 export class GeneralModule { }

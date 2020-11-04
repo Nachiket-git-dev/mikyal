@@ -59,6 +59,7 @@ export class DashboardComponent implements OnInit {
   weeksdays:any[]=[]
   allprojects:any[]
   allclient:any[]
+  showchart=false;
   username
   greet='';
   
@@ -77,6 +78,7 @@ export class DashboardComponent implements OnInit {
      this.invoiceservice.getinvoicebydaterange(lastmondy,lastsuday).subscribe(res=>{
        console.log("date_inv=>",res);
          if(res['code']==200){
+          this.showchart=true
            let day=1;
            let lastdates= new Date(lastmondy);
            console.log(res['data']);
@@ -129,6 +131,12 @@ export class DashboardComponent implements OnInit {
   }
    isOpen=false;
    alltasks:any;
+   getclass(index){
+   if(index%2==0){
+     return 'swiper-slide slide'
+   }else
+   return 'swiper-slide slide slide-ocean_bg'
+   }
   ngOnInit() {
     // console.log("siteConfig",siteConfig[0].isOpened );
      this.todolistservice.getalltask().subscribe(res=>{

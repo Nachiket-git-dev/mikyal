@@ -14,7 +14,7 @@
                         <div *ngIf="!showloader" class="sign-up-content">
                             <div class="sign-up-heading">
                                 <h2>Sign Up</h2>
-                                <p>Welcome to Clients Portals Sign In Page</p>
+                                <p>Welcome to Clients Portals Sign Up Page</p>
                             </div>
                             <form [formGroup]="form" class="sign-up-contact-form">
                                 <div class="form-group">
@@ -52,9 +52,7 @@
                                         <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
                                     </div>
                                 </div>
-                                <div class="forget-option">
-                                    <a href="">Forgot password?</a>
-                                </div>
+                               
                             </form>
                             <button  type="submit" (click)="send()" class="mikyal-btn btn_primary">Sign Up</button>
                         </div>

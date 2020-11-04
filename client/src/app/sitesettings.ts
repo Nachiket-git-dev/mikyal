@@ -1,5 +1,5 @@
-let baseApiHost = 'http://localhost:8000';
-//let baseApiHost= 'http://ec2-18-220-29-192.us-east-2.compute.amazonaws.com:8000'
+//let baseApiHost = 'http://localhost:8000';
+let baseApiHost= 'http://ec2-18-220-29-192.us-east-2.compute.amazonaws.com:8000'
 let projectURL='http://ec2-18-220-29-192.us-east-2.compute.amazonaws.com/project/index.php';
 let portfolioURL='http://ec2-18-220-29-192.us-east-2.compute.amazonaws.com/portfolio/index.php/welcome/index/'
 //let portfolioURL='http://localhost/portfolio/index.php/welcome/index/'

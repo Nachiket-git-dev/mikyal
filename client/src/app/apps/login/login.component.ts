@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {LoginService} from './login.service'
@@ -10,7 +10,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  constructor(private router: Router,private fb: FormBuilder,private  loginservice :LoginService,private snackbar: MatSnackBar,) { }
+  inputType = 'password';
+  visible = false;
+  constructor(private router: Router,private fb: FormBuilder,
+    private  loginservice :LoginService,private snackbar: MatSnackBar,private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -34,7 +37,7 @@ export class LoginComponent implements OnInit {
         duration: 10000,
         panelClass: ['blue-snackbar']
       });
-      this.router.navigate(['/invoice']);  
+      this.router.navigate(['/dashboard']);  
      }else{
 
      }
@@ -49,6 +52,17 @@ export class LoginComponent implements OnInit {
       });
     })
 
+  }
+  toggleVisibility() {
+    if (this.visible) {
+      this.inputType = 'password';
+      this.visible = false;
+      this.cd.markForCheck();
+    } else {
+      this.inputType = 'text';
+      this.visible = true;
+      this.cd.markForCheck();
+    }
   }
 
 }

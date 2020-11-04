@@ -1,6 +1,9 @@
 import { Component, OnInit,Output,Input,EventEmitter,SimpleChanges } from '@angular/core';
 import { ProjectService } from '../../services/project/project.service';
 import {InvoiceService} from '../invoice/invoice.service'
+
+import { FormControl,Validators,FormGroup,FormArray } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 import paginate from 'jw-paginate';
 @Component({
   selector: 'app-project',
@@ -19,11 +22,23 @@ export class ProjectComponent implements OnInit {
   @Input() maxPages = 100;
   pageOfItems: Array<any>;
   pager: any = {};
+  searchCtrl = new FormControl();
   constructor(private _projectService: ProjectService,private invoiceservice:InvoiceService) { }
   ngOnInit() {
     this.getAllProjects();
+    this.searchCtrl.valueChanges.subscribe(res=>{
+      if(!res){
+       this.pageOfItems=this.projects;
+      }
+     this.pageOfItems=this.pageOfItems.filter(item => item.project_name.search(new RegExp(res, 'i')) > -1 )
+     
+   })
     
   }
+  searchStr$ = this.searchCtrl.valueChanges.pipe(
+ 
+    debounceTime(10)
+  );
 
   getAllProjects() {
     this._projectService.getproject().subscribe((projects:any)=>{

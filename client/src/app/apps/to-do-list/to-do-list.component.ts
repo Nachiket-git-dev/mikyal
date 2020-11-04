@@ -22,6 +22,9 @@ export class ToDoListComponent implements OnInit,OnChanges{
   @Input() maxPages = 100;
   pageOfItems: Array<any>;
   pager: any = {};
+  indexcount=0;
+  donecount=0;
+  imporortantcount=0;
   searchStr$ = this.searchCtrl.valueChanges.pipe(
  
     debounceTime(10)
@@ -29,15 +32,7 @@ export class ToDoListComponent implements OnInit,OnChanges{
   stageclass;
   
   constructor( private fb: FormBuilder,private todoservice:ToDoListService,private snackbar:MatSnackBar) {
-    this.todoservice.getalltask().subscribe(res =>{
-      if(res['code']==200){
-        this.tasks=res['data'];
-        this.temptask=res['data'];
-        console.log(this.tasks);
-        this.setPage(this.initialPage);
-        }
-   
-      })
+    this. getalltask();
    }
   form = this.fb.group({
     task_header:['',Validators.required],
@@ -47,6 +42,21 @@ export class ToDoListComponent implements OnInit,OnChanges{
     project_id:null
   
   });
+  getalltask(){
+    this.todoservice.getalltask().subscribe(res =>{
+      if(res['code']==200){
+        this.tasks=res['data'];
+        this.temptask=res['data'];
+        console.log(this.tasks);
+        this.setPage(this.initialPage);
+        this.indexcount=this.temptask.length;
+        this.donecount=this.tasks.filter(c => c.isdone==1).length;
+        this.imporortantcount=this.tasks.filter(c => c.stage==2 && c.isdone==0).length;
+        }
+   
+      })
+
+  }
   tasks:any;
   ngOnInit() {
     this.stageclass=[
@@ -97,6 +107,7 @@ export class ToDoListComponent implements OnInit,OnChanges{
           duration: 10000,
           panelClass: ['blue-snackbar']
         });
+        this.getalltask();
         document.querySelector(".new-task-js").classList.remove("active");
       }
     },err=>{
@@ -211,8 +222,12 @@ deletetask(activity){
    this.todoservice.deletetask(activity.task_id).subscribe(res=>{
 
     console.log("res",res);
+    if(res['code']==200){
     let index= this.tasks.findIndex(c=>c.task_id==activity.task_id);
     this.tasks.splice(index,1);
+    this.getalltask();
+    }
+    
    })
 }
 updatetask(activity){
@@ -224,13 +239,13 @@ updatetask(activity){
 
 prioritytask(priority){
  if(priority=='Important'){
-  this.tasks=this.tasks.filter(c => c.stage==2 && c.isdone==0);
+  this.pageOfItems=this.tasks.filter(c => c.stage==2 && c.isdone==0);
  }
  if(priority=='All'){
-  this.tasks=this.temptask;
+  this.pageOfItems=this.temptask;
  }
   if(priority=='done'){
-    this.tasks=this.tasks.filter(c => c.isdone==1);
+    this.pageOfItems=this.tasks.filter(c => c.isdone==1);
   }
 }
 onChangePage(pageOfItems: Array<any>) {

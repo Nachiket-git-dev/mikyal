@@ -1,5 +1,6 @@
 import { Component, OnInit, ɵCodegenComponentFactoryResolver } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {MAT_DIALOG_DATA,MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {ScrumBoardService} from '../scrum-board.service'
 import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
@@ -9,7 +10,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class CreateListComponent implements OnInit {
 
-  constructor(private fb: FormBuilder,private scrumboardservice:ScrumBoardService,private snackbar: MatSnackBar) { }
+  constructor(private fb: FormBuilder,private scrumboardservice:ScrumBoardService,
+    private snackbar: MatSnackBar,public dialogRef: MatDialogRef<CreateListComponent>) { }
   form: FormGroup;
   ngOnInit() {
     this.form = this.fb.group({
@@ -31,15 +33,14 @@ export class CreateListComponent implements OnInit {
             duration: 10000,
             panelClass: ['blue-snackbar']
           })
-          location.reload();
+         // location.reload();
+         this.dialogRef.close("success");
          }
        
-      }
-        
-        
-        )
+      })
 
     }
   }
+
 
 }
