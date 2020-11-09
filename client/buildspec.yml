@@ -23,6 +23,8 @@ phases:
     commands: 
       - echo Build started on `date` 
       - ng build --prod --base-href ./
+      - echo checking the content of prod
+      - ls -alrt prod/
   post_build: 
     commands: 
       - echo Build completed on `date` 
