@@ -18,13 +18,13 @@ phases:
       - npm install -g @angular/cli@8.3.20
       - echo Installing angular material
       - npm install --save @angular/material@8.2.3
-      - ls -alrt node_modules/@angular/material
+
   build: 
     commands: 
       - echo Build started on `date` 
       - ng build --prod --base-href ./
       - echo checking the content of prod
-      - ls -alrt prod/
+      - ls -alrt
   post_build: 
     commands: 
       - echo Build completed on `date` 
