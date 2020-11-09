@@ -24,7 +24,7 @@ phases:
       - echo Build started on `date` 
       - ng build --prod --base-href ./
       - echo checking the content of prod
-      - ls -alrt
+      - ls -alrt production/mikyal
   post_build: 
     commands: 
       - echo Build completed on `date` 
@@ -35,5 +35,5 @@ phases:
 artifacts: 
   files: 
     - '**/*'
-  base-directory: 'dist/client'
+  base-directory: 'production/mikyal'
  
