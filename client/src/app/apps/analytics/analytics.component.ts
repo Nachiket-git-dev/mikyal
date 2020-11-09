@@ -4,7 +4,7 @@ import { SwiperOptions } from 'swiper';
 import {MatSnackBar} from '@angular/material/snack-bar';
 declare var Plotly: any;
 import * as Plotly from 'plotly.js';
-import {MatDialog} from '@angular/material/Dialog';
+import {MatDialog} from '@angular/material/dialog';
 import {CreateSalesGoalService} from './create-sales-goals/create-sales-goal.service'
 import {CreateSalesGoalsComponent} from './create-sales-goals/create-sales-goals.component'
 import {AnalyticsService} from './analytics.service'

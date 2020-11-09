@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges } from '@angular/core';;
-import {MatDialog} from '@angular/material/Dialog';
+import {MatDialog} from '@angular/material/dialog';
 import {CreateClientComponent} from './create-client/create-client.component';
 import { FormBuilder, FormGroup,FormControl,Validators,FormArray } from '@angular/forms';
 import {ClientService} from './client.service';
