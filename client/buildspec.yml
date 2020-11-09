@@ -16,6 +16,7 @@ phases:
       - echo Installing source NPM dependencies... 
       - npm install 
       - npm install -g @angular/cli@8.3.20
+      - npm install -g @angular/material@8.2.3
       - ls -alrt node_modules
   build: 
     commands: 
