@@ -9,6 +9,8 @@ phases:
       - cd client
       - echo Installing Mocha... 
       - npm install -g mocha 
+      - echo Removing package-lock.json
+      - \rm -rf package-lock.json
   pre_build: 
     commands: 
       - echo Installing source NPM dependencies... 
