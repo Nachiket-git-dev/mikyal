@@ -5,6 +5,8 @@ phases:
     runtime-versions: 
       nodejs: 10   
     commands: 
+      - echo "Change directory to client"
+      - cd client
       - echo Installing Mocha... 
       - npm install -g mocha 
   pre_build: 
@@ -25,5 +27,5 @@ phases:
 artifacts: 
   files: 
     - '**/*'
-  base-directory: 'dist/fs-admin-ui'
+  base-directory: 'dist/client'
  
