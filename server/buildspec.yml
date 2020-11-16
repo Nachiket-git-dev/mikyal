@@ -27,8 +27,8 @@ phases:
 #       - sed -i 's/<AWS_ACCOUNT_ID>/'$AWS_ACCOUNT_ID'/g' taskdef.json
 #       - sed -i 's/<MEMORY_RESV>/'$MEMORY_RESV'/g' taskdef.json
 #       - sed -i 's/<IMAGE_NAME>/'$AWS_ACCOUNT_ID'\.dkr\.ecr\.'$AWS_DEFAULT_REGION'\.amazonaws.com\/'$IMAGE_REPO_NAME'\:'$IMAGE_TAG'/g' taskdef.json
-# artifacts:
-#   files: 
-#     - imageDetail.json
-#     - appspec.yml
-#     - taskdef.json
+artifacts:
+  files: 
+    - imageDetail.json
+    # - appspec.yml
+    # - taskdef.json
