@@ -1,9 +1,9 @@
 var mysql = require('mysql');
 
 config = {
-    host: 'localhost',
-    user: 'root',
-    password: '',
+    host: 'mikyaldatabaseclusterdev.cluster-cyatsnvygubg.us-west-2.rds.amazonaws.com',
+    user: 'admin',
+    password: 'admin123',
     //database: 'mesh_dashboard',
     multipleStatements: true
 }
