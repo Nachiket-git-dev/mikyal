@@ -4,6 +4,7 @@ const user = require('./userroute.js')
 const client =require('./clientroute.js');
 const task=require('./taskroute.js');
 const invoice=require('./invoiceroute.js');
+const  health =require('./healthcheck');
 const portfoliosettings=require('./portfoliosettings');
 const scrumboard=require('./scrumroute');
 var router = require('express').Router();
@@ -19,6 +20,7 @@ router.use(task);
 router.use(invoice);
 router.use(portfoliosettings);
 router.use(scrumboard);
+router.use(health);
 //router.use()
 
 module.exports = router;
