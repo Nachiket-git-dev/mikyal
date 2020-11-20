@@ -1,6 +1,6 @@
 var responseHandler = require('./handler').response;
 var router= require('express').Router();
-router.get('/healthcheck', async (_req, res, _next) => {
+router.get('/', async (_req, res, _next) => {
 	// optional: add further things to check (e.g. connecting to dababase)
 	const healthcheck = {
 		uptime: process.uptime(),
