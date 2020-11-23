@@ -1,5 +1,6 @@
 const invoiceservice= require('../service/invoiceservice').getInst();
 var responseHandler = require('./handler').response;
+var verify=require('../config/jwtverify')
 var router= require('express').Router();
 const nodemailer = require("nodemailer");
 router.post('/createinvoice',(req,res) =>{
@@ -14,7 +15,7 @@ router.post('/createinvoice',(req,res) =>{
      responseHandler(req, res, invoiceservice.createinvoice(database,invoice));
 });
 
-router.get('/getallinvoices',(req,res) =>{
+router.get('/getallinvoices',verify.verifyToken,(req,res) =>{
     console.log("request body");
     console.log("request query");
     console.log(req.query);
@@ -36,7 +37,7 @@ router.get('/getprojectinvoice',(req,res) =>{
     
    responseHandler(req, res, invoiceservice.getprojectinvoice(database,project_id));
 });
-router.post('/changestatus',(req,res) =>{
+router.post('/changestatus',verify.verifyToken,(req,res) =>{
     console.log("request body");
     console.log("request query");
     console.log(req.query);
@@ -46,7 +47,7 @@ router.post('/changestatus',(req,res) =>{
       
      responseHandler(req, res, invoiceservice.changestatus(database,status));
 });
-router.get('/getinvoicebyid',(req,res) =>{
+router.get('/getinvoicebyid',verify.verifyToken,(req,res) =>{
   console.log("request body");
   console.log("request query");
   console.log(req.query);
@@ -56,7 +57,7 @@ router.get('/getinvoicebyid',(req,res) =>{
     
    responseHandler(req, res, invoiceservice.getinvoicebyid(database,invoice_id));
 });
-router.get('/getservice',(req,res) =>{
+router.get('/getservice',verify.verifyToken,(req,res) =>{
   console.log("request body");
   console.log("request query");
   console.log(req.query);
@@ -67,7 +68,7 @@ router.get('/getservice',(req,res) =>{
    responseHandler(req, res, invoiceservice.getservice(database,invoice_id));
 });
 
-router.get('/getinvoicebydaterange',(req,res) =>{
+router.get('/getinvoicebydaterange',verify.verifyToken,(req,res) =>{
   console.log("request body");
   console.log("request query");
   console.log(req.query);
@@ -88,7 +89,7 @@ router.post('/updateinvoice',(req,res) =>{
     
    responseHandler(req, res, invoiceservice.updateinvoice(database,invoice));
 });
-router.delete('/deleteservicerow',(req,res) =>{
+router.delete('/deleteservicerow',verify.verifyToken,(req,res) =>{
   console.log("request body");
   console.log("request query");
   console.log(req.query);
@@ -99,7 +100,7 @@ router.delete('/deleteservicerow',(req,res) =>{
    responseHandler(req, res, invoiceservice.deleteservicerow(database,item_id));
 });
 
-router.delete('/deleteinvoice',(req,res) =>{
+router.delete('/deleteinvoice',verify.verifyToken,(req,res) =>{
   console.log("request body");
   console.log("request query");
   console.log(req.query);
@@ -109,7 +110,7 @@ router.delete('/deleteinvoice',(req,res) =>{
     
    responseHandler(req, res, invoiceservice.deleteinvoice(database,invoice_id));
 });
-router.post('/sendmail',async(req,res) =>{
+router.post('/sendmail',verify.verifyToken,async(req,res) =>{
   console.log("request body");
   console.log("request query");
   console.log(req.query);
@@ -154,7 +155,7 @@ var mailOptions = {
    //responseHandler(req, res, invoiceservice.sendmail(database,item_id));
 });
 
-router.get('/getpaidinvoice',(req,res) =>{
+router.get('/getpaidinvoice',verify.verifyToken,(req,res) =>{
   console.log("request body");
   console.log("request query");
   console.log(req.query);

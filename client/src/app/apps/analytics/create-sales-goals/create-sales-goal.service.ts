@@ -11,8 +11,11 @@ export class CreateSalesGoalService {
     let body;
     let database=localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database',database);
+    let jwttoken=localStorage.getItem('userToken');
+    let headers = new HttpHeaders();
+    headers = headers.set('authtoken',jwttoken )
     const url = `${siteConfig.nodeAPIBaseUrl}/setgoal`;
-    let res = this._http.post(url,goals,{ params: params });
+    let res = this._http.post(url,goals,{ params: params ,headers:headers});
     console.log("in service=> ",res);
     return res;
   }
@@ -20,8 +23,11 @@ export class CreateSalesGoalService {
     let body;
     let database=localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database',database);
+    let jwttoken=localStorage.getItem('userToken');
+    let headers = new HttpHeaders();
+    headers = headers.set('authtoken',jwttoken )
     const url = `${siteConfig.nodeAPIBaseUrl}/getcurruntmonthtask`;
-    let res = this._http.get(url,{ params: params });
+    let res = this._http.get(url,{ params: params,headers:headers });
     console.log("in service=> ",res);
     return res;
 
@@ -30,8 +36,11 @@ export class CreateSalesGoalService {
     let body;
     let database=localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database',database);
+    let jwttoken=localStorage.getItem('userToken');
+    let headers = new HttpHeaders();
+    headers = headers.set('authtoken',jwttoken )
     const url = `${siteConfig.nodeAPIBaseUrl}/getcurruntyeartask`;
-    let res = this._http.get(url,{ params: params });
+    let res = this._http.get(url,{ params: params ,headers:headers });
     console.log("in service=> ",res);
     return res;
 
@@ -40,8 +49,11 @@ export class CreateSalesGoalService {
     let body;
     let database=localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database',database);
+    let jwttoken=localStorage.getItem('userToken');
+    let headers = new HttpHeaders();
+    headers = headers.set('authtoken',jwttoken )
     const url = `${siteConfig.nodeAPIBaseUrl}/getusergoal`;
-    let res = this._http.get(url,{ params: params });
+    let res = this._http.get(url,{ params: params,headers:headers });
     console.log("in service=> ",res);
     return res;
   }

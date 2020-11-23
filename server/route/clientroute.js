@@ -1,9 +1,10 @@
 const clinetservice= require('../service/clientservice').getInst();
 var responseHandler = require('./handler').response;
 var router= require('express').Router();
+var verify=require('../config/jwtverify')
 
 
-router.post('/createclient',(req,res) =>{
+router.post('/createclient',verify.verifyToken,(req,res) =>{
     console.log("request body");
    
     console.log("request query");
@@ -17,12 +18,13 @@ router.post('/createclient',(req,res) =>{
       
      responseHandler(req, res, clinetservice.createclient(database,client));
 });
-router.get('/getallclient',(req,res) =>{
-    console.log("request body");
+router.get('/getallclient',verify.verifyToken,(req,res) =>{
+    console.log("request body",req.token);
    
     console.log("request query");
     console.log(req.query);
-     var database=req.query.database
+     var database=req.query.database;
+     const authHeader = req.get('authtoken');
      //var client=req.body;
      //console.log("body len",req.body.length)
      //console.log("req",req)
@@ -31,7 +33,7 @@ router.get('/getallclient',(req,res) =>{
       
      responseHandler(req, res, clinetservice.getallclient(database));
 });
-router.post('/updateclient',(req,res) =>{
+router.post('/updateclient',verify.verifyToken,(req,res) =>{
     console.log("request body");
    
     console.log("request query");
@@ -46,7 +48,7 @@ router.post('/updateclient',(req,res) =>{
       
      responseHandler(req, res, clinetservice.updateclient(client_id,database,client));
 });
-router.delete('/deleteclient',(req,res) =>{
+router.delete('/deleteclient',verify.verifyToken,(req,res) =>{
     console.log("request body");
    
     console.log("request query");
@@ -59,7 +61,7 @@ router.delete('/deleteclient',(req,res) =>{
       //console.log("client",client);
 
       
-     responseHandler(req, res, clinetservice.deleteclient(database,client_id));
+     responseHandler(req, res,verify.verifyToken, clinetservice.deleteclient(database,client_id));
 });
 router.get('/getclientbyid',(req,res) =>{
     console.log("request body");

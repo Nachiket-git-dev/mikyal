@@ -1,5 +1,6 @@
 const userservice= require('../service/userservice').getInst();
 var responseHandler = require('./handler').response;
+var verify=require('../config/jwtverify')
 var router= require('express').Router()
 
 router.post('/createuser',(req,res) =>{
@@ -44,7 +45,7 @@ router.post('/getuser',(req,res) =>{
       
      responseHandler(req, res, userservice.getuser(email));
 });
-router.get('/getuserdetails',(req,res) =>{
+router.get('/getuserdetails',verify.verifyToken,(req,res) =>{
     console.log("request body");
    
     console.log("request query");
@@ -53,7 +54,7 @@ router.get('/getuserdetails',(req,res) =>{
       
      responseHandler(req, res, userservice.getuserdetails(user_id));
 });
-router.get('/getuserbasicinfo',(req,res) =>{
+router.get('/getuserbasicinfo',verify.verifyToken,(req,res) =>{
     console.log("request body");
    
     console.log("request query");
@@ -62,7 +63,7 @@ router.get('/getuserbasicinfo',(req,res) =>{
       
      responseHandler(req, res, userservice.getuserbasicinfo(user_id));
 });
-router.post('/updateuserdetails',(req,res) =>{
+router.post('/updateuserdetails',verify.verifyToken,(req,res) =>{
     console.log("request body");
    
     console.log("request query");
@@ -76,7 +77,7 @@ router.post('/updateuserdetails',(req,res) =>{
       
      responseHandler(req, res, userservice.updateuserdetails(user_id,user));
 });
-router.post('/changepassword',(req,res) =>{
+router.post('/changepassword',verify.verifyToken,(req,res) =>{
     console.log("request body");
    
     console.log("request query");
@@ -85,7 +86,7 @@ router.post('/changepassword',(req,res) =>{
       var newdata=req.body;
      responseHandler(req, res, userservice.changepassword(user_id,newdata));
 });
-router.post('/updateaboutus',(req,res) =>{
+router.post('/updateaboutus',verify.verifyToken,(req,res) =>{
     console.log("request body");
    
     console.log("request query");
@@ -95,7 +96,7 @@ router.post('/updateaboutus',(req,res) =>{
      responseHandler(req, res, userservice.updateaboutus(user_id,newdata));
 });
 
-router.get('/getuserimage',(req,res) =>{
+router.get('/getuserimage',verify.verifyToken,(req,res) =>{
     console.log("request body");
    
     console.log("request query");
@@ -104,7 +105,7 @@ router.get('/getuserimage',(req,res) =>{
       
      responseHandler(req, res, userservice.getuserimage(user_id));
 });
-router.post('/disabletour',(req,res) =>{
+router.post('/disabletour',verify.verifyToken,(req,res) =>{
     console.log("request body");
    
     console.log("request query");
@@ -112,7 +113,7 @@ router.post('/disabletour',(req,res) =>{
      var user_id=req.body.user_id;
      responseHandler(req, res, userservice.disabletour(user_id));
 });
-router.post('/setgoal',(req,res) =>{
+router.post('/setgoal',verify.verifyToken,(req,res) =>{
     console.log("request body");
     console.log("request query");
     console.log(req.query);  
@@ -121,7 +122,7 @@ router.post('/setgoal',(req,res) =>{
      responseHandler(req, res, userservice.setgoal(database,goals));
 });
 
-router.get('/getusergoal',(req,res) =>{
+router.get('/getusergoal',verify.verifyToken,(req,res) =>{
     console.log("request body");
     console.log("request query");
     console.log(req.query);  

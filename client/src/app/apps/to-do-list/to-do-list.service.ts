@@ -11,8 +11,11 @@ export class ToDoListService {
     
     let database_name = localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database_name);
+    let jwttoken=localStorage.getItem('userToken');
+    let headers = new HttpHeaders();
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/createtask`;
-    let res = this._http.post(url,task,{ params: params });
+    let res = this._http.post(url,task,{ params: params,headers:headers });
     return res;
   
   }
@@ -21,16 +24,22 @@ export class ToDoListService {
     
     let database_name = localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database_name);
+    let jwttoken=localStorage.getItem('userToken');
+    let headers = new HttpHeaders();
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/getalltask`;
-    let res = this._http.get(url,{ params: params });
+    let res = this._http.get(url,{ params: params,headers:headers });
     return res;
   
   }
   updateisdone(statusdata){
     let database_name = localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database_name);
+    let jwttoken=localStorage.getItem('userToken');
+    let headers = new HttpHeaders();
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/isdonestatus`;
-    let res = this._http.post(url,statusdata,{ params: params });
+    let res = this._http.post(url,statusdata,{ params: params,headers:headers  });
     return res;
 
     
@@ -39,8 +48,11 @@ export class ToDoListService {
   taskstage(stagedata){
     let database_name = localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database_name);
+    let jwttoken=localStorage.getItem('userToken');
+    let headers = new HttpHeaders();
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/taskstage`;
-    let res = this._http.post(url,stagedata,{ params: params });
+    let res = this._http.post(url,stagedata,{ params: params ,headers:headers });
     return res;
 
     
@@ -49,8 +61,11 @@ export class ToDoListService {
   deletetask(task_id){
     let database_name = localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database_name).set('task_id',task_id);
+    let jwttoken=localStorage.getItem('userToken');
+    let headers = new HttpHeaders();
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/deletetask`;
-    let res = this._http.delete(url,{ params: params });
+    let res = this._http.delete(url,{ params: params,headers:headers });
     return res;
 
     
@@ -58,8 +73,11 @@ export class ToDoListService {
   getprojectsallpendingtask(){
     let database_name = localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database_name);
+    let jwttoken=localStorage.getItem('userToken');
+    let headers = new HttpHeaders();
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/getprojectsallpendingtask`;
-    let res = this._http.get(url,{ params: params });
+    let res = this._http.get(url,{ params: params,headers:headers });
     return res;
 
   }
@@ -67,8 +85,11 @@ export class ToDoListService {
     let body;
     let database=localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database',database);
+    let jwttoken=localStorage.getItem('userToken');
+    let headers = new HttpHeaders();
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/getcurruntmonthtask`;
-    let res = this._http.get(url,{ params: params });
+    let res = this._http.get(url,{ params: params,headers:headers });
     console.log("in service=> ",res);
     return res;
 
@@ -77,8 +98,11 @@ export class ToDoListService {
     let body;
     let database=localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database',database);
+    let jwttoken=localStorage.getItem('userToken');
+    let headers = new HttpHeaders();
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/getcurruntyeartask`;
-    let res = this._http.get(url,{ params: params });
+    let res = this._http.get(url,{ params: params,headers:headers });
     console.log("in service=> ",res);
     return res;
 

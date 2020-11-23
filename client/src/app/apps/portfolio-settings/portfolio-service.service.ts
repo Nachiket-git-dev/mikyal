@@ -12,8 +12,11 @@ export class PortfolioServiceService {
     let database=localStorage.getItem('Database_Name');
     //let database_name = localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database);
+    let jwttoken=localStorage.getItem('userToken');
+    let headers = new HttpHeaders();
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/saveportfolio`;
-    let res = this._http.post(url, portfolio, { params: params });
+    let res = this._http.post(url, portfolio, { params: params,headers:headers });
     return res;
   }
   
@@ -22,8 +25,11 @@ export class PortfolioServiceService {
     let database=localStorage.getItem('Database_Name');
     //let database_name = localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database);
+    let jwttoken=localStorage.getItem('userToken');
+    let headers = new HttpHeaders();
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/getportfolio`;
-    let res = this._http.get(url, { params: params });
+    let res = this._http.get(url, { params: params,headers:headers });
     return res;
   }
 }

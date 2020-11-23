@@ -1,7 +1,8 @@
 var responseHandler = require('./handler').response;
 const scrumservice= require('../service/scrumservice').getInst();
+var verify=require('../config/jwtverify')
 var router= require('express').Router();
-router.post('/createcard',(req,res) =>{
+router.post('/createcard',verify.verifyToken,(req,res) =>{
     console.log("request body");
    
     console.log("request query");
@@ -15,7 +16,7 @@ router.post('/createcard',(req,res) =>{
       
      responseHandler(req, res, scrumservice.createcard(dbname,scrum_card));
 });
-router.post('/createlist',(req,res) =>{
+router.post('/createlist',verify.verifyToken,(req,res) =>{
     console.log("request body");
    
     console.log("request query");
@@ -30,7 +31,7 @@ router.post('/createlist',(req,res) =>{
      responseHandler(req, res, scrumservice.createlist(dbname,scrum_list));
 });
 
-router.get('/getallcards',(req,res) =>{
+router.get('/getallcards',verify.verifyToken,(req,res) =>{
     console.log("request body");
    
     console.log("request query");
@@ -44,7 +45,7 @@ router.get('/getallcards',(req,res) =>{
       
      responseHandler(req, res, scrumservice.getallcards(dbname));
 });
-router.get('/getlists',(req,res) =>{
+router.get('/getlists',verify.verifyToken,(req,res) =>{
     console.log("request body");
    
     console.log("request query");
@@ -59,7 +60,7 @@ router.get('/getlists',(req,res) =>{
      responseHandler(req, res, scrumservice.getlists(dbname));
 });
 
-router.post('/changelist',(req,res) =>{
+router.post('/changelist',verify.verifyToken,(req,res) =>{
     console.log("request body");
    
     console.log("request query");

@@ -11,8 +11,11 @@ export class AnalyticsService {
     let body;
     let database=localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database',database);
+    let jwttoken=localStorage.getItem('userToken');
+    let headers = new HttpHeaders();
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/getpaidinvoice`;
-    let res = this._http.get(url,{ params: params });
+    let res = this._http.get(url,{ params: params ,headers:headers });
     console.log("in service=> ",res);
     return res;
   }

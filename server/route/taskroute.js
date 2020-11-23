@@ -1,9 +1,9 @@
 const taskservice= require('../service/taskservice').getInst();
 var responseHandler = require('./handler').response;
 var router= require('express').Router();
+var verify=require('../config/jwtverify')
 
-
-router.post('/createtask',(req,res) =>{
+router.post('/createtask',verify.verifyToken,(req,res) =>{
     console.log("request body");
     console.log("request query");
     console.log(req.query);
@@ -19,7 +19,7 @@ router.post('/createtask',(req,res) =>{
 });
 
 
-router.get('/getalltask',(req,res) =>{
+router.get('/getalltask',verify.verifyToken,(req,res) =>{
     console.log("request body");
     console.log("request query");
     console.log(req.query);
@@ -33,7 +33,7 @@ router.get('/getalltask',(req,res) =>{
       
      responseHandler(req, res, taskservice.getalltask(database));
 });
-router.post('/isdonestatus',(req,res) =>{
+router.post('/isdonestatus',verify.verifyToken,(req,res) =>{
     console.log("request body");
     console.log("request query");
     console.log(req.query);
@@ -61,7 +61,7 @@ router.post('/taskstage',(req,res) =>{
       
      responseHandler(req, res, taskservice.taskstage(database,stagedata));
 });
-router.post('/taskstage',(req,res) =>{
+router.post('/taskstage',verify.verifyToken,(req,res) =>{
     console.log("request body");
     console.log("request query");
     console.log(req.query);
@@ -75,7 +75,7 @@ router.post('/taskstage',(req,res) =>{
       
      responseHandler(req, res, taskservice.taskstage(database,stagedata));
 });
-router.get('/getprojecttask',(req,res) =>{
+router.get('/getprojecttask',verify.verifyToken,(req,res) =>{
     console.log("request body");
     console.log("request query");
     console.log(req.query);
@@ -89,7 +89,7 @@ router.get('/getprojecttask',(req,res) =>{
       
      responseHandler(req, res, taskservice.getprojecttask(database,project_id));
 });
-router.delete('/deletetask',(req,res) =>{
+router.delete('/deletetask',verify.verifyToken,(req,res) =>{
     console.log("request body");
     console.log("request query");
     console.log(req.query);
@@ -104,7 +104,7 @@ router.delete('/deletetask',(req,res) =>{
      responseHandler(req, res, taskservice.deletetask(database,task_id));
 });
 
-router.get('/getprojectsallpendingtask',(req,res) =>{
+router.get('/getprojectsallpendingtask',verify.verifyToken,(req,res) =>{
     console.log("request body");
     console.log("request query");
     console.log(req.query);

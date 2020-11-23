@@ -1,8 +1,9 @@
 const projectservice= require('../service/projectservice').getInst();
 var responseHandler = require('./handler').response;
+var verify=require('../config/jwtverify')
 var router= require('express').Router()
 
-router.post('/createproject',(req,res) =>{
+router.post('/createproject',verify.verifyToken,(req,res) =>{
     console.log("request body");
    
     console.log("request query");
@@ -16,7 +17,7 @@ router.post('/createproject',(req,res) =>{
       
      responseHandler(req, res, projectservice.createproject(dbname,project));
 });
-router.get('/getallproject',(req,res) =>{
+router.get('/getallproject',verify.verifyToken,(req,res) =>{
     console.log("request body");
     console.log(req.body);
     console.log("request query");
@@ -25,7 +26,7 @@ router.get('/getallproject',(req,res) =>{
     
      responseHandler(req, res, projectservice.getallproject(dbname));
 });
-router.get('/getprojectbyid',(req,res) =>{
+router.get('/getprojectbyid',verify.verifyToken,(req,res) =>{
     console.log("request body");
     console.log(req.body);
     console.log("request query");
@@ -47,7 +48,7 @@ router.post('/insertfile',(req,res) =>{
     
     responseHandler(req, res, projectservice.uploadfiles(dbname,files,proj_id));
 });
-router.get('/getfilesbyprojectid',(req,res) =>{
+router.get('/getfilesbyprojectid',verify.verifyToken,(req,res) =>{
 
     console.log("request query");
     console.log(req.query);
@@ -64,7 +65,7 @@ router.post('/updatestatus',(req,res) =>{
      var proj_id=req.query.proj_id;
      responseHandler(req, res, projectservice.updatestatus(dbname,proj_id,status));
 });
-router.post('/updateproject',(req,res) =>{
+router.post('/updateproject',verify.verifyToken,(req,res) =>{
 
      console.log("request query");
      console.log(req.query);
@@ -73,7 +74,7 @@ router.post('/updateproject',(req,res) =>{
      var proj_id=req.query.proj_id;
      responseHandler(req, res, projectservice.updateproject(dbname,proj_id,project));
 });
-router.delete('/deleteproject',(req,res) =>{
+router.delete('/deleteproject',verify.verifyToken,(req,res) =>{
 
     console.log("request query");
     console.log(req.query);
@@ -81,7 +82,7 @@ router.delete('/deleteproject',(req,res) =>{
      var proj_id=req.query.proj_id;
      responseHandler(req, res, projectservice.deleteproject(dbname,proj_id));
 });
-router.delete('/deletefile',(req,res) =>{
+router.delete('/deletefile',verify.verifyToken,(req,res) =>{
 
     console.log("request query");
     console.log(req.query);
@@ -91,7 +92,7 @@ router.delete('/deletefile',(req,res) =>{
 });
 module.exports = router;
 
-router.post('/saveimages',(req,res) =>{
+router.post('/saveimages',verify.verifyToken,(req,res) =>{
 
     console.log("request query");
     //console.log(req.query);
@@ -102,7 +103,7 @@ router.post('/saveimages',(req,res) =>{
      var proj_id=req.query.proj_id;
      responseHandler(req, res, projectservice.saveimages(dbname,project,proj_id,last_index));
 });
-router.get('/getimages',(req,res) =>{
+router.get('/getimages',verify.verifyToken,(req,res) =>{
 
     console.log("request query");
     console.log(req.query);
@@ -110,7 +111,7 @@ router.get('/getimages',(req,res) =>{
      var proj_id=req.query.proj_id;
      responseHandler(req, res, projectservice.getimages(dbname,proj_id));
 });
-router.delete('/deleteprojectimage',(req,res) =>{
+router.delete('/deleteprojectimage',verify.verifyToken,(req,res) =>{
 
     console.log("request query");
     console.log(req.query);
@@ -119,7 +120,7 @@ router.delete('/deleteprojectimage',(req,res) =>{
      responseHandler(req, res, projectservice.deleteprojectimage(dbname,img_id));
 });
 
-router.get('/getprojectlink',(req,res) =>{
+router.get('/getprojectlink',verify.verifyToken,(req,res) =>{
 
      console.log("request query");
      console.log(req.query);
@@ -135,7 +136,7 @@ router.get('/getprojectlink',(req,res) =>{
       var proj_id=req.query.proj_id;
       responseHandler(req, res, projectservice.addtoportfolio(dbname,proj_id));
  })
- router.post('/removetoportfolio',(req,res) =>{
+ router.post('/removetoportfolio',verify.verifyToken,(req,res) =>{
 
      console.log("request query");
      console.log(req.query);
@@ -143,7 +144,7 @@ router.get('/getprojectlink',(req,res) =>{
       var proj_id=req.query.proj_id;
       responseHandler(req, res, projectservice.removetoportfolio(dbname,proj_id));
  })
- router.get('/getpendingproject',(req,res) =>{
+ router.get('/getpendingproject',verify.verifyToken,(req,res) =>{
 
      console.log("request query");
      console.log(req.query);
@@ -151,7 +152,7 @@ router.get('/getprojectlink',(req,res) =>{
      
       responseHandler(req, res, projectservice.getpendingproject(dbname));
  })
- router.get('/getcompleteproject',(req,res) =>{
+ router.get('/getcompleteproject',verify.verifyToken,(req,res) =>{
 
      console.log("request query");
      console.log(req.query);
@@ -160,7 +161,7 @@ router.get('/getprojectlink',(req,res) =>{
       responseHandler(req, res, projectservice.getcompleteproject(dbname));
  })
  
- router.post('/savecoverimage',(req,res) =>{
+ router.post('/savecoverimage',verify.verifyToken,(req,res) =>{
 
      console.log("request query");
      //console.log(req.query);
@@ -173,7 +174,7 @@ router.get('/getprojectlink',(req,res) =>{
  });
 
  
- router.get('/checkcoverimage',(req,res) =>{
+ router.get('/checkcoverimage',verify.verifyToken,(req,res) =>{
 
      console.log("request query");
      console.log(req.query);
@@ -181,7 +182,7 @@ router.get('/getprojectlink',(req,res) =>{
       var proj_id=req.query.proj_id;
       responseHandler(req, res, projectservice.checkcoverimage(dbname,proj_id));
  })
- router.delete('/deletecoverimage',(req,res) =>{
+ router.delete('/deletecoverimage',verify.verifyToken,(req,res) =>{
 
      console.log("request query");
      console.log(req.query);
@@ -189,14 +190,14 @@ router.get('/getprojectlink',(req,res) =>{
       var img_id=req.query.img_id;
       responseHandler(req, res, projectservice.deletecoverimage(dbname,img_id));
  });
- router.get('/getallcoverimage',(req,res) =>{
+ router.get('/getallcoverimage',verify.verifyToken,(req,res) =>{
 
      console.log("request query in cover");
      console.log(req.query);
       var dbname=req.query;
       responseHandler(req, res, projectservice.getallcoverimage(dbname));
  });
- router.post('/createmilestone',(req,res) =>{
+ router.post('/createmilestone',verify.verifyToken,(req,res) =>{
 
      console.log("request query");
      //console.log(req.query);
@@ -207,7 +208,7 @@ router.get('/getprojectlink',(req,res) =>{
       var proj_id=req.query.proj_id;
       responseHandler(req, res, projectservice.createmilestone(dbname,proj_id,milestone));
  });
- router.get('/getmilestonebyproject',(req,res) =>{
+ router.get('/getmilestonebyproject',verify.verifyToken,(req,res) =>{
 
      console.log("request query");
      //console.log(req.query);

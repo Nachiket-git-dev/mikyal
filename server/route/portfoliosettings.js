@@ -1,8 +1,9 @@
 const portfolioservice= require('../service/portfolioservice').getInst();
 var responseHandler = require('./handler').response;
+var verify=require('../config/jwtverify')
 var router= require('express').Router();
 
-router.post('/saveportfolio',(req,res) =>{
+router.post('/saveportfolio',verify.verifyToken,(req,res) =>{
     console.log("request body");
     console.log("request query");
     console.log(req.query);
@@ -13,7 +14,7 @@ router.post('/saveportfolio',(req,res) =>{
       
 responseHandler(req, res, portfolioservice.saveportfolio(database,portfolio));
 });
-router.get('/getportfolio',(req,res) =>{
+router.get('/getportfolio',verify.verifyToken,(req,res) =>{
     console.log("request body");
     console.log("request query");
     console.log(req.query);

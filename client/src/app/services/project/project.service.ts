@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams,HttpHeaders } from '@angular/common/http';
 import { siteConfig } from '../../sitesettings';
 
 @Injectable({
@@ -13,22 +13,31 @@ export class ProjectService {
     let database=localStorage.getItem('Database_Name');
     //let database_name = localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database);
+    let headers = new HttpHeaders();
+    let jwttoken=localStorage.getItem('userToken');
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/getallproject`;
-    let res = this._http.get(url, { params: params });
+    let res = this._http.get(url, { params: params,headers:headers });
     return res;
   }
   getprojectbyid(proj_id){
     let database=localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database).set('proj_id',proj_id);
+    let headers = new HttpHeaders();
+    let jwttoken=localStorage.getItem('userToken');
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/getprojectbyid`;
-    let res = this._http.get(url, { params: params });
+    let res = this._http.get(url, { params: params,headers:headers });
     return res;
   }
   getfilebyprojectid(proj_id){
     let database=localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database).set('proj_id',proj_id);
+    let headers = new HttpHeaders();
+    let jwttoken=localStorage.getItem('userToken');
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/getfilesbyprojectid`;
-    let res = this._http.get(url, { params: params });
+    let res = this._http.get(url, { params: params,headers:headers});
     return res;
   }
   getprojecttask(projid){
@@ -36,8 +45,11 @@ export class ProjectService {
 
     let database_name = localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database_name).set('project_id',projid);
+    let headers = new HttpHeaders();
+    let jwttoken=localStorage.getItem('userToken');
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/getprojecttask`;
-    let res = this._http.get(url,{ params: params });
+    let res = this._http.get(url,{ params: params,headers:headers });
     return res;
 
   }
@@ -47,8 +59,11 @@ export class ProjectService {
     let body;
     //let database_name = localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database).set('proj_id', project_id);
+    let headers = new HttpHeaders();
+    let jwttoken=localStorage.getItem('userToken');
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/addtoportfolio`;
-    let res = this._http.post(url,body,{ params: params });
+    let res = this._http.post(url,body,{ params: params,headers:headers });
     console.log("in service=> ",res);
     return res;
   }
@@ -57,8 +72,11 @@ export class ProjectService {
     let database=localStorage.getItem('Database_Name');
     let body;
     let params = new HttpParams().set('database', database).set('proj_id',proj_id);
+    let headers = new HttpHeaders();
+    let jwttoken=localStorage.getItem('userToken');
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/removetoportfolio`;
-    let res = this._http.post(url,body ,{ params: params });
+    let res = this._http.post(url,body ,{ params: params,headers:headers });
     return res;
   }
 
@@ -68,8 +86,11 @@ export class ProjectService {
     }
     let database=localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database).set('proj_id',proj_id);
+    let headers = new HttpHeaders();
+    let jwttoken=localStorage.getItem('userToken');
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/updatestatus`;
-    let res = this._http.post(url,body, { params: params });
+    let res = this._http.post(url,body, { params: params,headers:headers });
     return res;
   }
   createproject(data: any) {
@@ -77,8 +98,11 @@ export class ProjectService {
     let database=localStorage.getItem('Database_Name');
     //let database_name = localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database);
+    let headers = new HttpHeaders();
+    let jwttoken=localStorage.getItem('userToken');
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/createproject`;
-    let res = this._http.post(url, projectdata, { params: params });
+    let res = this._http.post(url, projectdata, { params: params,headers:headers });
     return res;
   }
   insertfile(data,proj_id) {
@@ -88,22 +112,31 @@ export class ProjectService {
      
     //let database_name = localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database).set('proj_id',proj_id);
+    let headers = new HttpHeaders();
+    let jwttoken=localStorage.getItem('userToken');
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/insertfile`;
-    let res = this._http.post(url, files, { params: params });
+    let res = this._http.post(url, files, { params: params,headers:headers });
     return res;
   }
   updateproject(proj_id,project){
     let database=localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database).set('proj_id',proj_id);
+    let headers = new HttpHeaders();
+    let jwttoken=localStorage.getItem('userToken');
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/updateproject`;
-    let res = this._http.post(url,project, { params: params });
+    let res = this._http.post(url,project, { params: params,headers:headers });
     return res;
   }
   deletefile(file_id){
     let database=localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database).set('file_id',file_id);
+    let headers = new HttpHeaders();
+    let jwttoken=localStorage.getItem('userToken');
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/deletefile`;
-    let res = this._http.delete(url,{ params: params });
+    let res = this._http.delete(url,{ params: params,headers:headers });
     return res;
 
   }
@@ -112,23 +145,32 @@ export class ProjectService {
     let projectdata = data;
     //let database_name = localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database).set('proj_id',proj_id).set('last_index',last_index);
+    let headers = new HttpHeaders();
+    let jwttoken=localStorage.getItem('userToken');
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/saveimages`;
-    let res = this._http.post(url, projectdata, { params: params });
+    let res = this._http.post(url, projectdata, { params: params,headers:headers });
     return res;
 
   }
   deleteimages(img_id){
     let database=localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database).set('img_id',img_id);
+    let headers = new HttpHeaders();
+    let jwttoken=localStorage.getItem('userToken');
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/deleteprojectimage`;
-    let res = this._http.delete(url,{ params: params });
+    let res = this._http.delete(url,{ params: params,headers:headers });
     return res;
   }
   savecoverimage(image,proj_id){
     let database=localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database).set('proj_id',proj_id);
+    let headers = new HttpHeaders();
+    let jwttoken=localStorage.getItem('userToken');
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/savecoverimage`;
-    let res = this._http.post(url,image,{ params: params });
+    let res = this._http.post(url,image,{ params: params,headers:headers });
     console.log("in service=> ",res);
     return res;
   }
@@ -136,32 +178,44 @@ export class ProjectService {
   deletecoverimage(img_id){
     let database=localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database).set('img_id',img_id);
+    let headers = new HttpHeaders();
+    let jwttoken=localStorage.getItem('userToken');
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/deletecoverimage`;
-    let res = this._http.delete(url,{ params: params });
+    let res = this._http.delete(url,{ params: params,headers:headers });
     return res;
   }
   
   checkcoverimage(proj_id){
     let database=localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database).set('proj_id',proj_id);
+    let headers = new HttpHeaders();
+    let jwttoken=localStorage.getItem('userToken');
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/checkcoverimage`;
-    let res = this._http.get(url,{ params: params });
+    let res = this._http.get(url,{ params: params,headers:headers });
     return res;
   }
   
   createmilestone(milestone){
     let database=localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database)
+    let headers = new HttpHeaders();
+    let jwttoken=localStorage.getItem('userToken');
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/createmilestone`;
-    let res = this._http.post(url,milestone,{ params: params });
+    let res = this._http.post(url,milestone,{ params: params,headers:headers });
     return res;
   }
   getmilestonebyproject(projid){
    
     let database_name = localStorage.getItem('Database_Name');
     let params = new HttpParams().set('database', database_name).set('project_id',projid);
+    let headers = new HttpHeaders();
+    let jwttoken=localStorage.getItem('userToken');
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/getmilestonebyproject`;
-    let res = this._http.get(url,{ params: params });
+    let res = this._http.get(url,{ params: params,headers:headers });
     return res;
 
   }

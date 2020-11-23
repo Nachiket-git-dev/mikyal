@@ -12,16 +12,22 @@ export class MyaccountService {
     let body;
    
    let params = new HttpParams().set('user_id',user_id);
+   let jwttoken=localStorage.getItem('userToken');
+   let headers = new HttpHeaders();
+   headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/getuserdetails`;
-    let res = this._http.get(url,{ params: params });
+    let res = this._http.get(url,{ params: params ,headers:headers });
     console.log("in service=> ",res);
     return res;
   }
   updateuserdetails(user_id,user){
     let body;
     let params = new HttpParams().set('user_id',user_id);
+    let jwttoken=localStorage.getItem('userToken');
+    let headers = new HttpHeaders();
+    headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/updateuserdetails`;
-    let res = this._http.post(url,user,{ params: params });
+    let res = this._http.post(url,user,{ params: params,headers:headers });
     console.log("in service=> ",res);
     return res;
   }
@@ -29,8 +35,11 @@ export class MyaccountService {
   changepassword(userdata){
     let body;
    // let params = new HttpParams().set('user_id',user_id);
+   let jwttoken=localStorage.getItem('userToken');
+   let headers = new HttpHeaders();
+   headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/changepassword`;
-    let res = this._http.post(url,userdata);
+    let res = this._http.post(url,userdata,{headers:headers});
     console.log("in service=> ",res);
     return res;
   }
@@ -38,8 +47,11 @@ export class MyaccountService {
     let body;
    
    let params = new HttpParams().set('user_id',user_id);
+   let jwttoken=localStorage.getItem('userToken');
+   let headers = new HttpHeaders();
+   headers = headers.set('authtoken',jwttoken );
     const url = `${siteConfig.nodeAPIBaseUrl}/getuserimage`;
-    let res = this._http.get(url,{ params: params });
+    let res = this._http.get(url,{ params: params,headers:headers });
     console.log("in service=> ",res);
     return res;
   }
