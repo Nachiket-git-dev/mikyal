@@ -1,20 +1,20 @@
 var mysql = require('mysql');
 
-// config = {
-  
-//     host: 'mikyaldatabaseclusterdev.cluster-cyatsnvygubg.us-west-2.rds.amazonaws.com',
-//     user: 'admin',
-//     password: 'admin123',
-//     //database: 'mesh_dashboard',
-//     multipleStatements: true
-// }
 config = {
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  //database: 'mesh_dashboard',
-  multipleStatements: true
+  
+    host: 'mikyaldatabaseclusterdev.cluster-cyatsnvygubg.us-west-2.rds.amazonaws.com',
+    user: 'admin',
+    password: 'admin123',
+    //database: 'mesh_dashboard',
+    multipleStatements: true
 }
+// config = {
+//   host: 'localhost',
+//   user: 'root',
+//   password: '',
+//   //database: 'mesh_dashboard',
+//   multipleStatements: true
+// }
 var connection =mysql.createConnection(config); //added the line
 connection.connect(function(err){
   if (err){
