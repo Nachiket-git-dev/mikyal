@@ -1,5 +1,7 @@
 var mysql = require('mysql');
-
+var os = require('os');
+os.hostname();
+console.log("os.hostname()",os.hostname());
 config = {
   
     host: 'mikyaldatabaseclusterdev.cluster-cyatsnvygubg.us-west-2.rds.amazonaws.com',

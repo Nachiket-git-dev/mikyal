@@ -3,16 +3,16 @@
 function handler(req, res, result) {
     result.then((response) => {
         console.log("inside handler"+response.code);
-       // if (response.code) {
+        if (response.code) {
             if (response.code == 200) {
                 return res.status(response.code).json(response);
             } else {
                 return res.status(response.code).json(response);
             }
-        // }
-        // else {
-        //     return res.json(response);
-        // }
+         }
+         else {
+             return res.json(response);
+        }
 
 
     }).catch(function (err) {
