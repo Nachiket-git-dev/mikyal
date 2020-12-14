@@ -7,12 +7,14 @@ const invoice=require('./invoiceroute.js');
 const  health =require('./healthcheck');
 const portfoliosettings=require('./portfoliosettings');
 const scrumboard=require('./scrumroute');
+var cors = require('cors');
 var router = require('express').Router();
 const app=express();
 router.use(function(req, res, next){
    
     next();
 });
+app.use(cors({ Origin: '*' }));
 router.use(project);
 router.use(user);
 router.use(client);

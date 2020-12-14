@@ -11,7 +11,7 @@ function handler(req, res, result) {
             }
          }
          else {
-             return res.json(response);
+             return res.status(200).json(response);
         }
 
 
