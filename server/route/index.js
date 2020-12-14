@@ -14,7 +14,7 @@ router.use(function(req, res, next){
    
     next();
 });
-app.use(cors({ Origin: '*' }));
+router.use(cors({ Origin: '*' }));
 router.use(project);
 router.use(user);
 router.use(client);
