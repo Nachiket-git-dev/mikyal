@@ -37,7 +37,7 @@
                                         
                                     </div>
                                     <div *ngIf=" f.email.errors &&  f.email.touched" class="invalid-feedback">
-                                        <!-- <div *ngIf="f.email.errors.required">Email is required</div> -->
+                                        <div *ngIf="f.email.errors.required">Email is required</div>
                                         <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
                                       </div>
                                 </div>
@@ -48,7 +48,7 @@
                                         <i (click)="toggleVisibility()" class="icofont-eye-alt"></i>
                                     </div>
                                     <div *ngIf="f.password.errors" class="invalid-feedback">
-                                        <!-- <div *ngIf="f.password.errors.required">Password is required</div> -->
+                                        <div *ngIf="f.password.errors.required">Password is required</div>
                                         <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
                                     </div>
                                 </div>
