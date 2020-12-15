@@ -16,7 +16,7 @@
                                 <h2>Sign Up</h2>
                                 <p>Welcome to Clients Portals Sign Up Page</p>
                             </div>
-                            <form [formGroup]="form" class="sign-up-contact-form">
+                            <form [formGroup]="form" class="sign-up-contact-form" (ngSubmit)="send()">
                                 <div class="form-group">
                                     <label>First Name</label>
                                     <div class="input-wrapper">
@@ -34,12 +34,16 @@
                                     <label>email</label>
                                     <div class="input-wrapper">
                                         <input type="text" formControlName="email"  class="form-control custom-control" >
-                                        
+                                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback_msg">
+                                            <div *ngIf="f.email.errors.required">Email is required</div>
+                                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                        </div>
                                     </div>
-                                    <div *ngIf=" f.email.errors &&  f.email.touched" class="invalid-feedback">
+                                   
+                                    <!-- <div *ngIf=" f.email.errors &&  f.email.touched" class="invalid-feedback">
                                         <div *ngIf="f.email.errors.required">Email is required</div>
                                         <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
-                                      </div>
+                                      </div> -->
                                 </div>
                                 <div class="form-group">
                                     <label>Set Password</label>
@@ -47,14 +51,14 @@
                                         <input [type]="inputType" formControlName="password"  class="form-control custom-control" placeholder="......">
                                         <i (click)="toggleVisibility()" class="icofont-eye-alt"></i>
                                     </div>
-                                    <div *ngIf="f.password.errors" class="invalid-feedback">
+                                    <div *ngIf=" submitted && f.password.errors" class="invalid-feedback_msg">
                                         <div *ngIf="f.password.errors.required">Password is required</div>
                                         <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
                                     </div>
                                 </div>
-                               
+                                <button  type="submit"  class="mikyal-btn btn_primary">Sign Up</button>
                             </form>
-                            <button  type="submit" (click)="send()" class="mikyal-btn btn_primary">Sign Up</button>
+                            
                         </div>
                         <div class="sign-up-footer">
                             <p>@Copyright 2020 | Clients Portal</p>

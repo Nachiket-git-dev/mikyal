@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
   showloader=false;
   inputType = 'password';
   visible = false;
+  submitted = false;
   constructor(private router: Router,
     private fb: FormBuilder,
     private cd: ChangeDetectorRef,private snackBar:MatSnackBar
@@ -22,16 +23,17 @@ export class RegisterComponent implements OnInit {
     this.form = this.fb.group({
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
-      email: ['', [Validators.required,Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      email: ['', [Validators.required,Validators.email]],
       password: ['',[Validators.required,Validators.minLength(6)]],
       //terms: ['', [Validators.required]],
      
      //username:['', Validators.required]
     });
   }
-  get f() { return this.form.controls; }
+  get f() {console.log("this.form.controls",this.form.controls); return this.form.controls; }
   
   send() {
+    this.submitted = true;
     console.log("this.form=>",this.form);
     if (this.form.invalid) {
       this.snackBar.open('All fields are mandetory and must be valid ', 'OK', {
