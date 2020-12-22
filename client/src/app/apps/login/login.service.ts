@@ -17,6 +17,7 @@ export class LoginService {
     let body;
    // let params = new HttpParams().set('database', 'user_phase_3').set('proj_id',proj_id);
     const url = `${siteConfig.nodeAPIBaseUrl}/login`;
+    console.log("url=>",url);
     let res = this._http.post(url,user);
     console.log("in service=> ",res);
     return res;
