@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
     private  loginservice :LoginService,private snackbar: MatSnackBar,private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
+    console.log("inside login page");
     this.form = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
